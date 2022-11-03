@@ -11,8 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.Scanner;
 
+/**
+ * @auther Tang, Liqi
+ * @version 1.0
+ */
 public class Main extends Application {
     static final int WIDTH = 900;
     static final int HEIGHT = 900;

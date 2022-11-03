@@ -6,11 +6,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+/**
+ * This is a class that contains all the information about the cells.
+ */
+
 public class Cell {
     private final Rectangle rectangle;
     private final Group root;
     private Text textClass;
     private boolean modify = false;
+
+    /**
+     * @param x is to initial the coordinates of the cells.
+     * @param y is also used to initial the coordinates of the cells.
+     * @param scale is the initial length of the size of the cell.
+     * @param root
+     */
 
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
@@ -25,7 +36,7 @@ public class Cell {
     }
 
     boolean getModify() {
-        return modify;
+        return !modify;
     }
 
     void setModify(boolean modify) {
@@ -55,6 +66,12 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
+    /**
+     *Fill different colors with different numbers, whenever new numbers are generated,
+     *the color of the cells will be changed to the relation colors depends on the number of the cells contain.
+     *
+     * @param number is the parameter that cells contain, and different numbers have different colors.
+     */
     void setColorByNumber(int number) {
         switch (number) {
             case 0:

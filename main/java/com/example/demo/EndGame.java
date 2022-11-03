@@ -14,7 +14,11 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
+import static java.lang.System.exit;
 
+/**
+ * This class is used to decpribe when whole game is over.
+ */
 public class EndGame {
     private static EndGame singleInstance = null;
     private long score;
@@ -40,6 +44,13 @@ public class EndGame {
         return singleInstance;
     }
 
+    /**
+     *
+     * @param endGameScene
+     * @param root
+     * @param primaryStage
+     * @param score is the final score when game is ended.
+     */
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, long score) {
         this.score = score;
         Text text = new Text("GAME OVER");
@@ -70,8 +81,10 @@ public class EndGame {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     root.getChildren().clear();
-                } else if (result.get() == ButtonType.PREVIOUS) {
-
+                    /**
+                     * Automaticlly colse the game window when Ok button is clickes.
+                     */
+                    exit(0);
                 }
             }
         });

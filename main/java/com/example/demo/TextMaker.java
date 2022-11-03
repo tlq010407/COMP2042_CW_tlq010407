@@ -32,7 +32,6 @@ class TextMaker {
         tempNumber = first.getY();
         first.setY(second.getY());
         second.setY(tempNumber);
-
     }
 
     Text madeText(String input, double xCell, double yCell, Group root) {
