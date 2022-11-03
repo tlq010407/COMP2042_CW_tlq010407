@@ -1,12 +1,15 @@
 package com.example.demo;
 
+import javafx.scene.Group;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller extends Component implements ActionListener {
-    private JFrame frame = null;
+    private final JFrame root = null;
+
     private void createMenu(){
         JMenuBar jmb = new JMenuBar();
         JMenu Game = new JMenu("Game");
@@ -27,7 +30,7 @@ public class Controller extends Component implements ActionListener {
         jmb.add(Game);
         jmb.add(Help);
         jmb.add(ChangeBack);
-        frame.setJMenuBar(jmb);
+        root.setJMenuBar(jmb);
 
         Game1.addActionListener(this);
         Game2.addActionListener(this);
@@ -69,6 +72,7 @@ public class Controller extends Component implements ActionListener {
         }else{
             System.out.println("Blue");
         }
+
     }
 
     private void restart() {

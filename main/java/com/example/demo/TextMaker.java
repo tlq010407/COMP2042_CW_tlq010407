@@ -12,12 +12,22 @@ class TextMaker {
 
     }
 
+    /**
+     * If the cell is empty,
+     * then directly add the number to the empty cell.
+     * @return the new added cell.
+     */
     static TextMaker getSingleInstance() {
         if (singleInstance == null)
             singleInstance = new TextMaker();
         return singleInstance;
     }
 
+    /**
+     * Change
+     * @param first
+     * @param second
+     */
     static void changeTwoText(Text first, Text second) {
         String temp;
         temp = first.getText();
@@ -34,6 +44,14 @@ class TextMaker {
         second.setY(tempNumber);
     }
 
+    /**
+     * makeText is used to create a new number into the empty cell.
+     * @param input is randomly generated number.
+     * @param xCell is sued to coordinate the position of the empty cell.
+     * @param yCell is sued to coordinate the position of the empty cell.
+     * @param root
+     * @return the cell with filled number and color.
+     */
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
