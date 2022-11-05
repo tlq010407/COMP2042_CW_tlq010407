@@ -20,7 +20,7 @@ public class Cell {
      * @param x is to initial the coordinates of the cells.
      * @param y is also used to initial the coordinates of the cells.
      * @param scale is the initial length of the size of the cell.
-     * @param root
+     * @param root is a group for the game root, and used to add the cell into game scene.
      */
 
     Cell(double x, double y, double scale, Group root) {
@@ -58,6 +58,10 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
+    /**
+     * Add the same number into one cell, and set another cell into 0.
+     * @param cell is the cell that need to be added number.
+     */
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");

@@ -46,7 +46,7 @@ public class EndGame {
 
     /**
      *
-     * @param endGameScene
+     * @param endGameScene stores the all parameters of the end game scene.
      * @param root
      * @param primaryStage
      * @param score is the final score when game is ended.

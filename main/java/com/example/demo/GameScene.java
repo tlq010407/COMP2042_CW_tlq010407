@@ -1,21 +1,22 @@
 package com.example.demo;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.util.Random;
+
+import javax.swing.*;
 
 /**
  * This is a class that contains all game scenes.
  */
 
-class GameScene extends Move{
+public class GameScene extends Move{
     private final static int distanceBetweenCells = 10;
     private static final int HEIGHT = 700;
     /**
@@ -23,14 +24,9 @@ class GameScene extends Move{
      */
     public static int cellNum = 4;
     private static double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
-    private long score = 0;
+   // private long score = 0;
 
-    /*static void setN(int number) {
-        n = number;
-        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    }*/
-
-    /*public GameScene(){
+    /*Class GameScene(){
         setTitle("2048");
         getContentPane().setBackground(new Color(189, 177, 92));
         setSize((int) LENGTH,HEIGHT);
@@ -42,6 +38,10 @@ class GameScene extends Move{
         return LENGTH;
     }
 
+    /**
+     * Check whether is an empty cell or not.
+     * @return 1 if there still get empty cells; 0 if the user already win; -1 if there is no more empty cell.
+     */
     private int haveEmptyCell() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
@@ -54,6 +54,12 @@ class GameScene extends Move{
         return -1;
     }
 
+    /**
+     * Check if there have same numbers nearly that user can continue the game.
+     * @param i is position in the row.
+     * @param j is the position in the colum.
+     * @return boolean as a result.
+     */
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < cellNum - 1 && j < cellNum - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
@@ -63,6 +69,10 @@ class GameScene extends Move{
         return false;
     }
 
+    /**
+     * Check whether user can still move ot mot.
+     * @return the boolean as a result.
+     */
     private boolean canNotMove() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
@@ -72,14 +82,6 @@ class GameScene extends Move{
             }
         }
         return true;
-    }
-
-    private void sumCellNumbersToScore() {
-        for (int i = 0; i < cellNum; i++) {
-            for (int j = 0; j < cellNum; j++) {
-                score += cells[i][j].getNumber();
-            }
-        }
     }
 
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
@@ -103,9 +105,12 @@ class GameScene extends Move{
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
-        randomFillNumber(1);
-        randomFillNumber(1);
+        randomFillNumber();
+        randomFillNumber();
 
+        /**
+         * Capture the keyboard action and do the corresponding movements in game scene.
+         */
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
             Platform.runLater(() -> {
                 int haveEmptyCell;
@@ -118,19 +123,21 @@ class GameScene extends Move{
                 } else if (key.getCode() == KeyCode.RIGHT) {
                     GameScene.this.moveRight();
                 }
-                GameScene.this.sumCellNumbersToScore();
+
                 scoreText.setText(score + "");
                 haveEmptyCell = GameScene.this.haveEmptyCell();
                 if (haveEmptyCell == -1) {
                     if (GameScene.this.canNotMove()) {
+                        /**
+                         * if users cannot move anymore, then switch to the end game scene
+                         */
                         primaryStage.setScene(endGameScene);
-
                         EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                         root.getChildren().clear();
                         score = 0;
                     }
                 } else if (haveEmptyCell == 1)
-                    GameScene.this.randomFillNumber(2);
+                    GameScene.this.randomFillNumber();
             });
         });
     }

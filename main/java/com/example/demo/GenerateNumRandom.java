@@ -2,15 +2,22 @@ package com.example.demo;
 
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-
 import java.util.Random;
+
+/**
+ * This class is used to generate random number into empty cell.
+ */
 
 public class GenerateNumRandom{
     public static int cellNum = 4;
     public Group root;
     private final TextMaker textMaker = TextMaker.getSingleInstance();
     public Cell[][] cells = new Cell[cellNum][cellNum];
-    public void randomFillNumber(int turn) {
+
+    /**
+     *Delete int turn parameter here, since we are not use this.
+     */
+    public void randomFillNumber() {
         Cell[][] emptyCells = new Cell[cellNum][cellNum];
         int a = 0;
         int b = 0;

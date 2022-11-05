@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-class TextMaker {
+public class TextMaker {
     private static TextMaker singleInstance = null;
 
     private TextMaker() {
@@ -24,9 +24,9 @@ class TextMaker {
     }
 
     /**
-     * Change
-     * @param first
-     * @param second
+     * Change the number, position of two cells.
+     * @param first is the first cell.
+     * @param second is the second cell.
      */
     static void changeTwoText(Text first, Text second) {
         String temp;
@@ -47,9 +47,9 @@ class TextMaker {
     /**
      * makeText is used to create a new number into the empty cell.
      * @param input is randomly generated number.
-     * @param xCell is sued to coordinate the position of the empty cell.
-     * @param yCell is sued to coordinate the position of the empty cell.
-     * @param root
+     * @param xCell is used to coordinate the position of the empty cell.
+     * @param yCell is used to coordinate the position of the empty cell.
+     * @param root is used to add the
      * @return the cell with filled number and color.
      */
     Text madeText(String input, double xCell, double yCell, Group root) {

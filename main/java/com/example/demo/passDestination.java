@@ -1,5 +1,10 @@
 package com.example.demo;
 
+/**
+ * This class is used to contain the method of moving coordinate,
+ * when the left, right, up and down key is pressed by user in the keyboard,
+ * all cells will be moved to the sides which user pressed.
+ */
 public class passDestination extends GenerateNumRandom{
     public int passDestination(int i, int j, char direct) {
         int coordinate = j;
@@ -53,4 +58,6 @@ public class passDestination extends GenerateNumRandom{
         }
         return -1;
     }
+
+
 }

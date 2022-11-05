@@ -16,17 +16,19 @@ import java.util.Scanner;
 
 /**
  * @auther Tang, Liqi
- * @version 1.0
+ * @version 2.0
  */
 public class Main extends Application {
     static final int WIDTH = 900;
     static final int HEIGHT = 900;
     private static final Scanner input = new Scanner(System.in);
     private Group gameRoot = new Group();
+    private Group menuRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+    private Scene menuScene = new Scene(menuRoot, WIDTH,HEIGHT, Color.rgb(120,100,100));
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 
     public void setGameScene(Scene gameScene) {
@@ -37,15 +39,27 @@ public class Main extends Application {
         this.gameRoot = gameRoot;
     }
 
+    public void setMenuRoot(Group menuRoot){
+        this.menuRoot=menuRoot;
+    }
+
+    public void setMenuScene(Scene menuScene){
+        this.menuScene=menuScene;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         Group menuRoot = new Group();
+        setGameRoot(menuRoot);
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
+        setGameScene(menuScene);
+
         Group accountRoot = new Group();
         Scene accountScene = new Scene(accountRoot, WIDTH, HEIGHT, Color.rgb(150, 20, 100, 0.2));
         Group getAccountRoot = new Group();
         Scene getAccountScene = new Scene(getAccountRoot, WIDTH, HEIGHT, Color.rgb(200, 20, 100, 0.2));
+
         Group endgameRoot = new Group();
         Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
         Group rankRoot = new Group();
@@ -74,4 +88,5 @@ public class Main extends Application {
 
         primaryStage.show();
     }
+
 }

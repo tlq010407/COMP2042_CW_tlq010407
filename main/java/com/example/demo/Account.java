@@ -3,7 +3,8 @@ package com.example.demo;
 import java.util.ArrayList;
 
 /**
- * This class is used to contain all information of the account, and contains several methods,
+ * This class is used to contain all information of the account,
+ * and contains several methods,
  * like add new account method,
  * match add the highest score to each account.
  */
@@ -21,6 +22,11 @@ public class Account implements Comparable<Account> {
         this.score=score;
     }
 
+    /**
+     * Match the username with their exist account.
+     * @param userName is username.
+     * @return the account matched with the username.
+     */
     static Account accountHaveBeenExist(String userName) {
         for (Account account : accounts) {
             if (account.getUserName().equals(userName)) {

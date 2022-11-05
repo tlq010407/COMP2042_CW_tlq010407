@@ -7,9 +7,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ */
 public class Controller extends Component implements ActionListener {
-    private final JFrame root = null;
+    private final JFrame frame = null;
 
+    public Group root;
+
+    /**
+     *
+     */
     private void createMenu(){
         JMenuBar jmb = new JMenuBar();
         JMenu Game = new JMenu("Game");
@@ -30,7 +38,7 @@ public class Controller extends Component implements ActionListener {
         jmb.add(Game);
         jmb.add(Help);
         jmb.add(ChangeBack);
-        root.setJMenuBar(jmb);
+        frame.setJMenuBar(jmb);
 
         Game1.addActionListener(this);
         Game2.addActionListener(this);
@@ -48,6 +56,10 @@ public class Controller extends Component implements ActionListener {
 
     }
 
+    /**
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -75,6 +87,9 @@ public class Controller extends Component implements ActionListener {
 
     }
 
+    /**
+     *
+     */
     private void restart() {
     }
 }

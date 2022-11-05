@@ -1,6 +1,11 @@
 package com.example.demo;
 
+/**
+ * This class contains the moving methods,
+ * while checking whether is available to move vertically and horizontally.
+ */
 public class Move extends passDestination{
+    public long score = 0;
     public void moveLeft() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = 1; j < cellNum; j++) {
@@ -54,8 +59,16 @@ public class Move extends passDestination{
         return false;
     }
 
+    /**
+     *
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
+            sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setModify(true);
         } else if (des != j) {
@@ -72,11 +85,17 @@ public class Move extends passDestination{
 
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
+            sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
     }
+
+    private void sumCellNumbersToScore(int i, int j) {
+                score += cells[i][j].getNumber()*2;
+            }
+
 
 }
