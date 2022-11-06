@@ -1,4 +1,4 @@
-package com.example.demo;
+package Game2048;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -66,7 +65,6 @@ public class Main extends Application {
         Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, Color.rgb(250, 50, 120, 0.3));
         BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(background_fill);
-
 
         Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
         backgroundOfMenu.setX(WIDTH / 2 - 120);

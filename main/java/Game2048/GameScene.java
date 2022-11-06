@@ -1,16 +1,13 @@
-package com.example.demo;
+package Game2048;
 
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 
 /**
  * This is a class that contains all game scenes.
@@ -84,6 +81,14 @@ public class GameScene extends Move{
         return true;
     }
 
+    /**
+     * Set the game scene, add all the cells on.
+     * @param gameScene contains the basic parameters in game scene, like background color.
+     * @param root
+     * @param primaryStage set the game scene as the primary stage.
+     * @param endGameScene when game ended, switch to the end game scene.
+     * @param endGameRoot
+     */
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
@@ -94,6 +99,9 @@ public class GameScene extends Move{
 
         }
 
+        /**
+         * Set the position of the score shows in the game scene.
+         */
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("SCORE :");
@@ -123,7 +131,6 @@ public class GameScene extends Move{
                 } else if (key.getCode() == KeyCode.RIGHT) {
                     GameScene.this.moveRight();
                 }
-
                 scoreText.setText(score + "");
                 haveEmptyCell = GameScene.this.haveEmptyCell();
                 if (haveEmptyCell == -1) {

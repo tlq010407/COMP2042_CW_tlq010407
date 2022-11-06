@@ -1,4 +1,4 @@
-package com.example.demo;
+package Game2048;
 
 import javafx.scene.Group;
 import javafx.scene.text.Text;
@@ -18,6 +18,9 @@ public class GenerateNumRandom{
      *Delete int turn parameter here, since we are not use this.
      */
     public void randomFillNumber() {
+        /**
+         * Check the empty cells.
+         */
         Cell[][] emptyCells = new Cell[cellNum][cellNum];
         int a = 0;
         int b = 0;
@@ -40,7 +43,9 @@ public class GenerateNumRandom{
                 }
             }
         }
-
+    /**
+     * Generate the random number between 2 and 4, and fill it into an empty cell.
+    */
         Text text;
         Random random = new Random();
         boolean putTwo = random.nextInt() % 2 != 0;

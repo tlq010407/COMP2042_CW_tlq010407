@@ -1,4 +1,4 @@
-package com.example.demo;
+package Game2048;
 
 import javafx.scene.Group;
 

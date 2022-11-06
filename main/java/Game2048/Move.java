@@ -1,4 +1,4 @@
-package com.example.demo;
+package Game2048;
 
 /**
  * This class contains the moving methods,
@@ -6,6 +6,10 @@ package com.example.demo;
  */
 public class Move extends passDestination{
     public long score = 0;
+
+    /**
+     * Move all the cells to the left side.
+     */
     public void moveLeft() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = 1; j < cellNum; j++) {
@@ -17,6 +21,9 @@ public class Move extends passDestination{
         }
     }
 
+    /**
+     * Move all the cells to the right side.
+     */
     public void moveRight() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = cellNum - 1; j >= 0; j--) {
@@ -28,6 +35,9 @@ public class Move extends passDestination{
         }
     }
 
+    /**
+     * Move all the cells up.
+     */
     public void moveUp() {
         for (int j = 0; j < cellNum; j++) {
             for (int i = 1; i < cellNum; i++) {
@@ -40,6 +50,9 @@ public class Move extends passDestination{
 
     }
 
+    /**
+     * Move all the cells down.
+     */
     public void moveDown() {
         for (int j = 0; j < cellNum; j++) {
             for (int i = cellNum - 1; i >= 0; i--) {
@@ -51,6 +64,15 @@ public class Move extends passDestination{
         }
 
     }
+
+    /**
+     * To check whether user is allowed to move horizontally.
+     * @param i is used to describe the row of the cell in.
+     * @param j is used to describe the column of the cell in.
+     * @param des is used to describe the column next to the cells to move.
+     * @param sign is used to describe the coordinate to move the cells.
+     * @return the boolean result whether user can move or not.
+     */
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < cellNum && des + sign >= 0) {
             return cells[i][des + sign].getNumber() == cells[i][j].getNumber() && cells[i][des + sign].getModify()
@@ -60,11 +82,13 @@ public class Move extends passDestination{
     }
 
     /**
-     *
-     * @param i
-     * @param j
-     * @param des
-     * @param sign
+     * Move the cells horizontally till them cannot move anymore, when user press left and right key,
+     * and when the number of the cells are same, add them on to the final score,
+     * and coalesce the cells with same number.
+     * @param i is used to describe the row of the cell in.
+     * @param j is used to describe the column of the cell in.
+     * @param des is used to describe the row next to the cells to move.
+     * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
@@ -76,6 +100,14 @@ public class Move extends passDestination{
         }
     }
 
+    /**
+     * To check whether user is allowed to move vertically.
+     * @param i is used to describe the row of the cell in.
+     * @param j is used to describe the column of the cell in.
+     * @param des is used to describe the row next to the cells to move.
+     * @param sign is used to describe the coordinate to move the cells.
+     * @return the boolean result whether user can move or not.
+     */
     private boolean isValidDesV(int i, int j, int des, int sign) {
         if (des + sign < cellNum && des + sign >= 0)
             return cells[des + sign][j].getNumber() == cells[i][j].getNumber() && cells[des + sign][j].getModify()
@@ -83,6 +115,15 @@ public class Move extends passDestination{
         return false;
     }
 
+    /**
+     * Move the cells vertically, when user press up and down key,
+     * and when the number of the cells are same, add them on to the final score,
+     * and coalesce the cells with same number.
+     * @param i is used to describe the row of the cell in.
+     * @param j is used to describe the column of the cell in.
+     * @param des is used to describe the row next to the cells to move.
+     * @param sign is used to describe the coordinate to move the cells.
+     */
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             sumCellNumbersToScore(i,j);
@@ -92,7 +133,14 @@ public class Move extends passDestination{
             cells[i][j].changeCell(cells[des][j]);
         }
     }
+//Move the sum function from the GameScene class to the Move class,
+//so that we can sun the final score when we move the cells.
 
+    /**
+     * To sum the scores when the cells with number is merged.
+     * @param i is the rwo of the cells.
+     * @param j is the column of the cells.
+     */
     private void sumCellNumbersToScore(int i, int j) {
                 score += cells[i][j].getNumber()*2;
             }

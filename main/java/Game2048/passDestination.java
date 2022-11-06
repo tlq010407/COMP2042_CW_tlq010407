@@ -1,11 +1,22 @@
-package com.example.demo;
+package Game2048;
 
 /**
  * This class is used to contain the method of moving coordinate,
  * when the left, right, up and down key is pressed by user in the keyboard,
- * all cells will be moved to the sides which user pressed.
+ * all cells will be moved to the sides which user pressed,
+ * and check whether the cell is empty or not,
+ * if the cell is not empty then record the position of the cell.
  */
 public class passDestination extends GenerateNumRandom{
+    /**
+     * Move the cells into the direct which user click,
+     * check whether the cell is empty or not,
+     * if the cell is not empty then record the position of the cell.
+     * @param i is used to describe the row of the cell in.
+     * @param j is used to describe the column of the cell in.
+     * @param direct is the position that user clicked in the keyboard.
+     * @return the position which cell is not empty.
+     */
     public int passDestination(int i, int j, char direct) {
         int coordinate = j;
         if (direct == 'l') {

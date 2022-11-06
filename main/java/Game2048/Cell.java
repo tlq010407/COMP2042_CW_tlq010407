@@ -1,4 +1,4 @@
-package com.example.demo;
+package Game2048;
 
 
 import javafx.scene.Group;
@@ -35,6 +35,10 @@ public class Cell {
         root.getChildren().add(rectangle);
     }
 
+    /**
+     * Check whether the number of the cell is changed or not.
+     * @return
+     */
     boolean getModify() {
         return !modify;
     }
@@ -42,6 +46,11 @@ public class Cell {
     void setModify(boolean modify) {
         this.modify = modify;
     }
+
+    /**
+     * Change all parameters of the cell.
+     * @param cell is a cell needed to change.
+     */
 
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
