@@ -11,7 +11,7 @@ Menu.fxml: set and create the prototype scene and layout of menu scene;
 'Controller' class: Extend, switch the scenes and contain the functions map to different buttons:
 switchToMenu(), switchToGame(), changecolor(), help(), and quit() functions;
 
-set the default primaryStage in main menu, and creat a "START" button to enter the menu scene,
+Set the default primaryStage in main menu, and creat a "START" button to enter the menu scene,
 the menu scene contains "start game", "change background color", "exit" and "rules" buttons:
 "start game" button: start game, switch the menu scene to game scene;
 "change background color" button: change the background color of the game scene, when click this button, a choice dialog popup window to let user to choose and change the background color;
