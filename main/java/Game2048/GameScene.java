@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class GameScene extends Move{
     private final static int distanceBetweenCells = 10;
-    private static final int HEIGHT = 700;
+    public static final int HEIGHT = 700;
     /**
      * the number of the cell in the game
      */
@@ -80,7 +80,7 @@ public class GameScene extends Move{
      * @param endGameScene when game ended, switch to the end game scene.
      * @param endGameRoot
      */
-    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {

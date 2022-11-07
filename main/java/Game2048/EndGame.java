@@ -24,12 +24,13 @@ import javafx.stage.Stage;
 import javax.swing.event.HyperlinkEvent;
 import java.util.Optional;
 
+import static Game2048.Main.WIDTH;
 import static java.lang.System.exit;
 
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame {
+public class EndGame extends GameScene{
     private static EndGame singleInstance = null;
     private long score;
 
@@ -59,9 +60,29 @@ public class EndGame {
 
         Text scoreText = new Text("score:"+ score);
         scoreText.setFill(Color.BLACK);
-        scoreText.relocate(200, 500);
+        scoreText.relocate(250, 400);
         scoreText.setFont(Font.font(50));
         root.getChildren().add(scoreText);
+
+        /**
+         * Restart Button:
+         * when user click this button, the scene will switch to the game scene.
+         */
+        Button restart = new Button("New Game");
+        restart.setPrefSize(100,30);
+        restart.setTextFill(Color.BLACK);
+        root.getChildren().add(restart);
+        restart.relocate(100,700);
+        restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event) {
+                Group gameRoot = new Group();
+                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+                primaryStage.setScene(gameScene);
+                GameScene game = new GameScene();
+                game.game(gameScene, gameRoot, primaryStage, endGameScene, root);
+                root.getChildren().clear();
+            }
+        });
 
         /**
          * Set a popup window to show the final score.
