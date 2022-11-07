@@ -21,15 +21,6 @@ public class GameScene extends Move{
      */
     public static int cellNum = 4;
     private static double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
-   // private long score = 0;
-
-    /*Class GameScene(){
-        setTitle("2048");
-        getContentPane().setBackground(new Color(189, 177, 92));
-        setSize((int) LENGTH,HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-    }*/
 
     static double getLENGTH() {
         return LENGTH;

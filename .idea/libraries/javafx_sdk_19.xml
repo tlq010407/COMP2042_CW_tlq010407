@@ -9,8 +9,10 @@
     </NATIVE>
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../javafx-sdk-19" />
+      <root url="file://$PROJECT_DIR$/../javafx-sdk-19" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-19/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-19" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$PROJECT_DIR$/../javafx-sdk-19" recursive="false" type="SOURCES" />
   </library>
 </component>

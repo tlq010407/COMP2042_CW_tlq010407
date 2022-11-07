@@ -3,6 +3,7 @@ package Game2048;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -10,66 +11,49 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 import java.util.Scanner;
 
 /**
  * @auther Tang, Liqi
- * @version 2.0
+ * @version 4.0
  */
-public class Main extends Application {
-    static final int WIDTH = 900;
-    static final int HEIGHT = 900;
+public class Main extends Application{
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 900;
+
     private static final Scanner input = new Scanner(System.in);
-    private Group gameRoot = new Group();
-    private Group menuRoot = new Group();
-    private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-    private Scene menuScene = new Scene(menuRoot, WIDTH,HEIGHT, Color.rgb(120,100,100));
+    public Group gameRoot = new Group();
+    public Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
 
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
-
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
     }
 
-    public void setMenuRoot(Group menuRoot){
-        this.menuRoot=menuRoot;
-    }
-
-    public void setMenuScene(Scene menuScene){
-        this.menuScene=menuScene;
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Group menuRoot = new Group();
-        setGameRoot(menuRoot);
-        Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
-        setGameScene(menuScene);
+        Parent root = FXMLLoader.load(getClass().getResource("Pane/Start.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("2048");
+        primaryStage.setScene(scene);
 
         Group accountRoot = new Group();
         Scene accountScene = new Scene(accountRoot, WIDTH, HEIGHT, Color.rgb(150, 20, 100, 0.2));
         Group getAccountRoot = new Group();
         Scene getAccountScene = new Scene(getAccountRoot, WIDTH, HEIGHT, Color.rgb(200, 20, 100, 0.2));
 
-        Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
         Group rankRoot = new Group();
         Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, Color.rgb(250, 50, 120, 0.3));
         BackgroundFill background_fill = new BackgroundFill(Color.rgb(120, 100, 100), CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(background_fill);
-
-        Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
-        backgroundOfMenu.setX(WIDTH / 2 - 120);
-        backgroundOfMenu.setY(180);
-        menuRoot.getChildren().add(backgroundOfMenu);
 
         Rectangle backgroundOfMenuForPlay = new Rectangle(240, 140, Color.rgb(120, 20, 100, 0.2));
         backgroundOfMenuForPlay.setX(WIDTH / 2 - 120);
@@ -80,9 +64,6 @@ public class Main extends Application {
         setGameRoot(gameRoot);
         Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         setGameScene(gameScene);
-        primaryStage.setScene(gameScene);
-        GameScene game = new GameScene();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
         primaryStage.show();
     }

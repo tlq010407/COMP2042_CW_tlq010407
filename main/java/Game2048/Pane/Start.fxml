@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="140.0" prefWidth="240.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game2048.Controller">
+   <children>
+      <ButtonBar layoutY="44.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="start" alignment="CENTER" minWidth="28.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="40.0" prefWidth="153.0" text="START" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

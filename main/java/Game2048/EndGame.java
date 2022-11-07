@@ -98,5 +98,7 @@ public class EndGame {
              */
             exit(0);
         }
+
+        //delete the quitButton here, and add the popup window to show the final score
     }
 }
