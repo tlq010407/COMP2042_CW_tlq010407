@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * match add the highest score to each account.
  */
 
-public class Account implements Comparable<Account> {
+public class Account implements Comparable<Account>{
     private static final ArrayList<Account> accounts = new ArrayList<>();
     private long score = 0;
     private final String userName;

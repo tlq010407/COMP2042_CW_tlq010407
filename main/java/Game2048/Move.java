@@ -5,7 +5,7 @@ package Game2048;
  * while checking whether is available to move vertically and horizontally.
  */
 public class Move extends passDestination{
-    public long score = 0;
+    public int score = 0;
 
     /**
      * Move all the cells to the left side.

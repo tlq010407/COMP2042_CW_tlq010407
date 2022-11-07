@@ -21,21 +21,22 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
+import java.io.*;
 import java.util.Optional;
 
+import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
 import static java.lang.System.exit;
 
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends GameScene{
+public class EndGame extends Record{
     private static EndGame singleInstance = null;
-    private long score;
-
+    private int score;
     private EndGame() {
-
     }
 
     public static EndGame getInstance() {
@@ -51,24 +52,31 @@ public class EndGame extends GameScene{
      * @param primaryStage set the end game scene show in the screen.
      * @param score is the final score when game is ended.
      */
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, long score) {
+    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, int score) {
         this.score = score;
         Text text = new Text("GAME OVER");
         text.relocate(250, 250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
+        gethighscore();
+        checkscore(score);
 
-        Text scoreText = new Text("score:"+ score);
+        Text scoreText = new Text("Score: "+ score);
+        Text highscoreText = new Text("Highest Score: "+gethighscore());
         scoreText.setFill(Color.BLACK);
+        highscoreText.setFill(Color.BLACK);
         scoreText.relocate(250, 400);
+        highscoreText.relocate(250,500);
         scoreText.setFont(Font.font(50));
+        highscoreText.setFont(Font.font(50));
         root.getChildren().add(scoreText);
+        root.getChildren().add(highscoreText);
 
         /**
          * Restart Button:
          * when user click this button, the scene will switch to the game scene.
          */
-        Button restart = new Button("New Game");
+        Button restart = new Button("Try Again!");
         restart.setPrefSize(100,30);
         restart.setTextFill(Color.BLACK);
         root.getChildren().add(restart);
