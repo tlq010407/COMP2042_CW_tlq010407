@@ -4,7 +4,7 @@ package Game2048;
  * This class contains the moving methods,
  * while checking whether is available to move vertically and horizontally.
  */
-public class Move extends passDestination{
+public class Move extends passDestination {
     public int score = 0;
 
     /**

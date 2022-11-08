@@ -1,5 +1,7 @@
 package Game2048;
 
+import Game2048.GenerateNumRandom;
+
 /**
  * This class is used to contain the method of moving coordinate,
  * when the left, right, up and down key is pressed by user in the keyboard,
@@ -7,7 +9,7 @@ package Game2048;
  * and check whether the cell is empty or not,
  * if the cell is not empty then record the position of the cell.
  */
-public class passDestination extends GenerateNumRandom{
+public class passDestination extends GenerateNumRandom {
     /**
      * Move the cells into the direct which user click,
      * check whether the cell is empty or not,

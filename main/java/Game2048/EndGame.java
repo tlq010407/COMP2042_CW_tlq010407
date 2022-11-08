@@ -1,18 +1,16 @@
 package Game2048;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -21,8 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import javax.swing.event.HyperlinkEvent;
 import java.io.*;
 import java.util.Optional;
 
@@ -33,9 +29,10 @@ import static java.lang.System.exit;
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record{
+public class EndGame extends Record {
     private static EndGame singleInstance = null;
     private int score;
+    public static String HIGH;
     private EndGame() {
     }
 
@@ -58,11 +55,11 @@ public class EndGame extends Record{
         text.relocate(250, 250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
-        gethighscore();
+        getHighscore();
         checkscore(score);
 
         Text scoreText = new Text("Score: "+ score);
-        Text highscoreText = new Text("Highest Score: "+gethighscore());
+        Text highscoreText = new Text("Highest Score: "+getHighscore());
         scoreText.setFill(Color.BLACK);
         highscoreText.setFill(Color.BLACK);
         scoreText.relocate(250, 400);
@@ -73,6 +70,7 @@ public class EndGame extends Record{
         root.getChildren().add(highscoreText);
 
         /**
+         * Adddition:
          * Restart Button:
          * when user click this button, the scene will switch to the game scene.
          */
@@ -93,6 +91,60 @@ public class EndGame extends Record{
         });
 
         /**
+         * Addition:
+         * Back Menu Botton:
+         * when user click this button, the scene will switch to the menu scene.
+         */
+        Button backmenu = new Button("Back to Menu");
+        backmenu.setPrefSize(150,30);
+        backmenu.setTextFill(Color.BLACK);
+        root.getChildren().add(backmenu);
+        backmenu.relocate(300,700);
+        backmenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Parent menuRoot;
+                try {
+                    menuRoot= FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage menuStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Scene menuScene = new Scene(menuRoot);
+                menuStage.setScene(menuScene);
+                root.getChildren().clear();
+                menuStage.show();
+            }
+        });
+
+        /**
+         * A Alert:
+         * Pop up a screen and ask whether user wanna quit game or not,
+         * if user click "OK",
+         * then the game will close the whole game screen automatically.
+         */
+        Button quitButton = new Button("QUIT");
+        quitButton.setPrefSize(100,30);
+        quitButton.setTextFill(Color.BLACK);
+        root.getChildren().add(quitButton);
+        quitButton.relocate(550,700);
+        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Quit Dialog");
+                alert.setHeaderText("Quit from this page");
+                alert.setContentText("Are you sure?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    root.getChildren().clear();
+                    exit(0);
+                }
+            }
+        });
+
+        /**
          * Set a popup window to show the final score.
          */
         Stage showscore = new Stage();
@@ -109,25 +161,5 @@ public class EndGame extends Record{
         showscore.setScene(scene1);
         showscore.showAndWait();
 
-        /**
-         * A Alert:
-         * Pop up a screen and ask whether user wanna quit game or not,
-         * if user click "OK",
-         * then the game will close the whole game screen automatically.
-         */
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Quit Dialog");
-        alert.setHeaderText("Quit from this page");
-        alert.setContentText("Are you sure?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            root.getChildren().clear();
-            /**
-             * Automaticlly colse the game window when Ok button is clickes.
-             */
-            exit(0);
-        }
-
-        //delete the quitButton here, and add the popup window to show the final score
     }
 }

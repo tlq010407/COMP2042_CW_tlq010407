@@ -6,7 +6,7 @@ import java.io.*;
  * This class is used to record the highest score
  */
 public class Record{
-    private String highscore="";
+    private static String highscore="";
 
     /**
      * Get the highest score.
@@ -39,7 +39,7 @@ public class Record{
      * if it is zero, then get the current as a highest score.
      * @return highest score.
      */
-    public String gethighscore(){
+    public String getHighscore(){
         if (highscore==""){
             highscore=this.GetHighScore();
         }

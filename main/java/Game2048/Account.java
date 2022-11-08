@@ -1,6 +1,7 @@
 package Game2048;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * This class is used to contain all information of the account,
@@ -9,11 +10,10 @@ import java.util.ArrayList;
  * match add the highest score to each account.
  */
 
-public class Account implements Comparable<Account>{
+class Account implements Comparable<Account>, Serializable{
     private static final ArrayList<Account> accounts = new ArrayList<>();
-    private long score = 0;
-    private final String userName;
-
+    private static long score = 0;
+    private static String userName;
     public Account(String userName) {
         this.userName = userName;
     }
@@ -66,11 +66,11 @@ public class Account implements Comparable<Account>{
         this.score += score;
     }
 
-    private long getScore() {
+    static long getScore() {
         return score;
     }
 
-    private String getUserName() {
+    static String getUserName() {
         return userName;
     }
 

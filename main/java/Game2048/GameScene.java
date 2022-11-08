@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * This is a class that contains all game scenes.
  */
 
-public class GameScene extends Move{
+public class GameScene extends Move {
     private final static int distanceBetweenCells = 10;
     public static final int HEIGHT = 700;
     /**

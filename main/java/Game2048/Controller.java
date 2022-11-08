@@ -24,7 +24,7 @@ import java.io.IOException;
  * This class is used to add start, and menu screen,
  * and this class is combined with the pane package to achieve the switch the scene.
  */
-public class Controller extends Main{
+public class Controller extends Main {
     private Stage primaryStage;
     private Scene scene;
     private Parent root;
@@ -59,6 +59,7 @@ public class Controller extends Main{
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
     }
 
+
     /**
      * When the change background color button is clicked,
      * pop up a choice dialog window and choose the color to change.
@@ -69,23 +70,24 @@ public class Controller extends Main{
         String color[] = { "Green", "Pink", "Blue",
                 "Whitesmoke", "violet", "Default" };
         ChoiceDialog c = new ChoiceDialog(color[5], color);
-                c.setHeaderText("Choose the background color");
-                c.setContentText("please select the color");
-                c.showAndWait();
-                if (c.getSelectedItem()=="Green"){
-                    gameScene.setFill(Color.GREEN);
-                } else if (c.getSelectedItem()=="Pink") {
-                    gameScene.setFill(Color.PINK);
-                } else if (c.getSelectedItem()=="Blue") {
-                    gameScene.setFill(Color.LIGHTBLUE);
-                } else if (c.getSelectedItem()=="Whitesmoke") {
-                    gameScene.setFill(Color.WHITESMOKE);
-                } else if (c.getSelectedItem()=="violet") {
-                    gameScene.setFill(Color.VIOLET);
-                }else {
-                    gameScene.setFill(Color.rgb(189, 177, 92));
-                }
+        c.setHeaderText("Choose the background color");
+        c.setContentText("please select the color");
+        c.showAndWait();
+        if (c.getSelectedItem()=="Green"){
+            gameScene.setFill(Color.GREEN);
+        } else if (c.getSelectedItem()=="Pink") {
+            gameScene.setFill(Color.PINK);
+        } else if (c.getSelectedItem()=="Blue") {
+            gameScene.setFill(Color.LIGHTBLUE);
+        } else if (c.getSelectedItem()=="Whitesmoke") {
+            gameScene.setFill(Color.WHITESMOKE);
+        } else if (c.getSelectedItem()=="violet") {
+            gameScene.setFill(Color.VIOLET);
+        }else {
+            gameScene.setFill(Color.rgb(189, 177, 92));
+        }
     }
+
 
     /**
      * When Rule button is clicked, pop up a window to show the game rule.
