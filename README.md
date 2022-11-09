@@ -21,5 +21,6 @@ the menu scene contains "start game", "change background color", "exit" and "rul
 Divied the 'GameScene' class into 'Cell' class, 'GenerateNumRandon' class, 'Move' class, and 'passDestination' class.
 
 'EndGame' class: 
-Delete the quitButton and add restart button to restart the game;
 Create a popup window to popup the final score.
+
+Add a 'Record' class to contain the highest score.
