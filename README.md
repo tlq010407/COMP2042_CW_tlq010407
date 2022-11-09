@@ -8,9 +8,11 @@ Create a Pane package to save Start.fxml and Menu.fxml:
 Start.fxml: set and create the prototype scene and layout of start scene;
 Menu.fxml: set and create the prototype scene and layout of menu scene;
 
-'Controller' class: Extend, switch the scenes and contain the functions map to different buttons:
+'Controller' class: 
+Extend, switch the scenes and contain the functions map to different buttons:
 switchToMenu(), switchToGame(), changecolor(), help(), and quit() functions;
 
+'Main' class:
 Set the default primaryStage in main menu, and creat a "START" button to enter the menu scene,
 the menu scene contains "start game", "change background color", "exit" and "rules" buttons:
 "start game" button: start game, switch the menu scene to game scene;
@@ -18,6 +20,7 @@ the menu scene contains "start game", "change background color", "exit" and "rul
 "rules" button: show the game rules;
 "exit" button: quit the game;
 
+'GameScene' class:
 Divied the 'GameScene' class into 'Cell' class, 'GenerateNumRandon' class, 'Move' class, and 'passDestination' class.
 
 'EndGame' class: 
@@ -26,4 +29,5 @@ Show the highest score in end game scene.
 Create a 'Try Again!' button: when user click this button, they can begian a new game without enter the menu scene.
 Create a 'Back to Menu' button: when user click this button, they can back to menu scene.
 
-Add a 'Record' class to contain a permenent highest score.
+Create a 'Record' class to contain a permenent highest score.
+Create a 'Rank' class.
