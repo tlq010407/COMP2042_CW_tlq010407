@@ -22,5 +22,8 @@ Divied the 'GameScene' class into 'Cell' class, 'GenerateNumRandon' class, 'Move
 
 'EndGame' class: 
 Create a popup window to popup the final score.
+Show the highest score in end game scene.
+Create a 'Try Again!' button: when user click this button, they can begian a new game without enter the menu scene.
+Create a 'Back to Menu' button: when user click this button, they can back to menu scene.
 
-Add a 'Record' class to contain the highest score.
+Add a 'Record' class to contain a permenent highest score.
