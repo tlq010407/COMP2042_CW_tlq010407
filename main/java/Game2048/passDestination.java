@@ -1,7 +1,5 @@
 package Game2048;
 
-import Game2048.GenerateNumRandom;
-
 /**
  * This class is used to contain the method of moving coordinate,
  * when the left, right, up and down key is pressed by user in the keyboard,

@@ -32,10 +32,12 @@ import static java.lang.System.exit;
 public class EndGame extends Record {
     private static EndGame singleInstance = null;
     private int score;
-    public static String HIGH;
+
+    public int getScore(){
+        return score;
+    }
     private EndGame() {
     }
-
     public static EndGame getInstance() {
         if (singleInstance == null)
             singleInstance = new EndGame();

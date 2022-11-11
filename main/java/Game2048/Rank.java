@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 public class Rank{
     public static void main(String[] args) {
         String username = Account.getUserName();
-        int score = (int) Account.getScore();
+        int score = EndGame.getInstance().getScore();
         try {
             FileOutputStream fos = new FileOutputStream("Rank.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
