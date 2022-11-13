@@ -5,30 +5,30 @@ import java.io.*;
 /**
  * This class is used to record the highest score
  */
-public class Record{
-    private static String highscore="";
+public class Record {
+    private static String name = null;
+    private static String highscore = "";
 
     /**
      * Get the highest score.
+     *
      * @return highest score.
      */
-    public String GetHighScore(){
+    public String GetHighScore() {
         FileReader readFile = null;
         BufferedReader reader = null;
         try {
             readFile = new FileReader("highscore.dat");
             reader = new BufferedReader(readFile);
             return reader.readLine();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return "0";
-        }
-        finally {
+        } finally {
             try {
-                if (reader !=null){
+                if (reader != null) {
                     reader.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -37,11 +37,12 @@ public class Record{
     /**
      * Check whether the highest score is 0 or not,
      * if it is zero, then get the current as a highest score.
+     *
      * @return highest score.
      */
-    public String getHighscore(){
-        if (highscore==""){
-            highscore=this.GetHighScore();
+    public String getHighscore() {
+        if (highscore == "") {
+            highscore = this.GetHighScore();
         }
         return highscore;
     }
@@ -50,17 +51,18 @@ public class Record{
      * Compare the current with the highest score which is stored in the file,
      * if the current score is higher than the highest score,
      * then change the highest score to the current score.
+     *
      * @param score current score.
      */
-    public void checkscore(int score){
-        if (highscore.equals("")){
+    public void checkscore(int score) {
+        if (highscore.equals("")) {
             return;
         }
-        if (score>Integer.parseInt(highscore) ){
+        if (score > Integer.parseInt(highscore)) {
             highscore = String.valueOf(score);
         }
         File scoreFile = new File("highscore.dat");
-        if (!scoreFile.exists()){
+        if (!scoreFile.exists()) {
             try {
                 scoreFile.createNewFile();
             } catch (IOException e) {
@@ -73,13 +75,13 @@ public class Record{
             writeFile = new FileWriter(scoreFile);
             writer = new BufferedWriter(writeFile);
             writer.write(highscore);
-        }catch (Exception e){
+        } catch (Exception e) {
 
-        }
-        finally {
+        } finally {
             try {
                 if (writer != null) writer.close();
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
     }
 }

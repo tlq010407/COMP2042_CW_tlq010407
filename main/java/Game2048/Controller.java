@@ -18,7 +18,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 /**
  * This class is used to add start, and menu screen,
@@ -116,5 +117,20 @@ public class Controller extends Main {
      */
     public void quit(ActionEvent quit){
         System.exit(0);
+    }
+
+    @FXML
+    private TextField txt1;
+
+    /**
+     * Get the Username from the textfield.
+     * @param getname
+     * @throws IOException
+     */
+    @FXML
+    public void getname(ActionEvent getname) throws IOException {
+        String name = txt1.getText();
+        Account user = new Account(name,0);
+        switchToMenu(getname);
     }
 }
