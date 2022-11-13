@@ -58,16 +58,22 @@ public class EndGame extends Record {
         text.setFont(Font.font(80));
         root.getChildren().add(text);
         getHighscore();
+        GetHighScore();
         checkscore(score);
 
+        Text userName = new Text("Player: " + Account.getUserName());
         Text scoreText = new Text("Score: "+ score);
-        Text highscoreText = new Text("Highest Score: "+getHighscore());
+        Text highscoreText = new Text("Highest Score: "+ getHighscore());
+        userName.setFill(Color.BLACK);
         scoreText.setFill(Color.BLACK);
         highscoreText.setFill(Color.BLACK);
-        scoreText.relocate(250, 400);
+        userName.relocate(250,350);
+        scoreText.relocate(250, 425);
         highscoreText.relocate(250,500);
+        userName.setFont(Font.font(50));
         scoreText.setFont(Font.font(50));
         highscoreText.setFont(Font.font(50));
+        root.getChildren().add(userName);
         root.getChildren().add(scoreText);
         root.getChildren().add(highscoreText);
 
