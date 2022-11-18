@@ -19,7 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.Optional;
 
@@ -159,6 +158,7 @@ public class EndGame extends Record{
                 root.getChildren().clear();
             }
         });
+
         /**
          * A Alert:
          * Pop up a screen and ask whether user wanna quit game or not,

@@ -1,5 +1,7 @@
 package Game2048;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,18 +11,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static Game2048.MenuController.Mode;
+
 /**
  * This is a class that contains all game scenes.
  */
 
 public class GameScene extends Move {
-    private final static int distanceBetweenCells = 10;
+    private final static int distanceBetweenCells = 20;
     public static final int HEIGHT = 700;
     /**
      * the number of the cell in the game
      */
     public static int cellNum = 4;
     private static double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
+    private Text timelabel;
 
     static double getLENGTH() {
         return LENGTH;
@@ -75,12 +80,26 @@ public class GameScene extends Move {
     /**
      * Set the game scene, add all the cells on.
      * @param gameScene contains the basic parameters in game scene, like background color.
-     * @param root
+     * @param root the game scene root.
      * @param primaryStage set the game scene as the primary stage.
      * @param endGameScene when game ended, switch to the end game scene.
      * @param endGameRoot
      */
     public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+        //Check the Mode.
+        if (Mode == "Survival"){
+            timelabel = new Text();
+            timelabel.setFont(Font.font(20));
+            timelabel.relocate(750, 300);
+            root.getChildren().add(timelabel);
+            Survival.doTime(timelabel);
+            if (Survival.seconds<=0){
+                primaryStage.setScene(endGameScene);
+                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                root.getChildren().clear();
+                score = 0;
+            }
+        }
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
@@ -89,7 +108,6 @@ public class GameScene extends Move {
             }
 
         }
-
         /**
          * Set the position of the score shows in the game scene.
          */

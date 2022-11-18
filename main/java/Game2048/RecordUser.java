@@ -2,8 +2,18 @@ package Game2048;
 
 import java.io.*;
 
-public class RecordUser {
+/**
+ * This class is used to store the recording keeper.
+ */
+public class RecordUser{
     private static String name = "";
+
+    /**
+     * Check whether the name is 'null' or not,
+     * if there is no name storing in the file,
+     * then create a file and write the current user's name as the recording keeper.
+     * @return recording keeper's name.
+     */
     public String GetHighScoreName() {
         FileReader readFile = null;
         BufferedReader reader = null;
@@ -25,10 +35,8 @@ public class RecordUser {
     }
 
     /**
-     * Check whether the highest score is 0 or not,
-     * if it is zero, then get the current as a highest score.
-     *
-     * @return highest score.
+     * Get the name of the recording keeper.
+     * @return recording keeper's name.
      */
     public String getHighscorename() {
         if (name == "") {
@@ -37,6 +45,11 @@ public class RecordUser {
         return name;
     }
 
+    /**
+     * Check whether the name of the user who get the highest score is same as before or not,
+     * if not then change the recording keeper's name and write into file.
+     * @param currentname current user's name.
+     */
     public void checkname(String currentname) {
         if (name.equals("")) {
             return;

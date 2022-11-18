@@ -4,10 +4,11 @@ import javafx.scene.Group;
 import javafx.scene.text.Text;
 import java.util.Random;
 
+import static Game2048.MenuController.Mode;
+
 /**
  * This class is used to generate random number into empty cell.
  */
-
 public class GenerateNumRandom{
     public static int cellNum = 4;
     public Group root;
@@ -43,26 +44,58 @@ public class GenerateNumRandom{
                 }
             }
         }
-    /**
-     * Generate the random number between 2 and 4, and fill it into an empty cell.
-    */
-        Text text;
         Random random = new Random();
+        Text text;
+        boolean choose = random.nextInt() % 2 != 0;
         boolean putTwo = random.nextInt() % 2 != 0;
         int xCell, yCell;
         xCell = random.nextInt(aForBound + 1);
         yCell = random.nextInt(bForBound + 1);
-        if (putTwo) {
-            text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-            emptyCells[xCell][yCell].setTextClass(text);
-            root.getChildren().add(text);
-            emptyCells[xCell][yCell].setColorByNumber(2);
-        } else {
-            text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-            emptyCells[xCell][yCell].setTextClass(text);
-            root.getChildren().add(text);
-            emptyCells[xCell][yCell].setColorByNumber(4);
+    /**
+     * Generate the random number depends on the mode,
+     * if user choose the classic mode,
+     * then generate numbers between 2 and 4, and fill it into an empty cell;
+     * if user choose the survival mode,
+     * then generate the numbers among 2, 4, 16 and 32 and fill it into an empty cell;
+    */
+        if (Mode == "Classic" || Mode == "Survival"){
+            if (putTwo) {
+                text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(2);
+            } else {
+                text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(4);
+            }
+        }else if (Mode == "Hard"){
+            if (choose){
+                if (putTwo) {
+                    text = textMaker.madeText("16", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    emptyCells[xCell][yCell].setTextClass(text);
+                    root.getChildren().add(text);
+                    emptyCells[xCell][yCell].setColorByNumber(16);
+                } else {
+                    text = textMaker.madeText("32", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    emptyCells[xCell][yCell].setTextClass(text);
+                    root.getChildren().add(text);
+                    emptyCells[xCell][yCell].setColorByNumber(32);
+                }
+            }else{
+                if (putTwo) {
+                    text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    emptyCells[xCell][yCell].setTextClass(text);
+                    root.getChildren().add(text);
+                    emptyCells[xCell][yCell].setColorByNumber(2);
+                } else {
+                    text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    emptyCells[xCell][yCell].setTextClass(text);
+                    root.getChildren().add(text);
+                    emptyCells[xCell][yCell].setColorByNumber(4);
+                }
+            }
         }
     }
-
 }

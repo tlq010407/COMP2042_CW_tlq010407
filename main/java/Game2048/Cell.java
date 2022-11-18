@@ -15,16 +15,16 @@ public class Cell {
     private final Group root;
     private Text textClass;
     private boolean modify = false;
-    //newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
+    //parameter newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
     private boolean newcell = false;
 
     /**
+     * Create the cells into the pane.
      * @param x is to initial the coordinates of the cells.
      * @param y is also used to initial the coordinates of the cells.
      * @param scale is the initial length of the size of the cell.
      * @param root is a group for the game root, and used to add the cell into game scene.
      */
-
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
         rectangle.setX(x);
@@ -39,7 +39,7 @@ public class Cell {
 
     /**
      * Check whether the number of the cell is changed or not.
-     * @return
+     * @return the cells' modify status.
      */
     boolean getModify() {
         return !modify;
@@ -54,7 +54,6 @@ public class Cell {
      * Change all parameters of the cell.
      * @param cell is a cell needed to change.
      */
-
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
@@ -132,21 +131,16 @@ public class Cell {
     double getX() {
         return rectangle.getX();
     }
-
     double getY() {
         return rectangle.getY();
     }
-
     int getNumber() {
         return Integer.parseInt(textClass.getText());
     }
-
     private Text getTextClass() {
         return textClass;
     }
-
     void setTextClass(Text textClass) {
         this.textClass = textClass;
     }
-
 }

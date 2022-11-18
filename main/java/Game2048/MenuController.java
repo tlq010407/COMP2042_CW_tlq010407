@@ -28,9 +28,17 @@ public class MenuController extends Record{
     private Stage primaryStage;
     private Scene scene;
     private Parent root;
+    public static String Mode;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+
+    /**
+     * This function is used to switch the current scene to game scene.
+     * @param event
+     * @throws IOException
+     */
     public void switchToGame(ActionEvent event) throws IOException {
+        chooseMode(event);
         root = gameRoot;
         primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = gameScene;
@@ -40,6 +48,20 @@ public class MenuController extends Record{
         Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
         GameScene game = new GameScene();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
+    }
+    public void chooseMode(ActionEvent e){
+        String mode[] = {"Classic", "Hard", "Survival"};
+        ChoiceDialog c = new ChoiceDialog(mode[0],mode);
+        c.setHeaderText("Choose the Game Mode You Want");
+        c.setContentText("please select the mode");
+        c.showAndWait();
+        if (c.getSelectedItem()=="Classic"){
+            Mode = "Classic";
+        } else if (c.getSelectedItem()=="Hard") {
+            Mode = "Hard";
+        } else if (c.getSelectedItem() =="Survival") {
+            Mode = "Survival";
+        }
     }
 
     /**
@@ -77,14 +99,17 @@ public class MenuController extends Record{
         Stage showrule = new Stage();
         showrule.initModality(Modality.APPLICATION_MODAL);
         showrule.setTitle("Rule: ");
-        Label rule = new Label("By clicking the up, down, left, right buttons\n in keyboard to merge the cells \nwith same number to get scores.");
-        rule.setFont(Font.font(12));
+        Label rule = new Label("Your Goal is to create 2048 tile by clicking the up, down, left, right buttons\n in keyboard to merge the cells with same number to get scores.\n" +
+                "\nFor Classic Mode: You have no chance to undo your last move, \n     and only generate the random number between 2 and 4.\n"
+                +"\nFot Hard Mode: You have no chance to undo your last move,\n      and generate the random number among 2, 4, 16 and 32.\n"
+                +"\nFor Survival Mode: You have to gain as much scores as you can in limits time(20s).");
+        rule.setFont(Font.font(20));
         Button button1 = new Button("Close");
         button1.setOnAction(e -> showrule.close());
-        VBox layout= new VBox(20);
+        VBox layout= new VBox(40);
         layout.getChildren().addAll(rule, button1);
         layout.setAlignment(Pos.CENTER);
-        Scene scene1= new Scene(layout, 240, 160);
+        Scene scene1= new Scene(layout, 900, 400, Color.PINK);
         showrule.setScene(scene1);
         showrule.showAndWait();
     }
@@ -105,7 +130,7 @@ public class MenuController extends Record{
         VBox layout= new VBox(20);
         layout.getChildren().addAll(finalscore, button1);
         layout.setAlignment(Pos.CENTER);
-        Scene scene1= new Scene(layout, 300, 250);
+        Scene scene1= new Scene(layout, 300, 250, Color.PINK);
         showscore.setScene(scene1);
         showscore.showAndWait();
     }

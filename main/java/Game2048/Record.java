@@ -9,8 +9,8 @@ public class Record extends RecordUser{
     private static String highscore = "";
 
     /**
-     * Get the highest score.
-     *
+     * Check whether the highest score is 0 or not,
+     * if it is zero, then get the current as the highest score.
      * @return highest score.
      */
     public String GetHighScore() {
@@ -34,9 +34,7 @@ public class Record extends RecordUser{
     }
 
     /**
-     * Check whether the highest score is 0 or not,
-     * if it is zero, then get the current as a highest score.
-     *
+     * Get the highest score.
      * @return highest score.
      */
     public String getHighscore() {
@@ -77,11 +75,10 @@ public class Record extends RecordUser{
             writer = new BufferedWriter(writeFile);
             writer.write(highscore);
         } catch (Exception e) {
-
-        } finally {
-            try {
-                if (writer != null) writer.close();
-            } catch (Exception e) {
+            } finally {
+                try {
+                    if (writer != null) writer.close();
+                } catch (Exception e) {
             }
         }
     }

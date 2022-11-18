@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 
@@ -21,7 +20,6 @@ public class StartController{
     private Stage primaryStage;
     private Scene scene;
     private Parent root;
-
     /**
      * When the start button clicked, switch to the menu scene.
      * @param event
