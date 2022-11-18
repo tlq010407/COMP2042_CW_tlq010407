@@ -5,10 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Optional;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 /**
  * Controller for Start.fxml:
@@ -35,15 +37,25 @@ public class StartController{
     @FXML
     private TextField txt1;
     /**
-     * Get the Username from the textfield.
-     * @param getname
+     * Get the user's name,
+     * if user didn't enter their name, alert will be shown to ask them to enter their name.
+     * @param event
      * @throws IOException
      */
     @FXML
-    public void getname(ActionEvent getname) throws IOException {
-        String name = txt1.getText();
-        Account account = new Account(name);
-        switchToMenu(getname);
+    public void getname(ActionEvent event) throws IOException {
+        if (txt1.getText() == ""){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ALERT");
+            alert.setHeaderText("EMPTY USER NAME");
+            alert.setContentText("Please Enter Your User Name");
+            alert.getDialogPane().getButtonTypes();
+            alert.showAndWait();
+        }else {
+            String name = txt1.getText();
+            Account account = new Account(name);
+            switchToMenu(event);
+        }
     }
 }
 

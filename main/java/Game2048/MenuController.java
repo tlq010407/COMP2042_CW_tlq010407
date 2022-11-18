@@ -117,6 +117,5 @@ public class MenuController extends Record{
     public void quit(ActionEvent quit){
         System.exit(0);
     }
-
 }
 

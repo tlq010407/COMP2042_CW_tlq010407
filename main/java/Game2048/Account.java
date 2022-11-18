@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * match add the highest score to each account.
  */
 
-class Account extends EndGame implements Comparable<Account>, Serializable{
+class Account implements Comparable<Account>, Serializable{
     private static final ArrayList<Account> accounts = new ArrayList<>();
     private int score = 0;
     private static String userName;
