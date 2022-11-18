@@ -69,6 +69,4 @@ public class passDestination extends GenerateNumRandom {
         }
         return -1;
     }
-
-
 }

@@ -106,7 +106,6 @@ public class GameScene extends Move {
 
         randomFillNumber();
         randomFillNumber();
-
         /**
          * Capture the keyboard action and do the corresponding movements in game scene.
          */
@@ -115,12 +114,16 @@ public class GameScene extends Move {
                 int haveEmptyCell;
                 if (key.getCode() == KeyCode.DOWN) {
                     GameScene.this.moveDown();
+                    clearcell();
                 } else if (key.getCode() == KeyCode.UP) {
                     GameScene.this.moveUp();
+                    clearcell();
                 } else if (key.getCode() == KeyCode.LEFT) {
                     GameScene.this.moveLeft();
+                    clearcell();
                 } else if (key.getCode() == KeyCode.RIGHT) {
                     GameScene.this.moveRight();
+                    clearcell();
                 }
                 scoreText.setText(score + "");
                 haveEmptyCell = GameScene.this.haveEmptyCell();

@@ -3,11 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: gray;" styleClass="gray" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game2048.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: gray;" styleClass="gray" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game2048.MenuController">
    <children>
       <Button fx:id="game" layoutX="161.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToGame" text="Start Game" />
       <Button fx:id="rule" layoutX="172.0" layoutY="79.0" mnemonicParsing="false" onAction="#help" prefHeight="26.0" prefWidth="57.0" text="Rules" />
       <Button fx:id="quit" layoutX="172.0" layoutY="240.0" mnemonicParsing="false" onAction="#quit" prefHeight="26.0" prefWidth="57.0" text="Exit" />
       <Button fx:id="changecolor" layoutX="122.0" layoutY="137.0" mnemonicParsing="false" onAction="#changecolor" text="ChangeBackgroundColor" />
+      <Button fx:id="rank" layoutX="161.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToRank" prefHeight="26.0" prefWidth="79.0" text="Rank" />
    </children>
 </AnchorPane>

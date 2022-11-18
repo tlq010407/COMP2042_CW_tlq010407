@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: rgb(120, 100, 100);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game2048.RankController">
+   <children>
+      <Label layoutX="64.0" layoutY="57.0" text="RANK:">
+         <font>
+            <Font name="Arial Bold" size="50.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -5,8 +5,7 @@ import java.io.*;
 /**
  * This class is used to record the highest score
  */
-public class Record {
-    private static String name = null;
+public class Record{
     private static String highscore = "";
 
     /**

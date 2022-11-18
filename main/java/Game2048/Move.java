@@ -6,63 +6,56 @@ package Game2048;
  */
 public class Move extends passDestination {
     public int score = 0;
-
     /**
      * Move all the cells to the left side.
      */
     public void moveLeft() {
+        int j;
         for (int i = 0; i < cellNum; i++) {
-            for (int j = 1; j < cellNum; j++) {
+            for (j = 1; j < cellNum; j++) {
                 moveHorizontally(i, j, passDestination(i, j, 'l'), -1);
             }
-            for (int j = 0; j < cellNum; j++) {
-                cells[i][j].setModify(false);
-            }
         }
+        clearcell();
     }
 
     /**
      * Move all the cells to the right side.
      */
     public void moveRight() {
+        int j;
         for (int i = 0; i < cellNum; i++) {
-            for (int j = cellNum - 1; j >= 0; j--) {
+            for (j = cellNum - 1; j >= 0; j--) {
                 moveHorizontally(i, j, passDestination(i, j, 'r'), 1);
             }
-            for (int j = 0; j < cellNum; j++) {
-                cells[i][j].setModify(false);
-            }
         }
+        clearcell();
     }
 
     /**
      * Move all the cells up.
      */
     public void moveUp() {
+        int i;
         for (int j = 0; j < cellNum; j++) {
-            for (int i = 1; i < cellNum; i++) {
+            for (i = 1; i < cellNum; i++) {
                 moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
-            for (int i = 0; i < cellNum; i++) {
-                cells[i][j].setModify(false);
-            }
         }
-
+        clearcell();
     }
 
     /**
      * Move all the cells down.
      */
     public void moveDown() {
+        int i;
         for (int j = 0; j < cellNum; j++) {
-            for (int i = cellNum - 1; i >= 0; i--) {
+            for (i = cellNum - 1; i >= 0; i--) {
                 moveVertically(i, j, passDestination(i, j, 'd'), 1);
             }
-            for (int i = 0; i < cellNum; i++) {
-                cells[i][j].setModify(false);
-            }
         }
-
+        clearcell();
     }
 
     /**
@@ -91,9 +84,10 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
-        if (isValidDesH(i, j, des, sign)) {
+        if (isValidDesH(i, j, des, sign) && cells[i][des].getNewcell() == false) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[i][des + sign]);
+            cells[i][des].setNewcell(true);
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
@@ -125,9 +119,10 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign)) {
+        if (isValidDesV(i, j, des, sign) && cells[des][j].getNewcell() == false) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[des + sign][j]);
+            cells[des][j].setNewcell(true);
             cells[des][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
@@ -135,15 +130,26 @@ public class Move extends passDestination {
     }
 //Move the sum function from the GameScene class to the Move class,
 //so that we can sun the final score when we move the cells.
-
     /**
      * To sum the scores when the cells with number is merged.
      * @param i is the rwo of the cells.
      * @param j is the column of the cells.
      */
     private void sumCellNumbersToScore(int i, int j) {
-                score += cells[i][j].getNumber()*2;
+        score += cells[i][j].getNumber()*2;
+    }
+    /**
+     * This method is used to clear modify and newcell status of every cell once done the moving,
+     * to make sure merge only once each time.
+     */
+    public void clearcell() {
+        Cell cell;
+        for (int i = 0; i < cellNum; i++) {
+            for (int j = 0; j < cellNum; j++) {
+                cell = cells[i][j];
+                cell.setModify(false);
+                cell.setNewcell(false);
             }
-
-
+        }
+    }
 }
