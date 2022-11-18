@@ -12,18 +12,15 @@ import java.util.ArrayList;
 
 class Account extends EndGame implements Comparable<Account>, Serializable{
     private static final ArrayList<Account> accounts = new ArrayList<>();
-    private static int score = 0;
+    private int score = 0;
     private static String userName;
-
     public Account(String userName) {
         this.userName = userName;
     }
-
     /*public Account(String userName, int score) {
         this.userName = userName;
         this.score = score;
     }*/
-
     /**
      * Match the username with their exist account.
      *
@@ -67,7 +64,7 @@ class Account extends EndGame implements Comparable<Account>, Serializable{
      *
      * @param score is the new score from new user.
      */
-    public void addToScore(long score) {
+    public void addToScore(int score) {
         this.score += score;
     }
 
@@ -77,5 +74,30 @@ class Account extends EndGame implements Comparable<Account>, Serializable{
 
     static String getUserName() {
         return userName;
+    }
+
+    public void combine(String name) {
+        if (accountHaveBeenExist(name) == null){
+            makeNewAccount(name);
+            addToScore(0);
+            try {
+                FileOutputStream fos = new FileOutputStream("Rank.txt");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                Account account = new Account(name);
+                oos.writeObject(account);
+                oos.flush();
+                oos.close();
+                FileInputStream fis = new FileInputStream("Rank.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                account = (Account) ois.readObject();
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }else {
+            compareTo(accountHaveBeenExist(name));
+        }
     }
 }
