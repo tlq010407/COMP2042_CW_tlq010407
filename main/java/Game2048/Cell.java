@@ -15,6 +15,8 @@ public class Cell {
     private final Group root;
     private Text textClass;
     private boolean modify = false;
+    //newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
+    private boolean newcell = false;
 
     /**
      * @param x is to initial the coordinates of the cells.
@@ -42,10 +44,11 @@ public class Cell {
     boolean getModify() {
         return !modify;
     }
-
     void setModify(boolean modify) {
         this.modify = modify;
     }
+    public boolean getNewcell(){ return newcell; }
+    public void setNewcell(boolean newcell){ this.newcell=newcell; }
 
     /**
      * Change all parameters of the cell.

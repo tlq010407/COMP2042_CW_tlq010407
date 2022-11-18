@@ -1,5 +1,6 @@
 package Game2048;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -7,11 +8,11 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -29,14 +30,14 @@ import static java.lang.System.exit;
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record {
+public class EndGame extends Record{
     private static EndGame singleInstance = null;
-    private int score;
+    private static int score;
+    public EndGame(){
 
+    }
     public int getScore(){
         return score;
-    }
-    private EndGame() {
     }
     public static EndGame getInstance() {
         if (singleInstance == null)
@@ -77,6 +78,9 @@ public class EndGame extends Record {
         root.getChildren().add(scoreText);
         root.getChildren().add(highscoreText);
 
+        HBox endgamebuttons = new HBox(80);
+        endgamebuttons.setLayoutY(700);
+        endgamebuttons.setLayoutX(100);
         /**
          * Adddition:
          * Restart Button:
@@ -86,7 +90,7 @@ public class EndGame extends Record {
         restart.setPrefSize(100,30);
         restart.setTextFill(Color.BLACK);
         root.getChildren().add(restart);
-        restart.relocate(100,700);
+        //restart.relocate(100,700);
         restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event) {
                 Group gameRoot = new Group();
@@ -104,10 +108,10 @@ public class EndGame extends Record {
          * when user click this button, the scene will switch to the menu scene.
          */
         Button backmenu = new Button("Back to Menu");
-        backmenu.setPrefSize(150,30);
+        //backmenu.setPrefSize(150,30);
         backmenu.setTextFill(Color.BLACK);
         root.getChildren().add(backmenu);
-        backmenu.relocate(300,700);
+        //backmenu.relocate(275,700);
         backmenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -126,16 +130,46 @@ public class EndGame extends Record {
         });
 
         /**
+         * Addition:
+         * if other user want to play this game,
+         * they can just enter their name without exit the game through this button.
+         */
+        Button accountButton = new Button("New Player");
+        //accountButton.setPrefSize(100,30);
+        accountButton.setTextFill(Color.BLACK);
+        root.getChildren().add(accountButton);
+        //accountButton.relocate(500,700);
+        accountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Label namelabel = new Label();
+                TilePane r = new TilePane();
+                TextInputDialog namedialog = new TextInputDialog();
+                namedialog.setHeaderText("enter your name");
+                namedialog.setContentText("NAME:");
+                Optional<String> result = namedialog.showAndWait();
+                Account account = new Account(result.get());
+                Scene sc = new Scene(r, 500, 300);
+
+                Group gameRoot = new Group();
+                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+                primaryStage.setScene(gameScene);
+                GameScene game = new GameScene();
+                game.game(gameScene, gameRoot, primaryStage, endGameScene, root);
+                root.getChildren().clear();
+            }
+        });
+        /**
          * A Alert:
          * Pop up a screen and ask whether user wanna quit game or not,
          * if user click "OK",
          * then the game will close the whole game screen automatically.
          */
         Button quitButton = new Button("QUIT");
-        quitButton.setPrefSize(100,30);
+        //quitButton.setPrefSize(100,30);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
-        quitButton.relocate(550,700);
+        //quitButton.relocate(700,700);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -151,6 +185,16 @@ public class EndGame extends Record {
                 }
             }
         });
+        HBox.setHgrow(restart, Priority.ALWAYS);
+        HBox.setHgrow(backmenu, Priority.ALWAYS);
+        HBox.setHgrow(accountButton, Priority.ALWAYS);
+        HBox.setHgrow(quitButton, Priority.ALWAYS);
+        restart.setMaxWidth(Double.MAX_VALUE);
+        backmenu.setMaxWidth(Double.MAX_VALUE);
+        accountButton.setMaxWidth(Double.MAX_VALUE);
+        quitButton.setMaxWidth(Double.MAX_VALUE);
+        endgamebuttons.getChildren().addAll(restart,backmenu,accountButton,quitButton);
+        root.getChildren().add(endgamebuttons);
 
         /**
          * Set a popup window to show the final score.
