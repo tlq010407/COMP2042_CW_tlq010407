@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * This class is used to record the highest score
  */
-public class Record{
+public class Record extends RecordUser{
     private static String highscore = "";
 
     /**
@@ -17,7 +17,7 @@ public class Record{
         FileReader readFile = null;
         BufferedReader reader = null;
         try {
-            readFile = new FileReader("highscore.dat");
+            readFile = new FileReader("highscore.txt");
             reader = new BufferedReader(readFile);
             return reader.readLine();
         } catch (Exception e) {
@@ -59,8 +59,10 @@ public class Record{
         }
         if (score > Integer.parseInt(highscore)) {
             highscore = String.valueOf(score);
+            getHighscorename();
+            checkname(Account.getUserName());
         }
-        File scoreFile = new File("highscore.dat");
+        File scoreFile = new File("highscore.txt");
         if (!scoreFile.exists()) {
             try {
                 scoreFile.createNewFile();

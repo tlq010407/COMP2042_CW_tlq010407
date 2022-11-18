@@ -2,7 +2,6 @@ package Game2048;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -25,13 +24,12 @@ import static Game2048.Main.WIDTH;
 /**
  * Controller for menu.fxml.
  */
-public class MenuController{
+public class MenuController extends Record{
     private Stage primaryStage;
     private Scene scene;
     private Parent root;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-
     public void switchToGame(ActionEvent event) throws IOException {
         root = gameRoot;
         primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -91,12 +89,25 @@ public class MenuController{
         showrule.showAndWait();
     }
 
-    public void switchToRank(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("Pane/Rank.fxml"));
-        primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    /**
+     * Show the highest score and record keeper.
+     * @param event
+     * @throws IOException
+     */
+    public void ShowRecord(ActionEvent event) throws IOException{
+        Stage showscore = new Stage();
+        showscore.initModality(Modality.APPLICATION_MODAL);
+        showscore.setTitle("Record");
+        Label finalscore = new Label("Record Keeper: "+getHighscorename()+"\n\nRecord Score: "+getHighscore());
+        finalscore.setFont(Font.font(20));
+        Button button1 = new Button("Close");
+        button1.setOnAction(e -> showscore.close());
+        VBox layout= new VBox(20);
+        layout.getChildren().addAll(finalscore, button1);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene1= new Scene(layout, 300, 250);
+        showscore.setScene(scene1);
+        showscore.showAndWait();
     }
     /**
      * When quit button is clicked,
@@ -108,3 +119,4 @@ public class MenuController{
     }
 
 }
+

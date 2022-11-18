@@ -32,13 +32,6 @@ public class StartController{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-    /**
-     * When start game button is clicked, switch to the game scene.
-     * @param event
-     * @throws IOException
-     */
-
     @FXML
     private TextField txt1;
     /**
@@ -53,3 +46,4 @@ public class StartController{
         switchToMenu(getname);
     }
 }
+

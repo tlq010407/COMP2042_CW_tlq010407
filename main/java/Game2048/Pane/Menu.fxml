@@ -9,6 +9,6 @@
       <Button fx:id="rule" layoutX="172.0" layoutY="79.0" mnemonicParsing="false" onAction="#help" prefHeight="26.0" prefWidth="57.0" text="Rules" />
       <Button fx:id="quit" layoutX="172.0" layoutY="240.0" mnemonicParsing="false" onAction="#quit" prefHeight="26.0" prefWidth="57.0" text="Exit" />
       <Button fx:id="changecolor" layoutX="122.0" layoutY="137.0" mnemonicParsing="false" onAction="#changecolor" text="ChangeBackgroundColor" />
-      <Button fx:id="rank" layoutX="161.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToRank" prefHeight="26.0" prefWidth="79.0" text="Rank" />
+      <Button fx:id="RECORD" layoutX="161.0" layoutY="188.0" mnemonicParsing="false" onAction="#ShowRecord" prefHeight="26.0" prefWidth="79.0" text="RECORD" />
    </children>
 </AnchorPane>

@@ -65,22 +65,27 @@ public class EndGame extends Record{
         Text userName = new Text("Player: " + Account.getUserName());
         Text scoreText = new Text("Score: "+ score);
         Text highscoreText = new Text("Highest Score: "+ getHighscore());
+        Text RecordUser = new Text("Highest Score User: "+ getHighscorename());
         userName.setFill(Color.BLACK);
         scoreText.setFill(Color.BLACK);
         highscoreText.setFill(Color.BLACK);
+        RecordUser.setFill(Color.BLACK);
         userName.relocate(250,350);
         scoreText.relocate(250, 425);
         highscoreText.relocate(250,500);
-        userName.setFont(Font.font(50));
-        scoreText.setFont(Font.font(50));
-        highscoreText.setFont(Font.font(50));
+        RecordUser.relocate(250,575);
+        userName.setFont(Font.font(40));
+        scoreText.setFont(Font.font(40));
+        highscoreText.setFont(Font.font(40));
+        RecordUser.setFont(Font.font(40));
         root.getChildren().add(userName);
         root.getChildren().add(scoreText);
         root.getChildren().add(highscoreText);
+        root.getChildren().add(RecordUser);
 
         HBox endgamebuttons = new HBox(80);
         endgamebuttons.setLayoutY(700);
-        endgamebuttons.setLayoutX(100);
+        endgamebuttons.setLayoutX(200);
         /**
          * Adddition:
          * Restart Button:
@@ -90,7 +95,6 @@ public class EndGame extends Record{
         restart.setPrefSize(100,30);
         restart.setTextFill(Color.BLACK);
         root.getChildren().add(restart);
-        //restart.relocate(100,700);
         restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event) {
                 Group gameRoot = new Group();
@@ -108,10 +112,8 @@ public class EndGame extends Record{
          * when user click this button, the scene will switch to the menu scene.
          */
         Button backmenu = new Button("Back to Menu");
-        //backmenu.setPrefSize(150,30);
         backmenu.setTextFill(Color.BLACK);
         root.getChildren().add(backmenu);
-        //backmenu.relocate(275,700);
         backmenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -135,10 +137,8 @@ public class EndGame extends Record{
          * they can just enter their name without exit the game through this button.
          */
         Button accountButton = new Button("New Player");
-        //accountButton.setPrefSize(100,30);
         accountButton.setTextFill(Color.BLACK);
         root.getChildren().add(accountButton);
-        //accountButton.relocate(500,700);
         accountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -166,10 +166,8 @@ public class EndGame extends Record{
          * then the game will close the whole game screen automatically.
          */
         Button quitButton = new Button("QUIT");
-        //quitButton.setPrefSize(100,30);
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
-        //quitButton.relocate(700,700);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
