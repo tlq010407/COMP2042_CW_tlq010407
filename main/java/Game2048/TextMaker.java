@@ -45,7 +45,7 @@ public class TextMaker {
      * @param root is used to add the
      * @return the cell with filled number and color.
      */
-    Text madeText(String input, double xCell, double yCell, Group root) {
+    static Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
         Text text = new Text(input);

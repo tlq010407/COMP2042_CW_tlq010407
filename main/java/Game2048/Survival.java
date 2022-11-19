@@ -3,8 +3,6 @@ package Game2048;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -19,14 +17,11 @@ public class Survival{
     public static void doTime(Text text){
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                seconds--;
-                text.setText("CountDown: \n          "+seconds);
-                if (seconds<=0){
-                    time.stop();
-                }
+        KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
+            seconds--;
+            text.setText("CountDown: \n          "+seconds);
+            if (seconds<=0){
+                time.stop();
             }
         });
         time.getKeyFrames().add(frame);

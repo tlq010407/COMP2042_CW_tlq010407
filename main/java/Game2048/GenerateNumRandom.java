@@ -12,7 +12,6 @@ import static Game2048.MenuController.Mode;
 public class GenerateNumRandom{
     public static int cellNum = 4;
     public Group root;
-    private final TextMaker textMaker = TextMaker.getSingleInstance();
     public Cell[][] cells = new Cell[cellNum][cellNum];
 
     /**
@@ -58,44 +57,39 @@ public class GenerateNumRandom{
      * if user choose the survival mode,
      * then generate the numbers among 2, 4, 16 and 32 and fill it into an empty cell;
     */
-        if (Mode == "Classic" || Mode == "Survival"){
-            if (putTwo) {
-                text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                emptyCells[xCell][yCell].setTextClass(text);
-                root.getChildren().add(text);
-                emptyCells[xCell][yCell].setColorByNumber(2);
-            } else {
-                text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                emptyCells[xCell][yCell].setTextClass(text);
-                root.getChildren().add(text);
-                emptyCells[xCell][yCell].setColorByNumber(4);
-            }
-        }else if (Mode == "Hard"){
+        if (Mode.equals("Classic") || Mode.equals("Survival")){
+            puttwo(emptyCells, putTwo, xCell, yCell);
+        }else if (Mode.equals("Hard")){
             if (choose){
                 if (putTwo) {
-                    text = textMaker.madeText("16", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    text = TextMaker.madeText("16", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
                     emptyCells[xCell][yCell].setTextClass(text);
                     root.getChildren().add(text);
                     emptyCells[xCell][yCell].setColorByNumber(16);
                 } else {
-                    text = textMaker.madeText("32", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    text = TextMaker.madeText("32", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
                     emptyCells[xCell][yCell].setTextClass(text);
                     root.getChildren().add(text);
                     emptyCells[xCell][yCell].setColorByNumber(32);
                 }
             }else{
-                if (putTwo) {
-                    text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                    emptyCells[xCell][yCell].setTextClass(text);
-                    root.getChildren().add(text);
-                    emptyCells[xCell][yCell].setColorByNumber(2);
-                } else {
-                    text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                    emptyCells[xCell][yCell].setTextClass(text);
-                    root.getChildren().add(text);
-                    emptyCells[xCell][yCell].setColorByNumber(4);
-                }
+                puttwo(emptyCells, putTwo, xCell, yCell);
             }
+        }
+    }
+
+    private void puttwo(Cell[][] emptyCells, boolean putTwo, int xCell, int yCell) {
+        Text text;
+        if (putTwo) {
+            text = TextMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+            emptyCells[xCell][yCell].setTextClass(text);
+            root.getChildren().add(text);
+            emptyCells[xCell][yCell].setColorByNumber(2);
+        } else {
+            text = TextMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+            emptyCells[xCell][yCell].setTextClass(text);
+            root.getChildren().add(text);
+            emptyCells[xCell][yCell].setColorByNumber(4);
         }
     }
 }

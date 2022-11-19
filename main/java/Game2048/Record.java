@@ -1,6 +1,7 @@
 package Game2048;
 
 import java.io.*;
+import java.util.Objects;
 
 /**
  * This class is used to record the highest score
@@ -14,7 +15,7 @@ public class Record extends RecordUser{
      * @return highest score.
      */
     public String GetHighScore() {
-        FileReader readFile = null;
+        FileReader readFile;
         BufferedReader reader = null;
         try {
             readFile = new FileReader("highscore.txt");
@@ -38,7 +39,7 @@ public class Record extends RecordUser{
      * @return highest score.
      */
     public String getHighscore() {
-        if (highscore == "") {
+        if (Objects.equals(highscore, "")) {
             highscore = this.GetHighScore();
         }
         return highscore;
@@ -68,7 +69,7 @@ public class Record extends RecordUser{
                 throw new RuntimeException(e);
             }
         }
-        FileWriter writeFile = null;
+        FileWriter writeFile;
         BufferedWriter writer = null;
         try {
             writeFile = new FileWriter(scoreFile);

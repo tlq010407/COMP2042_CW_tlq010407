@@ -23,8 +23,7 @@ public class GameScene extends Move {
      * the number of the cell in the game
      */
     public static int cellNum = 4;
-    private static double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
-    private Text timelabel;
+    private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
 
     static double getLENGTH() {
         return LENGTH;
@@ -82,12 +81,12 @@ public class GameScene extends Move {
      * @param root the game scene root.
      * @param primaryStage set the game scene as the primary stage.
      * @param endGameScene when game ended, switch to the end game scene.
-     * @param endGameRoot
+     * @param endGameRoot the root of the game scene.
      */
     public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         //Check the Mode.
-        if (Mode == "Survival"){
-            timelabel = new Text();
+        if (Mode.equals("Survival")){
+            Text timelabel = new Text();
             timelabel.setFont(Font.font(30));
             timelabel.setFill(Color.RED);
             timelabel.relocate(730, 200);
@@ -121,38 +120,36 @@ public class GameScene extends Move {
         /**
          * Capture the keyboard action and do the corresponding movements in game scene.
          */
-        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
-            Platform.runLater(() -> {
-                int haveEmptyCell;
-                if (key.getCode() == KeyCode.DOWN) {
-                    GameScene.this.moveDown();
-                    clearcell();
-                } else if (key.getCode() == KeyCode.UP) {
-                    GameScene.this.moveUp();
-                    clearcell();
-                } else if (key.getCode() == KeyCode.LEFT) {
-                    GameScene.this.moveLeft();
-                    clearcell();
-                } else if (key.getCode() == KeyCode.RIGHT) {
-                    GameScene.this.moveRight();
-                    clearcell();
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key -> Platform.runLater(() -> {
+            int haveEmptyCell;
+            if (key.getCode() == KeyCode.DOWN) {
+                GameScene.this.moveDown();
+                clearcell();
+            } else if (key.getCode() == KeyCode.UP) {
+                GameScene.this.moveUp();
+                clearcell();
+            } else if (key.getCode() == KeyCode.LEFT) {
+                GameScene.this.moveLeft();
+                clearcell();
+            } else if (key.getCode() == KeyCode.RIGHT) {
+                GameScene.this.moveRight();
+                clearcell();
+            }
+            scoreText.setText(score + "");
+            haveEmptyCell = GameScene.this.haveEmptyCell();
+            if (haveEmptyCell == -1 || Survival.seconds<=0) {
+                if (GameScene.this.canNotMove() || Survival.seconds<=0) {
+                    /**
+                     * if users cannot move anymore, then switch to the end game scene
+                     */
+                    primaryStage.setScene(endGameScene);
+                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                    root.getChildren().clear();
+                    score = 0;
+                    Survival.seconds = 20;
                 }
-                scoreText.setText(score + "");
-                haveEmptyCell = GameScene.this.haveEmptyCell();
-                if (haveEmptyCell == -1 || Survival.seconds<=0) {
-                    if (GameScene.this.canNotMove() || Survival.seconds<=0) {
-                        /**
-                         * if users cannot move anymore, then switch to the end game scene
-                         */
-                        primaryStage.setScene(endGameScene);
-                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                        root.getChildren().clear();
-                        score = 0;
-                        Survival.seconds = 20;
-                    }
-                } else if (haveEmptyCell == 1)
-                    GameScene.this.randomFillNumber();
-            });
-        });
+            } else if (haveEmptyCell == 1)
+                GameScene.this.randomFillNumber();
+        }));
     }
 }

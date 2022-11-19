@@ -15,7 +15,7 @@ public class RecordUser{
      * @return recording keeper's name.
      */
     public String GetHighScoreName() {
-        FileReader readFile = null;
+        FileReader readFile;
         BufferedReader reader = null;
         try {
             readFile = new FileReader("RecordUser.txt");
@@ -39,7 +39,7 @@ public class RecordUser{
      * @return recording keeper's name.
      */
     public String getHighscorename() {
-        if (name == "") {
+        if (name.equals("")) {
             name = this.GetHighScoreName();
         }
         return name;
@@ -54,7 +54,7 @@ public class RecordUser{
         if (name.equals("")) {
             return;
         }
-        if (currentname != name) {
+        if (!currentname.equals(name)) {
             name = currentname;
         }
         File nameFile = new File("RecordUser.txt");
@@ -65,7 +65,7 @@ public class RecordUser{
                 throw new RuntimeException(e);
             }
         }
-        FileWriter writeFile = null;
+        FileWriter writeFile;
         BufferedWriter writer = null;
         try {
             writeFile = new FileWriter(nameFile);

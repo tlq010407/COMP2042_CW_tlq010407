@@ -17,18 +17,15 @@ import javafx.fxml.FXML;
  * and this class is combined with the pane package to achieve the switch the scene.
  */
 public class StartController{
-    private Stage primaryStage;
-    private Scene scene;
-    private Parent root;
     /**
      * When the start button clicked, switch to the menu scene.
      * @param event
      * @throws IOException
      */
     public void switchToMenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
-        primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -42,7 +39,7 @@ public class StartController{
      */
     @FXML
     public void getname(ActionEvent event) throws IOException {
-        if (txt1.getText() == ""){
+        if (txt1.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ALERT");
             alert.setHeaderText("EMPTY USER NAME");
