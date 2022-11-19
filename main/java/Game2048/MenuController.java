@@ -1,21 +1,24 @@
 package Game2048;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Optional;
+
 import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
+import static java.lang.System.exit;
 
 /**
  * Controller for menu.fxml.
@@ -96,7 +99,7 @@ public class MenuController extends Record{
                      and only generate the random number between 2 and 4.
 
                 Fot Hard Mode: You have no chance to undo your last move,
-                      and generate the random number among 2, 4, 16 and 32.
+                      and generate the random number among 2, 4, 8 and 16.
 
                 For Survival Mode: You have to gain as much scores as you can in limits time(20s).""");
         rule.setFont(Font.font(20));
@@ -134,8 +137,15 @@ public class MenuController extends Record{
      * exit the game.
      * @param quit
      */
-    public void quit(ActionEvent quit){
-        System.exit(0);
+    public void quit(ActionEvent quit) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Dialog");
+        alert.setHeaderText("Quit from this page");
+        alert.setContentText("Are you sure?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            exit(0);
+        }
     }
 }
 

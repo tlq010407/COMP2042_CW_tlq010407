@@ -11,12 +11,13 @@ import javafx.scene.text.Text;
  */
 
 public class Cell {
-    private final Rectangle rectangle;
-    private final Group root;
+    private Rectangle rectangle;
+    private Group root;
     private Text textClass;
     private boolean modify = false;
     //parameter newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
     private boolean newcell = false;
+
 
     /**
      * Create the cells into the pane.
@@ -36,6 +37,9 @@ public class Cell {
         this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
     }
+    Cell(int x){
+        int number = x;
+    }
 
     /**
      * Check whether the number of the cell is changed or not.
@@ -47,7 +51,7 @@ public class Cell {
     void setModify(boolean modify) {
         this.modify = modify;
     }
-    public boolean getNewcell(){ return newcell; }
+    public boolean getNewcell(){ return !newcell; }
     public void setNewcell(boolean newcell){ this.newcell=newcell; }
 
     /**
@@ -102,7 +106,6 @@ public class Cell {
             case 1024 -> rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
             case 2048 -> rectangle.setFill(Color.rgb(250, 0, 0, 1));
         }
-
     }
 
     double getX() {
@@ -117,7 +120,7 @@ public class Cell {
     private Text getTextClass() {
         return textClass;
     }
-    void setTextClass(Text textClass) {
+    public void setTextClass(Text textClass) {
         this.textClass = textClass;
     }
 }

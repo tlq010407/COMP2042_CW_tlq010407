@@ -13,7 +13,7 @@ public class Move extends passDestination {
         int j;
         for (int i = 0; i < cellNum; i++) {
             for (j = 1; j < cellNum; j++) {
-                moveHorizontally(i, j, passDestination(i, j, 'l'), -1);
+                moveHorizontally(i, j, passLeft(i, j), -1);
             }
         }
         clearcell();
@@ -26,7 +26,7 @@ public class Move extends passDestination {
         int j;
         for (int i = 0; i < cellNum; i++) {
             for (j = cellNum - 1; j >= 0; j--) {
-                moveHorizontally(i, j, passDestination(i, j, 'r'), 1);
+                moveHorizontally(i, j, passRight(i, j), 1);
             }
         }
         clearcell();
@@ -39,7 +39,7 @@ public class Move extends passDestination {
         int i;
         for (int j = 0; j < cellNum; j++) {
             for (i = 1; i < cellNum; i++) {
-                moveVertically(i, j, passDestination(i, j, 'u'), -1);
+                moveVertically(i, j, passUp(i, j), -1);
             }
         }
         clearcell();
@@ -52,7 +52,7 @@ public class Move extends passDestination {
         int i;
         for (int j = 0; j < cellNum; j++) {
             for (i = cellNum - 1; i >= 0; i--) {
-                moveVertically(i, j, passDestination(i, j, 'd'), 1);
+                moveVertically(i, j, passDown(i, j), 1);
             }
         }
         clearcell();
@@ -84,7 +84,7 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
-        if (isValidDesH(i, j, des, sign) && !cells[i][des].getNewcell()) {
+        if (isValidDesH(i, j, des, sign) && cells[i][des].getNewcell()) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setNewcell(true);
@@ -119,7 +119,7 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign) && !cells[des][j].getNewcell()) {
+        if (isValidDesV(i, j, des, sign) && cells[des][j].getNewcell()) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setNewcell(true);

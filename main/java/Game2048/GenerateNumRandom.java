@@ -18,9 +18,7 @@ public class GenerateNumRandom{
      *Delete int turn parameter here, since we are not use this.
      */
     public void randomFillNumber() {
-        /**
-         * Check the empty cells.
-         */
+        //Check the empty cells.
         Cell[][] emptyCells = new Cell[cellNum][cellNum];
         int a = 0;
         int b = 0;
@@ -50,7 +48,7 @@ public class GenerateNumRandom{
         int xCell, yCell;
         xCell = random.nextInt(aForBound + 1);
         yCell = random.nextInt(bForBound + 1);
-    /**
+    /*
      * Generate the random number depends on the mode,
      * if user choose the classic mode,
      * then generate numbers between 2 and 4, and fill it into an empty cell;
@@ -67,10 +65,10 @@ public class GenerateNumRandom{
                     root.getChildren().add(text);
                     emptyCells[xCell][yCell].setColorByNumber(16);
                 } else {
-                    text = TextMaker.madeText("32", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                    text = TextMaker.madeText("8", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
                     emptyCells[xCell][yCell].setTextClass(text);
                     root.getChildren().add(text);
-                    emptyCells[xCell][yCell].setColorByNumber(32);
+                    emptyCells[xCell][yCell].setColorByNumber(8);
                 }
             }else{
                 puttwo(emptyCells, putTwo, xCell, yCell);

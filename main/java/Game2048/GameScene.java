@@ -101,9 +101,8 @@ public class GameScene extends Move {
             }
 
         }
-        /**
-         * Set the position of the score shows in the game scene.
-         */
+
+        // Set the position of the score shows in the game scene.
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("SCORE :");
@@ -117,9 +116,8 @@ public class GameScene extends Move {
 
         randomFillNumber();
         randomFillNumber();
-        /**
-         * Capture the keyboard action and do the corresponding movements in game scene.
-         */
+
+        //Capture the keyboard action and do the corresponding movements in game scene.
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key -> Platform.runLater(() -> {
             int haveEmptyCell;
             if (key.getCode() == KeyCode.DOWN) {
@@ -139,9 +137,7 @@ public class GameScene extends Move {
             haveEmptyCell = GameScene.this.haveEmptyCell();
             if (haveEmptyCell == -1 || Survival.seconds<=0) {
                 if (GameScene.this.canNotMove() || Survival.seconds<=0) {
-                    /**
-                     * if users cannot move anymore, then switch to the end game scene
-                     */
+                    //if users cannot move anymore, then switch to the end game scene
                     primaryStage.setScene(endGameScene);
                     EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                     root.getChildren().clear();
