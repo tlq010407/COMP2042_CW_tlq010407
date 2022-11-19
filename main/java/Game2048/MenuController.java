@@ -1,11 +1,9 @@
 package Game2048;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
@@ -16,8 +14,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
 
@@ -25,24 +21,17 @@ import static Game2048.Main.WIDTH;
  * Controller for menu.fxml.
  */
 public class MenuController extends Record{
-    private Stage primaryStage;
-    private Scene scene;
-    private Parent root;
     public static String Mode;
-    private Group gameRoot = new Group();
-    private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+    private final Group gameRoot = new Group();
+    private final Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
 
     /**
      * This function is used to switch the current scene to game scene.
-     * @param event
-     * @throws IOException
      */
-    public void switchToGame(ActionEvent event) throws IOException {
+    public void switchToGame(ActionEvent event){
         chooseMode(event);
-        root = gameRoot;
-        primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = gameScene;
-        primaryStage.setScene(scene);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.setScene(gameScene);
         primaryStage.show();
         Group endgameRoot = new Group();
         Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
@@ -50,8 +39,8 @@ public class MenuController extends Record{
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
     }
     public void chooseMode(ActionEvent e){
-        String mode[] = {"Classic", "Hard", "Survival"};
-        ChoiceDialog c = new ChoiceDialog(mode[0],mode);
+        String[] mode = {"Classic", "Hard", "Survival"};
+        ChoiceDialog<? extends String> c = new ChoiceDialog<>(mode[0],mode);
         c.setHeaderText("Choose the Game Mode You Want");
         c.setContentText("please select the mode");
         c.showAndWait();
@@ -70,9 +59,9 @@ public class MenuController extends Record{
      * @param e
      */
     public void changecolor(ActionEvent e){
-        String color[] = { "Green", "Pink", "Blue",
+        String[] color = { "Green", "Pink", "Blue",
                 "Whitesmoke", "violet", "Default" };
-        ChoiceDialog c = new ChoiceDialog(color[5], color);
+        ChoiceDialog<? extends String> c = new ChoiceDialog<>(color[5], color);
         c.setHeaderText("Choose the background color");
         c.setContentText("please select the color");
         c.showAndWait();
@@ -99,10 +88,17 @@ public class MenuController extends Record{
         Stage showrule = new Stage();
         showrule.initModality(Modality.APPLICATION_MODAL);
         showrule.setTitle("Rule: ");
-        Label rule = new Label("Your Goal is to create 2048 tile by clicking the up, down, left, right buttons\n in keyboard to merge the cells with same number to get scores.\n" +
-                "\nFor Classic Mode: You have no chance to undo your last move, \n     and only generate the random number between 2 and 4.\n"
-                +"\nFot Hard Mode: You have no chance to undo your last move,\n      and generate the random number among 2, 4, 16 and 32.\n"
-                +"\nFor Survival Mode: You have to gain as much scores as you can in limits time(20s).");
+        Label rule = new Label("""
+                Your Goal is to create 2048 tile by clicking the up, down, left, right buttons
+                 in keyboard to merge the cells with same number to get scores.
+
+                For Classic Mode: You have no chance to undo your last move,\s
+                     and only generate the random number between 2 and 4.
+
+                Fot Hard Mode: You have no chance to undo your last move,
+                      and generate the random number among 2, 4, 16 and 32.
+
+                For Survival Mode: You have to gain as much scores as you can in limits time(20s).""");
         rule.setFont(Font.font(20));
         Button button1 = new Button("Close");
         button1.setOnAction(e -> showrule.close());
@@ -117,9 +113,8 @@ public class MenuController extends Record{
     /**
      * Show the highest score and record keeper.
      * @param event
-     * @throws IOException
      */
-    public void ShowRecord(ActionEvent event) throws IOException{
+    public void ShowRecord(ActionEvent event){
         Stage showscore = new Stage();
         showscore.initModality(Modality.APPLICATION_MODAL);
         showscore.setTitle("Record");

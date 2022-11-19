@@ -23,7 +23,7 @@ public class Survival{
             @Override
             public void handle(ActionEvent event) {
                 seconds--;
-                text.setText("CountDown: "+seconds);
+                text.setText("CountDown: \n          "+seconds);
                 if (seconds<=0){
                     time.stop();
                 }

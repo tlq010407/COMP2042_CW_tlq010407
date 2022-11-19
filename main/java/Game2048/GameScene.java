@@ -1,12 +1,11 @@
 package Game2048;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -89,16 +88,11 @@ public class GameScene extends Move {
         //Check the Mode.
         if (Mode == "Survival"){
             timelabel = new Text();
-            timelabel.setFont(Font.font(20));
-            timelabel.relocate(750, 300);
-            root.getChildren().add(timelabel);
+            timelabel.setFont(Font.font(30));
+            timelabel.setFill(Color.RED);
+            timelabel.relocate(730, 200);
             Survival.doTime(timelabel);
-            if (Survival.seconds<=0){
-                primaryStage.setScene(endGameScene);
-                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                root.getChildren().clear();
-                score = 0;
-            }
+            root.getChildren().add(timelabel);
         }
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
@@ -145,8 +139,8 @@ public class GameScene extends Move {
                 }
                 scoreText.setText(score + "");
                 haveEmptyCell = GameScene.this.haveEmptyCell();
-                if (haveEmptyCell == -1) {
-                    if (GameScene.this.canNotMove()) {
+                if (haveEmptyCell == -1 || Survival.seconds<=0) {
+                    if (GameScene.this.canNotMove() || Survival.seconds<=0) {
                         /**
                          * if users cannot move anymore, then switch to the end game scene
                          */
@@ -154,6 +148,7 @@ public class GameScene extends Move {
                         EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                         root.getChildren().clear();
                         score = 0;
+                        Survival.seconds = 20;
                     }
                 } else if (haveEmptyCell == 1)
                     GameScene.this.randomFillNumber();
