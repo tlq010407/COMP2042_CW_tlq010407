@@ -1,7 +1,9 @@
 # COMP2042_CW_hfylt5
 Tang,Liqi 20259468
 
-Fix the scoring system error: add the score correctly. Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
+Fix the scoring system error: add the score correctly. 
+Fix the cell number adding error.
+Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
 Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
 Create a permanent high score list (using a file to store scores and player names). 
 Add 3 modes to the game: 'Classic' Mode, 'Hard' Mode, and 'Survival' Mode.
