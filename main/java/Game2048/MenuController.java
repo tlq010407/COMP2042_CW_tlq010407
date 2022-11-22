@@ -1,14 +1,13 @@
 package Game2048;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -27,6 +26,7 @@ public class MenuController extends Record{
     public static String Mode;
     private final Group gameRoot = new Group();
     private final Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+    public static Color color;
 
     /**
      * This function is used to switch the current scene to game scene.
@@ -37,9 +37,9 @@ public class MenuController extends Record{
         primaryStage.setScene(gameScene);
         primaryStage.show();
         Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
+        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, color);
         GameScene game = new GameScene();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
+        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot, color);
     }
     public void chooseMode(ActionEvent e){
         String[] mode = {"Classic", "Hard", "Survival"};
@@ -61,26 +61,29 @@ public class MenuController extends Record{
      * pop up a choice dialog window and choose the color to change.
      * @param e
      */
+    @FXML
+    private Pane myPane;
     public void changecolor(ActionEvent e){
-        String[] color = { "Green", "Pink", "Blue",
+        String[] colors = { "Green", "Pink", "Blue",
                 "Whitesmoke", "violet", "Default" };
-        ChoiceDialog<? extends String> c = new ChoiceDialog<>(color[5], color);
+        ChoiceDialog<? extends String> c = new ChoiceDialog<>(colors[5], colors);
         c.setHeaderText("Choose the background color");
         c.setContentText("please select the color");
         c.showAndWait();
         if (c.getSelectedItem()=="Green"){
-            gameScene.setFill(Color.GREEN);
+            this.color=Color.GREEN;
         } else if (c.getSelectedItem()=="Pink") {
-            gameScene.setFill(Color.PINK);
+            this.color = Color.PINK;
         } else if (c.getSelectedItem()=="Blue") {
-            gameScene.setFill(Color.LIGHTBLUE);
+            this.color = Color.LIGHTBLUE;
         } else if (c.getSelectedItem()=="Whitesmoke") {
-            gameScene.setFill(Color.WHITESMOKE);
+            this.color = Color.WHITESMOKE;
         } else if (c.getSelectedItem()=="violet") {
-            gameScene.setFill(Color.VIOLET);
+            this.color = Color.VIOLET;
         }else {
-            gameScene.setFill(Color.rgb(189, 177, 92));
+            this.color = Color.rgb(189, 177, 92);
         }
+        myPane.setBackground(new Background(new BackgroundFill(this.color,null,null)));
     }
 
     /**

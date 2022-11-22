@@ -1,6 +1,5 @@
 package Game2048;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -24,6 +23,7 @@ import java.util.Optional;
 
 import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
+import static Game2048.MenuController.color;
 import static java.lang.System.exit;
 
 /**
@@ -100,7 +100,7 @@ public class EndGame extends Record{
                 Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
                 primaryStage.setScene(gameScene);
                 GameScene game = new GameScene();
-                game.game(gameScene, gameRoot, primaryStage, endGameScene, root);
+                game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
                 root.getChildren().clear();
             }
         });
@@ -154,7 +154,7 @@ public class EndGame extends Record{
                 Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
                 primaryStage.setScene(gameScene);
                 GameScene game = new GameScene();
-                game.game(gameScene, gameRoot, primaryStage, endGameScene, root);
+                game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
                 root.getChildren().clear();
             }
         });
@@ -193,23 +193,6 @@ public class EndGame extends Record{
         quitButton.setMaxWidth(Double.MAX_VALUE);
         endgamebuttons.getChildren().addAll(restart,backmenu,accountButton,quitButton);
         root.getChildren().add(endgamebuttons);
-
-        /**
-         * Set a popup window to show the final score.
-         */
-        Stage showscore = new Stage();
-        showscore.initModality(Modality.APPLICATION_MODAL);
-        showscore.setTitle("Game Over: ");
-        Label finalscore = new Label("Your Final Score is:\n" + score);
-        finalscore.setFont(Font.font(30));
-        Button button1 = new Button("Close");
-        button1.setOnAction(e -> showscore.close());
-        VBox layout= new VBox(20);
-        layout.getChildren().addAll(finalscore, button1);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene1= new Scene(layout, 300, 250);
-        showscore.setScene(scene1);
-        showscore.showAndWait();
 
     }
 }

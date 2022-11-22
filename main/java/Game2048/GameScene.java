@@ -1,13 +1,18 @@
 package Game2048;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import static Game2048.MenuController.Mode;
@@ -24,7 +29,7 @@ public class GameScene extends Move {
      */
     public static int cellNum = 4;
     private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
-
+    private Color color = MenuController.color;
     static double getLENGTH() {
         return LENGTH;
     }
@@ -77,13 +82,15 @@ public class GameScene extends Move {
 
     /**
      * Set the game scene, add all the cells on.
-     * @param gameScene contains the basic parameters in game scene, like background color.
-     * @param root the game scene root.
+     *
+     * @param gameScene    contains the basic parameters in game scene, like background color.
+     * @param root         the game scene root.
      * @param primaryStage set the game scene as the primary stage.
      * @param endGameScene when game ended, switch to the end game scene.
-     * @param endGameRoot the root of the game scene.
+     * @param endGameRoot  the root of the game scene.
+     * @param color the background color.
      */
-    public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Color color) {
         //Check the Mode.
         if (Mode.equals("Survival")){
             Text timelabel = new Text();
@@ -93,6 +100,7 @@ public class GameScene extends Move {
             Survival.doTime(timelabel);
             root.getChildren().add(timelabel);
         }
+        gameScene.setFill(color);
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
@@ -137,6 +145,22 @@ public class GameScene extends Move {
             haveEmptyCell = GameScene.this.haveEmptyCell();
             if (haveEmptyCell == -1 || Survival.seconds<=0) {
                 if (GameScene.this.canNotMove() || Survival.seconds<=0) {
+                    //Set a popup window to show the final score.
+
+                    Stage showscore = new Stage();
+                    showscore.initModality(Modality.APPLICATION_MODAL);
+                    showscore.setTitle("Game Over: ");
+                    Label finalscore = new Label("Your Final Score is:\n" + score);
+                    finalscore.setFont(Font.font(30));
+                    Button button1 = new Button("Close");
+                    button1.setOnAction(e -> showscore.close());
+                    VBox layout= new VBox(20);
+                    layout.getChildren().addAll(finalscore, button1);
+                    layout.setAlignment(Pos.CENTER);
+                    Scene scene1= new Scene(layout, 300, 250);
+                    showscore.setScene(scene1);
+                    showscore.showAndWait();
+
                     //if users cannot move anymore, then switch to the end game scene
                     primaryStage.setScene(endGameScene);
                     EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
