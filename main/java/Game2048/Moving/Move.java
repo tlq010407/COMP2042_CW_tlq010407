@@ -1,4 +1,6 @@
-package Game2048;
+package Game2048.Moving;
+
+import Game2048.Component.Cell;
 
 /**
  * This class contains the moving methods,
@@ -16,7 +18,7 @@ public class Move extends passDestination {
                 moveHorizontally(i, j, passLeft(i, j), -1);
             }
         }
-        clearcell();
+        clearcell(); // clear the 'modify' and 'newcell' status of all cells.
     }
 
     /**

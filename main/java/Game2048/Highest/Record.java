@@ -1,4 +1,4 @@
-package Game2048;
+package Game2048.Highest;
 
 import java.io.*;
 import java.util.Objects;
@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * This class is used to record the highest score
  */
-public class Record extends RecordUser{
+public class Record extends RecordUser {
     private static String highscore = "";
 
     /**
@@ -58,10 +58,19 @@ public class Record extends RecordUser{
         }
         if (score > Integer.parseInt(highscore)) {
             highscore = String.valueOf(score);
-            getHighscorename();
-            checkname(Account.getUserName());
+            getHighscoreName();
+            checkName(Account.getUserName());
         }
         File scoreFile = new File("highscore.txt");
+        writing(scoreFile, highscore);
+    }
+
+    /**
+     * This method is used to write the parameter that have to store into the files.
+     * @param scoreFile the file used to store the score.
+     * @param highscore the file used to store the score.
+     */
+    static void writing(File scoreFile, String highscore) {
         if (!scoreFile.exists()) {
             try {
                 scoreFile.createNewFile();

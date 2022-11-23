@@ -1,5 +1,6 @@
 package Game2048;
 
+import Game2048.Highest.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,8 +20,6 @@ import javafx.fxml.FXML;
 public class StartController{
     /**
      * When the start button clicked, switch to the menu scene.
-     * @param event
-     * @throws IOException
      */
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
@@ -34,8 +33,6 @@ public class StartController{
     /**
      * Get the user's name,
      * if user didn't enter their name, alert will be shown to ask them to enter their name.
-     * @param event
-     * @throws IOException
      */
     @FXML
     public void getname(ActionEvent event) throws IOException {

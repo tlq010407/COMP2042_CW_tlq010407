@@ -1,8 +1,9 @@
 package Game2048;
 
+import Game2048.Highest.Account;
+import Game2048.Highest.Record;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,11 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.Optional;
@@ -29,7 +28,7 @@ import static java.lang.System.exit;
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record{
+public class EndGame extends Record {
     private static EndGame singleInstance = null;
     private static int score;
     public EndGame(){
@@ -59,12 +58,13 @@ public class EndGame extends Record{
         root.getChildren().add(text);
         getHighscore();
         GetHighScore();
-        checkscore(score);
+        checkscore(score); //check whether the current score is higher than the highest score.
 
+        //lay out the current user name, current score, highest score, and highest score user name on tyhe
         Text userName = new Text("Player: " + Account.getUserName());
         Text scoreText = new Text("Score: "+ score);
         Text highscoreText = new Text("Highest Score: "+ getHighscore());
-        Text RecordUser = new Text("Highest Score User: "+ getHighscorename());
+        Text RecordUser = new Text("Highest Score User: "+ getHighscoreName());
         userName.setFill(Color.BLACK);
         scoreText.setFill(Color.BLACK);
         highscoreText.setFill(Color.BLACK);
@@ -82,14 +82,13 @@ public class EndGame extends Record{
         root.getChildren().add(highscoreText);
         root.getChildren().add(RecordUser);
 
-        HBox endgamebuttons = new HBox(80);
+        HBox endgamebuttons = new HBox(80); //using HBox to manage position of all the buttons on the endgame scene.
         endgamebuttons.setLayoutY(700);
         endgamebuttons.setLayoutX(200);
-        /**
-         * Adddition:
-         * Restart Button:
-         * when user click this button, the scene will switch to the game scene.
-         */
+
+        //Adddition:
+        //Restart Button:
+        //when user click this button, the scene will switch to the game scene.
         Button restart = new Button("Try Again!");
         restart.setPrefSize(100,30);
         restart.setTextFill(Color.BLACK);
@@ -105,11 +104,9 @@ public class EndGame extends Record{
             }
         });
 
-        /**
-         * Addition:
-         * Back Menu Botton:
-         * when user click this button, the scene will switch to the menu scene.
-         */
+        //Addition:
+        //Back Menu Botton:
+        //when user click this button, the scene will switch to the menu scene.
         Button backmenu = new Button("Back to Menu");
         backmenu.setTextFill(Color.BLACK);
         root.getChildren().add(backmenu);
@@ -130,11 +127,9 @@ public class EndGame extends Record{
             }
         });
 
-        /**
-         * Addition:
-         * if other user want to play this game,
-         * they can just enter their name without exit the game through this button.
-         */
+        //Addition:
+        // if other user want to play this game,
+        //they can just enter their name without exit the game through this button.
         Button accountButton = new Button("New Player");
         accountButton.setTextFill(Color.BLACK);
         root.getChildren().add(accountButton);

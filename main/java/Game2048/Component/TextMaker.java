@@ -1,5 +1,6 @@
-package Game2048;
+package Game2048.Component;
 
+import Game2048.GameScene;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -43,7 +44,7 @@ public class TextMaker {
      * @param root is used to add the
      * @return the cell with filled number and color.
      */
-    static Text madeText(String input, double xCell, double yCell, Group root) {
+    public static Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 7.0;
         Text text = new Text(input);

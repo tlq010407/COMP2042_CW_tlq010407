@@ -1,4 +1,6 @@
-package Game2048;
+package Game2048.Highest;
+
+import Game2048.Highest.Record;
 
 import java.io.*;
 
@@ -38,7 +40,7 @@ public class RecordUser{
      * Get the name of the recording keeper.
      * @return recording keeper's name.
      */
-    public String getHighscorename() {
+    public String getHighscoreName() {
         if (name.equals("")) {
             name = this.GetHighScoreName();
         }
@@ -48,37 +50,17 @@ public class RecordUser{
     /**
      * Check whether the name of the user who get the highest score is same as before or not,
      * if not then change the recording keeper's name and write into file.
-     * @param currentname current user's name.
+     * @param CurrentName current user's name.
      */
-    public void checkname(String currentname) {
+    public void checkName(String CurrentName) {
         if (name.equals("")) {
             return;
         }
-        if (!currentname.equals(name)) {
-            name = currentname;
+        if (!CurrentName.equals(name)) {
+            name = CurrentName;
         }
         File nameFile = new File("RecordUser.txt");
-        if (!nameFile.exists()) {
-            try {
-                nameFile.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        FileWriter writeFile;
-        BufferedWriter writer = null;
-        try {
-            writeFile = new FileWriter(nameFile);
-            writer = new BufferedWriter(writeFile);
-            writer.write(name);
-        } catch (Exception e) {
-
-        } finally {
-            try {
-                if (writer != null) writer.close();
-            } catch (Exception e) {
-            }
-        }
+        Record.writing(nameFile, name);
     }
 }
 

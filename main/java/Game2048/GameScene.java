@@ -1,5 +1,8 @@
 package Game2048;
 
+import Game2048.Component.Cell;
+import Game2048.Moving.Move;
+import Game2048.Component.Survival;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -30,7 +33,7 @@ public class GameScene extends Move {
     public static int cellNum = 4;
     private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
     private Color color = MenuController.color;
-    static double getLENGTH() {
+    public static double getLENGTH() {
         return LENGTH;
     }
 
@@ -100,6 +103,7 @@ public class GameScene extends Move {
             Survival.doTime(timelabel);
             root.getChildren().add(timelabel);
         }
+        //change the game scene background color.
         gameScene.setFill(color);
         this.root=root;
         for (int i = 0; i < cellNum; i++) {
@@ -122,6 +126,7 @@ public class GameScene extends Move {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
+        //randomly filling two number at the beginning of the game.
         randomFillNumber();
         randomFillNumber();
 
@@ -140,13 +145,15 @@ public class GameScene extends Move {
             } else if (key.getCode() == KeyCode.RIGHT) {
                 GameScene.this.moveRight();
                 clearcell();
+            }else {
+                return;
             }
             scoreText.setText(score + "");
             haveEmptyCell = GameScene.this.haveEmptyCell();
             if (haveEmptyCell == -1 || Survival.seconds<=0) {
                 if (GameScene.this.canNotMove() || Survival.seconds<=0) {
-                    //Set a popup window to show the final score.
 
+                    //Set a popup window to show the final score.
                     Stage showscore = new Stage();
                     showscore.initModality(Modality.APPLICATION_MODAL);
                     showscore.setTitle("Game Over: ");

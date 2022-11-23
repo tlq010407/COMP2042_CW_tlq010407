@@ -1,4 +1,4 @@
-package Game2048;
+package Game2048.Component;
 
 
 import javafx.scene.Group;
@@ -15,6 +15,7 @@ public class Cell {
     private Group root;
     private Text textClass;
     private boolean modify = false;
+
     //parameter newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
     private boolean newcell = false;
 
@@ -26,7 +27,7 @@ public class Cell {
      * @param scale is the initial length of the size of the cell.
      * @param root is a group for the game root, and used to add the cell into game scene.
      */
-    Cell(double x, double y, double scale, Group root) {
+    public Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
         rectangle.setX(x);
         rectangle.setY(y);
@@ -37,20 +38,22 @@ public class Cell {
         this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
     }
-    Cell(int x){
-        int number = x;
-    }
 
     /**
      * Check whether the number of the cell is changed or not.
      * @return the cells' modify status.
      */
-    boolean getModify() {
+    public boolean getModify() {
         return !modify;
     }
-    void setModify(boolean modify) {
+    public void setModify(boolean modify) {
         this.modify = modify;
     }
+
+    /**
+     * Check whether the cell is generated new or not.
+     * @return the cells' newcell status.
+     */
     public boolean getNewcell(){ return !newcell; }
     public void setNewcell(boolean newcell){ this.newcell=newcell; }
 
@@ -58,7 +61,7 @@ public class Cell {
      * Change all parameters of the cell.
      * @param cell is a cell needed to change.
      */
-    void changeCell(Cell cell) {
+    public void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
         root.getChildren().remove(textClass);
@@ -77,7 +80,7 @@ public class Cell {
      * Add the same number into one cell, and set another cell into 0.
      * @param cell is the cell that need to be added number.
      */
-    void adder(Cell cell) {
+    public void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");
         root.getChildren().remove(textClass);
@@ -91,7 +94,7 @@ public class Cell {
      *
      * @param number is the parameter that cells contain, and different numbers have different colors.
      */
-    void setColorByNumber(int number) {
+    public void setColorByNumber(int number) {
         switch (number) {
             case 0 -> rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
             case 2 -> rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
@@ -108,13 +111,27 @@ public class Cell {
         }
     }
 
-    double getX() {
+    /**
+     * Get the length of the sides of the cells.
+     * @return the number of the length.
+     */
+    public double getX() {
         return rectangle.getX();
     }
-    double getY() {
+
+    /**
+     * Get the wide of the sides of the cells.
+     * @return the number of the wide.
+     */
+    public double getY() {
         return rectangle.getY();
     }
-    int getNumber() {
+
+    /**
+     * Get the string number of the cell.
+     * @return the number of the cell in integer.
+     */
+    public int getNumber() {
         return Integer.parseInt(textClass.getText());
     }
     private Text getTextClass() {

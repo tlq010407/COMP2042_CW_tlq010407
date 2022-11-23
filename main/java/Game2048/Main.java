@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * @auther  Tang,Liqi
- * @version 4.0
+ * @version 5.0
  */
 public class Main extends Application{
     public static final int WIDTH = 900;
@@ -19,11 +19,11 @@ public class Main extends Application{
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //set the default primary stage as start scene.
         Parent root = FXMLLoader.load(getClass().getResource("Pane/Start.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("2048");
         primaryStage.setScene(scene);
-
         primaryStage.show();
     }
 

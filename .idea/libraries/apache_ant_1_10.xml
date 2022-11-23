@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="apache-ant-1.10">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/apache-ant-1.10.12" />
+      <root url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/bin" />
+      <root url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/lib" />
+      <root url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/etc" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/manual" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/etc" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-ant-1.10.12/manual" recursive="false" type="SOURCES" />
+  </library>
+</component>

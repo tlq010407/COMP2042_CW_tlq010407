@@ -1,4 +1,4 @@
-package Game2048;
+package Game2048.Component;
 
 
 import javafx.animation.KeyFrame;

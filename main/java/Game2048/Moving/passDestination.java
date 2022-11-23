@@ -1,4 +1,4 @@
-package Game2048;
+package Game2048.Moving;
 
 /**
  * This class is used to contain the method of moving coordinate,
