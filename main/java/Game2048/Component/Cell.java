@@ -16,10 +16,6 @@ public class Cell {
     private Text textClass;
     private boolean modify = false;
 
-    //parameter newcell is used to make sure the new cell which is created cannot be merged when user did not press the keyboard
-    private boolean newcell = false;
-
-
     /**
      * Create the cells into the pane.
      * @param x is to initial the coordinates of the cells.
@@ -49,13 +45,6 @@ public class Cell {
     public void setModify(boolean modify) {
         this.modify = modify;
     }
-
-    /**
-     * Check whether the cell is generated new or not.
-     * @return the cells' newcell status.
-     */
-    public boolean getNewcell(){ return !newcell; }
-    public void setNewcell(boolean newcell){ this.newcell=newcell; }
 
     /**
      * Change all parameters of the cell.
