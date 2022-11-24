@@ -86,8 +86,8 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
-        if (isValidDesH(i, j, des, sign) && cells[i][des].getModify()) {
-            sumCellNumbersToScore(i,j);
+        if (isValidDesH(i, j, des, sign) && cells[i][des].getModify()) {    // add cells[des][j].getModify() to make use once the cell get modified, it cannot merge.
+            sumCellNumbersToScore(i,j);         //add the number of the cell to the final score.
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setModify(true);
         } else if (des != j) {
@@ -120,8 +120,8 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign) && cells[des][j].getModify()) {
-            sumCellNumbersToScore(i,j);
+        if (isValidDesV(i, j, des, sign) && cells[des][j].getModify()) {     // add cells[des][j].getModify() to make use once the cell get modified, it cannot merge.
+            sumCellNumbersToScore(i,j);     //add the number of the cell to the final score.
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
         } else if (des != i) {

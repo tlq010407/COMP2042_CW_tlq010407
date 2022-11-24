@@ -135,16 +135,12 @@ public class GameScene extends Move {
             int haveEmptyCell;
             if (key.getCode() == KeyCode.DOWN) {
                 GameScene.this.moveDown();
-                clearcell();
             } else if (key.getCode() == KeyCode.UP) {
                 GameScene.this.moveUp();
-                clearcell();
             } else if (key.getCode() == KeyCode.LEFT) {
                 GameScene.this.moveLeft();
-                clearcell();
             } else if (key.getCode() == KeyCode.RIGHT) {
                 GameScene.this.moveRight();
-                clearcell();
             }else {
                 return;
             }
@@ -152,7 +148,6 @@ public class GameScene extends Move {
             haveEmptyCell = GameScene.this.haveEmptyCell();
             if (haveEmptyCell == -1 || Survival.seconds<=0) {
                 if (GameScene.this.canNotMove() || Survival.seconds<=0) {
-
                     //Set a popup window to show the final score.
                     Stage showscore = new Stage();
                     showscore.initModality(Modality.APPLICATION_MODAL);
@@ -175,8 +170,9 @@ public class GameScene extends Move {
                     score = 0;
                     Survival.seconds = 20;
                 }
-            } else if (haveEmptyCell == 1)
+            } else if (haveEmptyCell == 1) {
                 GameScene.this.randomFillNumber();
+            }
         }));
     }
 }
