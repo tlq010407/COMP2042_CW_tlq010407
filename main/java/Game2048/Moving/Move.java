@@ -86,10 +86,9 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveHorizontally(int i, int j, int des, int sign) {
-        if (isValidDesH(i, j, des, sign) && cells[i][des].getNewcell()) {
+        if (isValidDesH(i, j, des, sign) && cells[i][des].getModify()) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[i][des + sign]);
-            cells[i][des].setNewcell(true);
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
@@ -121,10 +120,9 @@ public class Move extends passDestination {
      * @param sign is used to describe the coordinate to move the cells.
      */
     private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign) && cells[des][j].getNewcell()) {
+        if (isValidDesV(i, j, des, sign) && cells[des][j].getModify()) {
             sumCellNumbersToScore(i,j);
             cells[i][j].adder(cells[des + sign][j]);
-            cells[des][j].setNewcell(true);
             cells[des][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
@@ -150,7 +148,6 @@ public class Move extends passDestination {
             for (int j = 0; j < cellNum; j++) {
                 cell = cells[i][j];
                 cell.setModify(false);
-                cell.setNewcell(false);
             }
         }
     }
