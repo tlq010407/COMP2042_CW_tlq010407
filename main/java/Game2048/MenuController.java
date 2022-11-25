@@ -1,6 +1,7 @@
 package Game2048;
 
 import Game2048.Highest.Record;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

@@ -41,7 +41,6 @@ public class StartController{
             alert.setTitle("ALERT");
             alert.setHeaderText("EMPTY USER NAME");
             alert.setContentText("Please Enter Your User Name");
-            alert.getDialogPane().getButtonTypes();
             alert.showAndWait();
         }else {
             String name = txt1.getText();

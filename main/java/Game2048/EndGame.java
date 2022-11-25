@@ -96,7 +96,7 @@ public class EndGame extends Record {
         restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event) {
                 Group gameRoot = new Group();
-                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, color);
                 primaryStage.setScene(gameScene);
                 GameScene game = new GameScene();
                 game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);

@@ -32,7 +32,6 @@ public class GameScene extends Move {
      */
     public static int cellNum = 4;
     private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
-    private Color color = MenuController.color;
     public static double getLENGTH() {
         return LENGTH;
     }
@@ -170,9 +169,9 @@ public class GameScene extends Move {
                     score = 0;
                     Survival.seconds = 20;
                 }
-            } else if (haveEmptyCell == 1) {
+            } else if (GameScene.this.getChanged())         // if there are some movements happens on cells, then generating random numbers and filling in an empty cell.
                 GameScene.this.randomFillNumber();
-            }
+                setChanged(false);          // set the 'changed' back to false.
         }));
     }
 }
