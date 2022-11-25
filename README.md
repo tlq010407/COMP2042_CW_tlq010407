@@ -7,6 +7,8 @@ Fix the cell number adding error.
 
 Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
 
+Fix the cell movement bug: it won't generate random number while there is no movenments happen between cells.
+
 Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
 Create a permanent high score list (using a file to store scores and player names). 
 
