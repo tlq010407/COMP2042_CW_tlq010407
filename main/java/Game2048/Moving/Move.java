@@ -20,13 +20,14 @@ public class Move extends passDestination {
      * Move all the cells to the left side.
      */
     public void moveLeft() {
-        for (int i = 0; i < cellNum; i++) {
-            for (int j = 1; j < cellNum; j++) {
-                if(cells[i][j].getNumber() != 0)
-                moveHorizontally(i, j, passLeft(i, j), -1);
+        for(int x = 0; x<2; x++) {      // for double merge
+            for (int i = 0; i < cellNum; i++) {
+                for (int j = 1; j < cellNum; j++) {
+                    if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passLeft(i, j), -1);
+                }
             }
+            clearcell();  // clear the 'modify' status of all cells.
         }
-        clearcell(); // clear the 'modify' status of all cells.
     }
 
     /**
@@ -34,13 +35,14 @@ public class Move extends passDestination {
      */
     public void moveRight() {
         int j;
-        for (int i = 0; i < cellNum; i++) {
-            for (j = cellNum - 1; j >= 0; j--) {
-                if(cells[i][j].getNumber() != 0)
-                moveHorizontally(i, j, passRight(i, j), 1);
+        for (int x = 0 ; x<2; x++) {        // for double merge
+            for (int i = 0; i < cellNum; i++) {
+                for (j = cellNum - 1; j >= 0; j--) {
+                    if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passRight(i, j), 1);
+                }
             }
+            clearcell();   // clear the 'modify' status of all cells.
         }
-        clearcell(); // clear the 'modify' status of all cells.
     }
 
     /**
@@ -48,13 +50,14 @@ public class Move extends passDestination {
      */
     public void moveUp() {
         int i;
-        for (int j = 0; j < cellNum; j++) {
-            for (i = 1; i < cellNum; i++) {
-                if(cells[i][j].getNumber() != 0)
-                moveVertically(i, j, passUp(i, j), -1);
+        for (int x = 0; x<2; x++) {     // for double merge
+            for (int j = 0; j < cellNum; j++) {
+                for (i = 1; i < cellNum; i++) {
+                    if (cells[i][j].getNumber() != 0) moveVertically(i, j, passUp(i, j), -1);
+                }
             }
+            clearcell();   // clear the 'modify' status of all cells.
         }
-        clearcell(); // clear the 'modify' status of all cells.
     }
 
     /**
@@ -62,13 +65,14 @@ public class Move extends passDestination {
      */
     public void moveDown() {
         int i;
-        for (int j = 0; j < cellNum; j++) {
-            for (i = cellNum - 1; i >= 0; i--) {
-                if(cells[i][j].getNumber() != 0)
-                moveVertically(i, j, passDown(i, j), 1);
+        for (int x = 0; x<2; x++) {         // for double merge
+            for (int j = 0; j < cellNum; j++) {
+                for (i = cellNum - 1; i >= 0; i--) {
+                    if (cells[i][j].getNumber() != 0) moveVertically(i, j, passDown(i, j), 1);
+                }
             }
+            clearcell(); // clear the 'modify' status of all cells.
         }
-        clearcell(); // clear the 'modify' status of all cells.
     }
 
     /**
