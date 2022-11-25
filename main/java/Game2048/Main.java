@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * @auther  Tang,Liqi
- * @version 5.0
+ * @version 6.0
  */
 public class Main extends Application{
     public static final int WIDTH = 900;
