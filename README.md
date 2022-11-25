@@ -5,11 +5,13 @@ Fix the scoring system error: add the score correctly.
 
 Fix the cell number adding error.
 
-Fix the double merge: when one of the column is like 2 2 2 2, then when we press the left or right key, it gonna be merge to two 4, instead of one 4 and two 2.
+Fix the double merge: when one of the row or column is like 2 2 2 2, then when we press key, it gonna be merge to two 4, instead of one 4 and two 2.
 
 Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
 
 Fix the cell movement bug: it won't generate random number while there is no movenments happen between cells.
+
+Fix the press key bug: the cells only will be moved when the user press the up, down, left, and right key in the keyboard.
 
 Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
 Create a permanent high score list (using a file to store scores and player names). 
