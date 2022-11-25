@@ -5,8 +5,6 @@ Fix the scoring system error: add the score correctly.
 
 Fix the cell number adding error.
 
-Fix the double merge: when one of the rows or columns is like 2 2 2 2, then when users press keys, it gonna be merge to two 4, instead of one 4 and two 2.
-
 Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
 
 Fix the cell movement bug: it won't generate random numbers without movements between cells.
