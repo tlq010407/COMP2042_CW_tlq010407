@@ -4,6 +4,7 @@ import Game2048.Highest.Account;
 import Game2048.Highest.Record;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,9 +14,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.Optional;
@@ -33,9 +36,6 @@ public class EndGame extends Record {
     private static int score;
     public EndGame(){
 
-    }
-    public int getScore(){
-        return score;
     }
     public static EndGame getInstance() {
         if (singleInstance == null)
@@ -81,6 +81,24 @@ public class EndGame extends Record {
         root.getChildren().add(scoreText);
         root.getChildren().add(highscoreText);
         root.getChildren().add(RecordUser);
+
+        //if user reach the 2048 goal, then show user win the game pop up window.
+        if (GameScene.haveEmptyCell == 0){
+            Stage showscore = new Stage();
+            showscore.initModality(Modality.APPLICATION_MODAL);
+            showscore.setTitle("You Win: ");
+            Label finalscore = new Label("Congradulations!!!\n You Win the Game!!!!\nThanks for Playing the Game " +Account.getUserName()+".");
+            finalscore.setFont(Font.font(30));
+            Button button1 = new Button("Close");
+            button1.setOnAction(e -> showscore.close());
+            VBox layout= new VBox(20);
+            layout.getChildren().addAll(finalscore, button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene1= new Scene(layout, 400, 400);
+            showscore.setScene(scene1);
+            showscore.showAndWait();
+        }
+
 
         HBox endgamebuttons = new HBox(80); //using HBox to manage position of all the buttons on the endgame scene.
         endgamebuttons.setLayoutY(700);

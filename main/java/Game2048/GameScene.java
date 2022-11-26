@@ -4,8 +4,12 @@ import Game2048.Component.Cell;
 import Game2048.Moving.Move;
 import Game2048.Component.Survival;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import static Game2048.MenuController.Mode;
+import java.io.IOException;
 
 /**
  * This is a class that contains all game scenes.
@@ -27,7 +31,8 @@ import static Game2048.MenuController.Mode;
 public class GameScene extends Move {
     private final static int distanceBetweenCells = 10;
     public static int HEIGHT = 700;
-    private static double LENGTH = 0;
+    public static int haveEmptyCell;
+    private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
     public static double getLENGTH() {
         return LENGTH;
     }
@@ -39,10 +44,11 @@ public class GameScene extends Move {
     private int haveEmptyCell() {
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
-                if (cells[i][j].getNumber() == 0)
-                    return 1;
-                if (cells[i][j].getNumber() == 2048)
+                if (cells[i][j].getNumber() == 2048) {
                     return 0;
+                }else if (cells[i][j].getNumber() == 0) {
+                    return 1;
+                }
             }
         }
         return -1;
@@ -77,6 +83,25 @@ public class GameScene extends Move {
         }
         return true;
     }
+
+    /**
+     * Show the final score through pop up window after ending the game.
+     */
+    public void showScore(){
+        Stage showscore = new Stage();
+        showscore.initModality(Modality.APPLICATION_MODAL);
+        showscore.setTitle("Game Over: ");
+        Label finalscore = new Label("Your Final Score is:\n" + score);
+        finalscore.setFont(Font.font(30));
+        Button button1 = new Button("Close");
+        button1.setOnAction(e -> showscore.close());
+        VBox layout= new VBox(20);
+        layout.getChildren().addAll(finalscore, button1);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene1= new Scene(layout, 300, 250);
+        showscore.setScene(scene1);
+        showscore.showAndWait();
+    }
     /**
      * Set the game scene, add all the cells on.
      *
@@ -97,7 +122,6 @@ public class GameScene extends Move {
             Survival.doTime(timelabel);
             root.getChildren().add(timelabel);
         }
-        LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / cellNum;
         //change the game scene background color.
         gameScene.setFill(color);
         this.root=root;
@@ -127,7 +151,6 @@ public class GameScene extends Move {
 
         //Capture the keyboard action and do the corresponding movements in game scene.
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key -> Platform.runLater(() -> {
-            int haveEmptyCell;
             if (key.getCode() == KeyCode.DOWN) {
                 GameScene.this.moveDown();
             } else if (key.getCode() == KeyCode.UP) {
@@ -141,23 +164,10 @@ public class GameScene extends Move {
             }
             scoreText.setText(score + "");
             haveEmptyCell = GameScene.this.haveEmptyCell();
-            if (haveEmptyCell == -1 || Survival.seconds<=0) {
-                if (GameScene.this.canNotMove() || Survival.seconds<=0) {
+            if (haveEmptyCell == -1 || Survival.seconds<=0 || haveEmptyCell == 0) {         //if there is no empty cell or times up or users reach the 2048 cell, then end the game
+                if (GameScene.this.canNotMove() || Survival.seconds<=0 || haveEmptyCell == 0) {     //if there is no empty cell or times up or users reach the 2048 cell, then end the game
                     //Set a popup window to show the final score.
-                    Stage showscore = new Stage();
-                    showscore.initModality(Modality.APPLICATION_MODAL);
-                    showscore.setTitle("Game Over: ");
-                    Label finalscore = new Label("Your Final Score is:\n" + score);
-                    finalscore.setFont(Font.font(30));
-                    Button button1 = new Button("Close");
-                    button1.setOnAction(e -> showscore.close());
-                    VBox layout= new VBox(20);
-                    layout.getChildren().addAll(finalscore, button1);
-                    layout.setAlignment(Pos.CENTER);
-                    Scene scene1= new Scene(layout, 300, 250);
-                    showscore.setScene(scene1);
-                    showscore.showAndWait();
-
+                    showScore();
                     //if users cannot move anymore, then switch to the end game scene
                     primaryStage.setScene(endGameScene);
                     EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
@@ -165,9 +175,10 @@ public class GameScene extends Move {
                     score = 0;
                     Survival.seconds = 20;
                 }
-            } else if (GameScene.this.getChanged())         // if there are some movements happens on cells, then generating random numbers and filling in an empty cell.
+            } else if (GameScene.this.getChanged()) {        // if there are some movements happens on cells, then generating random numbers and filling in an empty cell.
                 GameScene.this.randomFillNumber();
-                setChanged(false);          // set the 'changed' back to false.
+                setChanged(false);       // set the 'changed' back to false.
+            }
         }));
     }
 }
