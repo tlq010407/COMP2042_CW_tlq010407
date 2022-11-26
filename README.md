@@ -14,7 +14,7 @@ Fix the press key bug: the cells only will be moved when the users press the up,
 Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
 Create a permanent high score list (using a file to store scores and player names). 
 
-Add 3 modes to the game: 'Classic' Mode, 'Hard' Mode, and 'Survival' Mode.
+Add 4 modes to the game: 'Classic' Mode, 'Hard' Mode,'Own' Mode and 'Survival' Mode.
 
 Create a Pane package to save Start.fxml and Menu.fxml: Start.fxml: 
 set and create the prototype scene and layout of the start scene; 
