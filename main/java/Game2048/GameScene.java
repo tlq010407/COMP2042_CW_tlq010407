@@ -1,7 +1,7 @@
 package Game2048;
 
 import Game2048.Component.Cell;
-import Game2048.Moving.Move;
+import Game2048.Moving.CheckCellStatus;
 import Game2048.Component.Survival;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -21,54 +21,7 @@ import javafx.stage.Stage;
 /**
  * This is a class that contains all game scenes.
  */
-public class GameScene extends Move {
-    /**
-     * Check whether is an empty cell or not.
-     * @return 1 if there still get empty cells; 0 if the user already win; -1 if there is no more empty cell.
-     */
-    private int haveEmptyCell() {
-        for (int i = 0; i < cellNum; i++) {
-            for (int j = 0; j < cellNum; j++) {
-                if (cells[i][j].getNumber() == 2048) {
-                    return 0;
-                }else if (cells[i][j].getNumber() == 0) {
-                    return 1;
-                }
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Check if there have same numbers nearly that user can continue the game.
-     * @param i is position in the row.
-     * @param j is the position in the colum.
-     * @return boolean as a result.
-     */
-    private boolean haveSameNumberNearly(int i, int j) {
-        if (i < cellNum - 1 && j < cellNum - 1) {
-            if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
-                return true;
-            return cells[i][j + 1].getNumber() == cells[i][j].getNumber();
-        }
-        return false;
-    }
-
-    /**
-     * Check whether user can still move ot mot.
-     * @return the boolean as a result.
-     */
-    private boolean canNotMove() {
-        for (int i = 0; i < cellNum; i++) {
-            for (int j = 0; j < cellNum; j++) {
-                if (haveSameNumberNearly(i, j)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
+public class GameScene extends CheckCellStatus{
     /**
      * Show the final score through pop up window after ending the game.
      */
@@ -87,12 +40,11 @@ public class GameScene extends Move {
         showscore.setScene(scene1);
         showscore.showAndWait();
     }
-
     /**
      * Switch to the end game scene.
-     * @param primaryStage
-     * @param endGameScene
-     * @param endGameRoot
+     * @param primaryStage the primary stage which will be shown.
+     * @param endGameScene the end game scene.
+     * @param endGameRoot the end game root.
      */
     public void SetScene(Stage primaryStage, Scene endGameScene, Group endGameRoot){
         primaryStage.setScene(endGameScene);
@@ -175,20 +127,21 @@ public class GameScene extends Move {
                 } else if (haveEmptyCell == 0) {        //if users reach the 2048 cell, then end the game.
                     //Set a popup window to show the final score while user reach the 2048 goal.
                     showScore("You Win:");
-                    //if user reach the 2048 goal, then show user win the game pop up window.
-                        Stage showscore = new Stage();
-                        showscore.initModality(Modality.APPLICATION_MODAL);
-                        showscore.setTitle("You Win: ");
-                        Label finalscore = new Label("Congradulations!!!\n You Win the Game!!!!");
-                        finalscore.setFont(Font.font(30));
-                        Button button1 = new Button("Close");
-                        button1.setOnAction(e -> showscore.close());
-                        VBox layout= new VBox(20);
-                        layout.getChildren().addAll(finalscore, button1);
-                        layout.setAlignment(Pos.CENTER);
-                        Scene scene1= new Scene(layout, 350, 300);
-                        showscore.setScene(scene1);
-                        showscore.showAndWait();
+                    //if user reach the 2048 goal, then show user win the game pop-up window.
+                    Stage showscore = new Stage();
+                    showscore.initModality(Modality.APPLICATION_MODAL);
+                    showscore.setTitle("You Win: ");
+                    Label finalscore = new Label("Congradulations!!!\n You Win the Game!!!!");
+                    finalscore.setFont(Font.font(30));
+                    Button button1 = new Button("Close");
+                    button1.setOnAction(e -> showscore.close());
+                    VBox layout= new VBox(20);
+                    layout.getChildren().addAll(finalscore, button1);
+                    layout.setAlignment(Pos.CENTER);
+                    Scene scene1= new Scene(layout, 350, 300);
+                    showscore.setScene(scene1);
+                    showscore.showAndWait();
+
                     SetScene(primaryStage, endGameScene, endGameRoot);
                 }
             } else if (GameScene.this.getChanged()) {        // if there are some movements happens on cells, then generating random numbers and filling in an empty cell.
