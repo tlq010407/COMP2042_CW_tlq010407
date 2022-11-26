@@ -9,6 +9,8 @@ import Game2048.Component.Cell;
 public class Move extends passDestination {
     public int score = 0;
     private boolean changed = false;     //this parameter is used to control and check the movements.
+    private boolean merge = false;
+    private int x, y;
     public void setChanged(boolean b){
         this.changed = b;
     }
@@ -20,14 +22,12 @@ public class Move extends passDestination {
      * Move all the cells to the left side.
      */
     public void moveLeft() {
-        for(int x = 0; x<2; x++) {      // for double merge
-            for (int i = 0; i < cellNum; i++) {
-                for (int j = 1; j < cellNum; j++) {
-                    if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passLeft(i, j), -1);
-                }
+        int j;
+        for (int i = 0; i < cellNum; i++) {
+            for (j = 1; j < cellNum; j++) {
+                if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passLeft(i, j), -1);}
             }
-            clearcell();  // clear the 'modify' status of all cells.
-        }
+        clearcell();  // clear the 'modify' status of all cells.
     }
 
     /**
@@ -35,14 +35,12 @@ public class Move extends passDestination {
      */
     public void moveRight() {
         int j;
-        for (int x = 0 ; x<2; x++) {        // for double merge
-            for (int i = 0; i < cellNum; i++) {
-                for (j = cellNum - 1; j >= 0; j--) {
-                    if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passRight(i, j), 1);
-                }
+        for (int i = 0; i < cellNum; i++) {
+            for (j = cellNum - 1; j >= 0; j--) {
+                if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passRight(i, j), 1);
             }
-            clearcell();   // clear the 'modify' status of all cells.
         }
+            clearcell();   // clear the 'modify' status of all cells.
     }
 
     /**
@@ -50,14 +48,12 @@ public class Move extends passDestination {
      */
     public void moveUp() {
         int i;
-        for (int x = 0; x<2; x++) {     // for double merge
-            for (int j = 0; j < cellNum; j++) {
-                for (i = 1; i < cellNum; i++) {
-                    if (cells[i][j].getNumber() != 0) moveVertically(i, j, passUp(i, j), -1);
-                }
+        for (int j = 0; j < cellNum; j++) {
+            for (i = 1; i < cellNum; i++) {
+                if (cells[i][j].getNumber() != 0) moveVertically(i, j, passUp(i, j), -1);
             }
-            clearcell();   // clear the 'modify' status of all cells.
         }
+        clearcell();   // clear the 'modify' status of all cells.
     }
 
     /**
@@ -65,14 +61,12 @@ public class Move extends passDestination {
      */
     public void moveDown() {
         int i;
-        for (int x = 0; x<2; x++) {         // for double merge
-            for (int j = 0; j < cellNum; j++) {
-                for (i = cellNum - 1; i >= 0; i--) {
-                    if (cells[i][j].getNumber() != 0) moveVertically(i, j, passDown(i, j), 1);
-                }
+        for (int j = 0; j < cellNum; j++) {
+            for (i = cellNum - 1; i >= 0; i--) {
+                if (cells[i][j].getNumber() != 0) moveVertically(i, j, passDown(i, j), 1);
             }
-            clearcell(); // clear the 'modify' status of all cells.
         }
+        clearcell(); // clear the 'modify' status of all cells.
     }
 
     /**
@@ -86,8 +80,7 @@ public class Move extends passDestination {
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < cellNum && des + sign >= 0) {
             return cells[i][des + sign].getNumber() == cells[i][j].getNumber() && cells[i][des + sign].getModify()
-                    && cells[i][des + sign].getNumber() != 0;
-        }
+                    && cells[i][des + sign].getNumber() != 0;}
         return false;
     }
 
@@ -106,6 +99,8 @@ public class Move extends passDestination {
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setModify(true);
             changed = true;         // if there is a movement appeared on this cell, then set the 'changed' value to true.
+            merge = true;
+            y = j-2*sign;
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
             changed = true;         // if there is a movement appeared on this cell, then set the 'changed' value to true.
@@ -142,6 +137,8 @@ public class Move extends passDestination {
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
             changed = true;             // if there is a movement appeared on this cell, then set the 'changed' value to true.
+            merge = true;
+            x = i - 2*sign;
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
             changed = true;             // if there is a movement appeared on this cell, then set the 'changed' value to true.

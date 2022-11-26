@@ -2,24 +2,20 @@ package Game2048.Moving;
 
 import Game2048.Component.Cell;
 import Game2048.Component.TextMaker;
+import Game2048.MenuController;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
 import java.util.Random;
 
-import static Game2048.MenuController.Mode;
-
 /**
  * This class is used to generate random number into empty cell.
  */
-public class GenerateNumRandom{
-    public static int cellNum = 4;
+public class GenerateNumRandom extends MenuController {
     public Group root;
     public Cell[][] cells = new Cell[cellNum][cellNum];
-
     /**
      * This is used to fill random number in the empty cell.
      */
-
     //Delete int turn parameter here, since we are not use this.
     public void randomFillNumber() {
         //Check the empty cells.
@@ -58,7 +54,7 @@ public class GenerateNumRandom{
         // then generate numbers between 2 and 4, and fill it into an empty cell;
         // if user choose the survival mode,
         // then generate the numbers among 2, 4, 16 and 32 and fill it into an empty cell;
-        if (Mode.equals("Classic") || Mode.equals("Survival")){ //check the mode
+        if (Mode.equals("Classic") || Mode.equals("Survival") || Mode.equals("Own Mode")){ //check the mode
             puttwo(emptyCells, putTwo, xCell, yCell);
         }else if (Mode.equals("Hard")){ //if the mode == "Hard", then randomly filling number among 2,4,8,16.
             if (choose){

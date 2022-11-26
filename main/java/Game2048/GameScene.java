@@ -25,13 +25,9 @@ import static Game2048.MenuController.Mode;
  */
 
 public class GameScene extends Move {
-    private final static int distanceBetweenCells = 20;
-    public static final int HEIGHT = 700;
-    /**
-     * the number of the cell in the game
-     */
-    public static int cellNum = 4;
-    private static final double LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
+    private final static int distanceBetweenCells = 10;
+    public static int HEIGHT = 700;
+    private static double LENGTH = 0;
     public static double getLENGTH() {
         return LENGTH;
     }
@@ -81,7 +77,6 @@ public class GameScene extends Move {
         }
         return true;
     }
-
     /**
      * Set the game scene, add all the cells on.
      *
@@ -102,6 +97,7 @@ public class GameScene extends Move {
             Survival.doTime(timelabel);
             root.getChildren().add(timelabel);
         }
+        LENGTH = (HEIGHT - ((cellNum + 1) * distanceBetweenCells)) / cellNum;
         //change the game scene background color.
         gameScene.setFill(color);
         this.root=root;
