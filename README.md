@@ -11,6 +11,8 @@ Fix the cell movement bug: it won't generate random numbers without movements be
 
 Fix the press key bug: the cells only will be moved when the users press the up, down, left, and right keys on the keyboard.
 
+Fix the reach goal bug: when user reach final goal ---2048, the game will be ended automatically and show congratulations words to the user.
+
 Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
 Create a permanent high score list (using a file to store scores and player names). 
 
