@@ -45,13 +45,12 @@ public class TextMaker {
      * @return the cell with filled number and color.
      */
     public static Text madeText(String input, double xCell, double yCell, Group root) {
-        double length = GameScene.getLENGTH();
+        double length = GameScene.LENGTH;
         double fontSize = (3 * length) / 7.0;
         Text text = new Text(input);
         text.setFont(Font.font(fontSize));
         text.relocate((xCell + (1.2) * length / 7.0), (yCell + 2 * length / 7.0));
         text.setFill(Color.WHITE);
-
         return text;
     }
 

@@ -31,7 +31,8 @@ public class MenuController {
     private final Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     public static Color color = Color.rgb(189, 177, 92);
     public static int cellNum;
-
+    public final static int distanceBetweenCells = 10;
+    public static double LENGTH = 0;
     /**
      * This function is used to switch the current scene to game scene.
      */
@@ -55,21 +56,26 @@ public class MenuController {
         c.setHeaderText("Choose the Game Mode You Want");
         c.setContentText("please select the mode");
         c.showAndWait();
+        double height = 700;
         if (c.getSelectedItem() == "Classic") {
             Mode = "Classic";
             cellNum = 4;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
         } else if (c.getSelectedItem() == "Hard") {
             Mode = "Hard";
             cellNum = 4;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
         } else if (c.getSelectedItem() == "Survival") {
             Mode = "Survival";
             cellNum = 4;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
         } else if (c.getSelectedItem() == "Own Mode") {
             TextInputDialog num = new TextInputDialog();
             num.setTitle("Own Mode");
             num.setHeaderText("Enter the Number of Rows and Columns U Want:");
             num.showAndWait();
             cellNum = Integer.parseInt(num.getEditor().getText());
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
             Mode = "Own Mode";
         }
     }

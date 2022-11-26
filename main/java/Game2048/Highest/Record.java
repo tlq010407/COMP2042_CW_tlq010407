@@ -2,11 +2,12 @@ package Game2048.Highest;
 
 import java.io.*;
 import java.util.Objects;
+import static Game2048.Highest.Account.getUserName;
 
 /**
  * This class is used to record the highest score
  */
-public class Record extends RecordUser {
+public class Record extends RecordUser{
     private static String highscore = "";
 
     /**
@@ -59,7 +60,7 @@ public class Record extends RecordUser {
         if (score > Integer.parseInt(highscore)) {
             highscore = String.valueOf(score);
             getHighscoreName();
-            checkName(Account.getUserName());
+            checkName(getUserName());
         }
         File scoreFile = new File("highscore.txt");
         writing(scoreFile, highscore);
