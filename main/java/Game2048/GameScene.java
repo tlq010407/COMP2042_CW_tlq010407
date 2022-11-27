@@ -25,7 +25,7 @@ public class GameScene extends CheckCellStatus{
     /**
      * Show the final score through pop up window after ending the game.
      */
-    public void showScore(String title){
+    private void showScore(String title){
         Stage showscore = new Stage();
         showscore.initModality(Modality.APPLICATION_MODAL);
         showscore.setTitle(title);
@@ -46,7 +46,7 @@ public class GameScene extends CheckCellStatus{
      * @param endGameScene the end game scene.
      * @param endGameRoot the end game root.
      */
-    public void SetScene(Stage primaryStage, Scene endGameScene, Group endGameRoot){
+    private void SetScene(Stage primaryStage, Scene endGameScene, Group endGameRoot){
         primaryStage.setScene(endGameScene);
         EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
         root.getChildren().clear();

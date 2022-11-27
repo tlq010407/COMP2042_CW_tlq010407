@@ -13,7 +13,6 @@ import javafx.util.Duration;
 public class Survival{
     private final static int distanceBetweenCells = 20;
     public static int seconds = distanceBetweenCells;
-
     public static void doTime(Text text){
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);

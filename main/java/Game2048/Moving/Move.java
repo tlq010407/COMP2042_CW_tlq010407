@@ -9,8 +9,7 @@ import Game2048.Component.Cell;
 public class Move extends passDestination {
     public int score = 0;
     private boolean changed = false;     //this parameter is used to control and check the movements.
-    private boolean merge = false;
-    private int x, y;
+    private boolean merge=false;        // this parameter is used to control double merge.
     public void setChanged(boolean b){
         this.changed = b;
     }
@@ -25,8 +24,9 @@ public class Move extends passDestination {
         int j;
         for (int i = 0; i < cellNum; i++) {
             for (j = 1; j < cellNum; j++) {
-                if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passLeft(i, j), -1);}
+                if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passLeft(i, j), -1);
             }
+        }
         clearcell();  // clear the 'modify' status of all cells.
     }
 
@@ -40,7 +40,7 @@ public class Move extends passDestination {
                 if (cells[i][j].getNumber() != 0) moveHorizontally(i, j, passRight(i, j), 1);
             }
         }
-            clearcell();   // clear the 'modify' status of all cells.
+        clearcell();   // clear the 'modify' status of all cells.
     }
 
     /**
@@ -100,10 +100,12 @@ public class Move extends passDestination {
             cells[i][des].setModify(true);
             changed = true;         // if there is a movement appeared on this cell, then set the 'changed' value to true.
             merge = true;
-            y = j-2*sign;
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
             changed = true;         // if there is a movement appeared on this cell, then set the 'changed' value to true.
+            if (merge){         //if this row already merged before, set modify status of cells[j][des] to 'false' to check for double merge.
+                cells[i][des].setModify(false);
+            }
         }
     }
 
@@ -137,11 +139,12 @@ public class Move extends passDestination {
             cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
             changed = true;             // if there is a movement appeared on this cell, then set the 'changed' value to true.
-            merge = true;
-            x = i - 2*sign;
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
             changed = true;             // if there is a movement appeared on this cell, then set the 'changed' value to true.
+            if (merge){         //if this column already merged before, set modify status of cells[des][i] to 'false' to check for double merge.
+                cells[des][j].setModify(false);
+            }
         }
     }
 //Move the sum function from the GameScene class to the Move class,
@@ -158,7 +161,7 @@ public class Move extends passDestination {
      * This method is used to clear modify and newcell status of every cell once done the moving,
      * to make sure merge only once each time.
      */
-    public void clearcell() {
+    private void clearcell() {
         Cell cell;
         for (int i = 0; i < cellNum; i++) {
             for (int j = 0; j < cellNum; j++) {
