@@ -9,6 +9,8 @@ Fix the quit error: quit the game automatically when the "OK" button is clicked 
 
 Fix the cell movement bug: it won't generate random numbers without movements between cells.
 
+Fix the double merge bug: if there is a row like 2 2 2 2, when user press either left or right key, the cells will be merged as 4 4.
+
 Fix the press key bug: the cells only will be moved when the users press the up, down, left, and right keys on the keyboard.
 
 Fix the reach goal bug: when user reach final goal ---2048, the game will be ended automatically and show congratulations words to the user.
