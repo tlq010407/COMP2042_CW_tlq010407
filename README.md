@@ -5,7 +5,7 @@ In order to compile this 2048Game, I downloaded javafx packages('javafx-sdk-19')
 
 Design.pdf: the class diagram.
 
-javadoc:the javedoc file is in the same file as the design.pdf, path: COMP2042_CW_hfylt5/javadoc.
+javadoc:the javedoc file is in the same file as the design.pdf, path: COMP2042 Liqi Tang/javadoc.
 
 Fix the scoring system error: add the score correctly. 
 
