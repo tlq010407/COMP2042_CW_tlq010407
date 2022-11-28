@@ -3,7 +3,7 @@ Tang,Liqi 20259468
 
 Design.pdf: the class diagram.
 
-javadoc:
+javadoc:the javedoc file is in the same file as the design.pdf.
 
 Fix the scoring system error: add the score correctly. 
 
