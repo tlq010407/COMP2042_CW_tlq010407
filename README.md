@@ -1,6 +1,10 @@
 # COMP2042_CW_hfylt5
 Tang,Liqi 20259468
 
+Design.pdf: the class diagram.
+
+javadoc:
+
 Fix the scoring system error: add the score correctly. 
 
 Fix the cell number adding error.
@@ -15,7 +19,7 @@ Fix the press key bug: the cells only will be moved when the users press the up,
 
 Fix the reach goal bug: when user reach final goal ---2048, the game will be ended automatically and show congratulations words to the user.
 
-Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and Pane package. 
+Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RecordUser' and 'Survival' classes and 4 packages to do the refactoring. 
 Create a permanent high score list (using a file to store scores and player names). 
 
 Add 4 modes to the game: 'Classic' Mode, 'Hard' Mode,'Own' Mode and 'Survival' Mode.
