@@ -32,7 +32,7 @@ import static java.lang.System.exit;
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record {
+public class EndGame extends Record{
     private static EndGame singleInstance = null;
     private static int score;
     public EndGame(){
@@ -144,13 +144,13 @@ public class EndGame extends Record {
                 Optional<String> result = namedialog.showAndWait();
                 Account account = new Account(result.get());
                 Scene sc = new Scene(r, 500, 300);
+                root.getChildren().clear();
 
                 Group gameRoot = new Group();
                 Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
                 primaryStage.setScene(gameScene);
                 GameScene game = new GameScene();
                 game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
-                root.getChildren().clear();
             }
         });
 
