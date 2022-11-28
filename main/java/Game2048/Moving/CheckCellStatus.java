@@ -1,6 +1,6 @@
 package Game2048.Moving;
 
-public class CheckCellStatus extends Move{
+public class CheckCellStatus extends Move {
     /**
      * Check whether is an empty cell or not.
      * @return 1 if there still get empty cells; 0 if the user already win; -1 if there is no more empty cell.

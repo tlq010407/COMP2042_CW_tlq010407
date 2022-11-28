@@ -1,8 +1,8 @@
 package Game2048;
 
 import Game2048.Component.Cell;
-import Game2048.Moving.CheckCellStatus;
 import Game2048.Component.Survival;
+import Game2048.Moving.CheckCellStatus;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /**
  * This is a class that contains all game scenes.
  */
-public class GameScene extends CheckCellStatus{
+public class GameScene extends CheckCellStatus {
     /**
      * Show the final score through pop up window after ending the game.
      */

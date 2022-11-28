@@ -1,8 +1,8 @@
 package Game2048.Moving;
 
 import Game2048.Component.Cell;
-import Game2048.Component.TextMaker;
 import Game2048.MenuController;
+import Game2048.Component.TextMaker;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
 import java.util.Random;

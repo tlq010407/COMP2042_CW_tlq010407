@@ -7,7 +7,7 @@ import static Game2048.Highest.Account.getUserName;
 /**
  * This class is used to record the highest score
  */
-public class Record extends RecordUser{
+public class Record extends RecordUser {
     private static String highscore = "";
 
     /**

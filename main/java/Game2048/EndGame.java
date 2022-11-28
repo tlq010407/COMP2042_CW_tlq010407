@@ -4,7 +4,6 @@ import Game2048.Highest.Account;
 import Game2048.Highest.Record;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,11 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.Optional;
@@ -32,7 +29,7 @@ import static java.lang.System.exit;
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record{
+public class EndGame extends Record {
     private static EndGame singleInstance = null;
     private static int score;
     public EndGame(){

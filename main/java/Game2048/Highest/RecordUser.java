@@ -1,5 +1,7 @@
 package Game2048.Highest;
 
+import Game2048.Highest.Record;
+
 import java.io.*;
 
 /**
