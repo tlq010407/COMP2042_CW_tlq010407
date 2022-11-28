@@ -3,7 +3,7 @@ Tang,Liqi 20259468
 
 Design.pdf: the class diagram.
 
-javadoc:the javedoc file is in the same file as the design.pdf.
+javadoc:the javedoc file is in the same file as the design.pdf, path: COMP2042_CW_hfylt5/javadoc.
 
 Fix the scoring system error: add the score correctly. 
 
