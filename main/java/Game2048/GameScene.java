@@ -1,9 +1,12 @@
 package Game2048;
 
+import Game2048.Component.Buttons;
 import Game2048.Component.Cell;
 import Game2048.Component.Survival;
 import Game2048.Moving.CheckCellStatus;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,12 +14,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import static java.lang.System.exit;
 
 /**
  * This is a class that contains all game scenes.

@@ -1,18 +1,18 @@
 package Game2048;
 
+import Game2048.Component.Buttons;
 import Game2048.Highest.Account;
 import Game2048.Highest.Record;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -25,11 +25,13 @@ import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
 import static Game2048.MenuController.color;
 import static java.lang.System.exit;
+import static javax.swing.text.StyleConstants.Background;
+import static javax.swing.text.StyleConstants.FontSize;
 
 /**
  * This class is used to decpribe when whole game is over.
  */
-public class EndGame extends Record {
+public class EndGame extends Record{
     private static EndGame singleInstance = null;
     private static int score;
     public EndGame(){
@@ -47,21 +49,20 @@ public class EndGame extends Record {
      * @param primaryStage set the end game scene show in the screen.
      * @param score is the final score when game is ended.
      */
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, int score) {
+    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, int score){
         this.score = score;
         Text text = new Text("GAME OVER");
         text.relocate(250, 250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
-        getHighscore();
-        GetHighScore();
-        checkscore(score); //check whether the current score is higher than the highest score.
+        readFile();
+        checkscore(score,getUserName()); //check whether the current score is higher than the highest score.
 
         //lay out the current user name, current score, highest score, and highest score user name on tyhe
         Text userName = new Text("Player: " + getUserName());
         Text scoreText = new Text("Score: "+ score);
         Text highscoreText = new Text("Highest Score: "+ getHighscore());
-        Text RecordUser = new Text("Highest Score User: "+ getHighscoreName());
+        Text RecordUser = new Text("Highest Score User: "+ getHighscoreUser());
         userName.setFill(Color.BLACK);
         scoreText.setFill(Color.BLACK);
         highscoreText.setFill(Color.BLACK);
@@ -87,17 +88,11 @@ public class EndGame extends Record {
         //Restart Button:
         //when user click this button, the scene will switch to the game scene.
         Button restart = new Button("Try Again!");
-        restart.setPrefSize(100,30);
         restart.setTextFill(Color.BLACK);
         root.getChildren().add(restart);
         restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event) {
-                Group gameRoot = new Group();
-                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, color);
-                primaryStage.setScene(gameScene);
-                GameScene game = new GameScene();
-                game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
-                root.getChildren().clear();
+                Buttons.restarted(root, primaryStage, endGameScene);
             }
         });
 
@@ -133,21 +128,7 @@ public class EndGame extends Record {
         accountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Label namelabel = new Label();
-                TilePane r = new TilePane();
-                TextInputDialog namedialog = new TextInputDialog();
-                namedialog.setHeaderText("enter your name");
-                namedialog.setContentText("NAME:");
-                Optional<String> result = namedialog.showAndWait();
-                Account account = new Account(result.get());
-                Scene sc = new Scene(r, 500, 300);
-                root.getChildren().clear();
-
-                Group gameRoot = new Group();
-                Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-                primaryStage.setScene(gameScene);
-                GameScene game = new GameScene();
-                game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
+                Buttons.newPlayer(root, primaryStage, endGameScene);
             }
         });
 
@@ -163,27 +144,36 @@ public class EndGame extends Record {
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Quit Dialog");
-                alert.setHeaderText("Quit from this page");
-                alert.setContentText("Are you sure?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    root.getChildren().clear();
-                    exit(0);
-                }
+                Buttons.quit(root);
             }
         });
+
+        Button rankButton = new Button("RANK");
+        rankButton.setTextFill(Color.BLACK);
+        root.getChildren().add(rankButton);
+        rankButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Group rankRoot = new Group();
+                Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, color);
+                RankScene.rankScene(rankRoot);
+                root.getChildren().clear();
+                primaryStage.setScene(rankScene);
+                primaryStage.show();
+            }
+        });
+
         HBox.setHgrow(restart, Priority.ALWAYS);
         HBox.setHgrow(backmenu, Priority.ALWAYS);
         HBox.setHgrow(accountButton, Priority.ALWAYS);
         HBox.setHgrow(quitButton, Priority.ALWAYS);
+        HBox.setHgrow(rankButton, Priority.ALWAYS);
         restart.setMaxWidth(Double.MAX_VALUE);
         backmenu.setMaxWidth(Double.MAX_VALUE);
         accountButton.setMaxWidth(Double.MAX_VALUE);
         quitButton.setMaxWidth(Double.MAX_VALUE);
-        endgamebuttons.getChildren().addAll(restart,backmenu,accountButton,quitButton);
+        rankButton.setMaxWidth(Double.MAX_VALUE);
+        endgamebuttons.getChildren().addAll(restart,backmenu,accountButton,quitButton, rankButton);
         root.getChildren().add(endgamebuttons);
 
     }
