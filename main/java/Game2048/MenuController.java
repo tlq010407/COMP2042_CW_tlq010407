@@ -12,11 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Optional;
-import java.util.Scanner;
 
 import static Game2048.Main.HEIGHT;
 import static Game2048.Main.WIDTH;
@@ -25,7 +21,7 @@ import static java.lang.System.exit;
 /**
  * Controller for menu.fxml.
  */
-public class MenuController {
+public class MenuController extends RankScene {
     public static String Mode; //new parameter for mode control.
     private final Group gameRoot = new Group();
     private final Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
@@ -33,6 +29,7 @@ public class MenuController {
     public static int cellNum;
     public final static int distanceBetweenCells = 10;
     public static double LENGTH = 0;
+
     /**
      * This function is used to switch the current scene to game scene.
      */
@@ -60,22 +57,22 @@ public class MenuController {
         if (c.getSelectedItem() == "Classic") {
             Mode = "Classic";
             cellNum = 4;
-            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
         } else if (c.getSelectedItem() == "Hard") {
             Mode = "Hard";
             cellNum = 4;
-            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
         } else if (c.getSelectedItem() == "Survival") {
             Mode = "Survival";
             cellNum = 4;
-            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
         } else if (c.getSelectedItem() == "Own Mode") {
             TextInputDialog num = new TextInputDialog();
             num.setTitle("Own Mode");
             num.setHeaderText("Enter the Number of Rows and Columns U Want:");
             num.showAndWait();
             cellNum = Integer.parseInt(num.getEditor().getText());
-            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) /(double)cellNum;
+            LENGTH = (height - ((cellNum + 1) * distanceBetweenCells)) / (double) cellNum;
             Mode = "Own Mode";
         }
     }
@@ -86,7 +83,6 @@ public class MenuController {
      */
     @FXML
     private Pane myPane;
-
     public void changecolor() {
         String[] colors = {"Green", "Pink", "Blue",
                 "Whitesmoke", "violet", "Default"};
@@ -126,9 +122,9 @@ public class MenuController {
                     
                 Fot Hard Mode: You have no chance to undo your last move,
                       and generate the random number among 2, 4, 8 and 16.
-                
+                                
                 For 5*5 Mode: You will have 5*5 columns and rows in the game scene.
-                
+                                
                 For 'Own' Mode: Enter The number of Columns and Rows You want to have Your special 2048 Game.
                     
                 For Survival Mode: You have to gain as much scores as you can in limits time(20s).""");
@@ -139,7 +135,7 @@ public class MenuController {
         VBox layout = new VBox(40);
         layout.getChildren().addAll(rule, button1);
         layout.setAlignment(Pos.CENTER);
-        Scene scene1 = new Scene(layout, 900, 400, Color.PINK);
+        Scene scene1 = new Scene(layout, 900, 450, Color.PINK);
         showrule.setScene(scene1);
         showrule.showAndWait();
     }
@@ -147,46 +143,14 @@ public class MenuController {
     /**
      * Show the highest score and record keeper.
      */
-    public void ShowRecord() {
-        String score = null;
-        String name = null;
-        try {
-            File highestscore = new File("highscore.txt");      //read the highest score from highscore.txt file
-            Scanner myReader = new Scanner(highestscore);
-            while (myReader.hasNextLine()) {
-                score = myReader.nextLine();
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            File highestuser = new File("RecordUser.txt");      // read the highest score user's name from RecordUser.txt file.
-            Scanner myReader = new Scanner(highestuser);
-            while (myReader.hasNextLine()) {
-                name = myReader.nextLine();
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        Stage showscore = new Stage();
-        showscore.initModality(Modality.APPLICATION_MODAL);
-        showscore.setTitle("Record");
-        Label finalscore = new Label("Record Keeper: " + name + "\n\nRecord Score: " + score);
-        finalscore.setFont(Font.font(20));
-        Button button1 = new Button("Close");
-        button1.setOnAction(e -> showscore.close());
-        VBox layout = new VBox(20);
-        layout.getChildren().addAll(finalscore, button1);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene1 = new Scene(layout, 300, 250, Color.PINK);
-        showscore.setScene(scene1);
-        showscore.showAndWait();
+    public void ShowRecord(ActionEvent event){
+        Group rankRoot = new Group();
+        Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, color);
+        rankScene(rankRoot);
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.setScene(rankScene);
+        primaryStage.show();
     }
-
         /**
          * When quit button is clicked,
          * exit the game.

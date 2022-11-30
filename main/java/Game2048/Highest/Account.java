@@ -1,5 +1,7 @@
 package Game2048.Highest;
 
+import java.util.ArrayList;
+
 /**
  * This class is used to contain the information of users' name,
  */

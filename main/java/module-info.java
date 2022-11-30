@@ -6,7 +6,6 @@ module Downloads {
     requires javafx.web;
     requires java.desktop;
     opens Game2048 to javafx.fxml;
-    opens Game2048.Pane to javafx.fxml;
     exports Game2048;
     exports Game2048.Component;
     opens Game2048.Component to javafx.fxml;

@@ -1,96 +1,94 @@
 package Game2048.Highest;
 
 import java.io.*;
-import java.util.Objects;
-import static Game2048.Highest.Account.getUserName;
+import java.util.ArrayList;
 
 /**
- * This class is used to record the highest score
+ * This class is used to write, compare and sort the users with their scores.
  */
-public class Record extends RecordUser {
-    private static String highscore = "";
+public class Record extends fileEditer{
+    private static int highscore = 0;
+    private static String highscoreUser="";
+    private static ArrayList<Integer> scores = new ArrayList<>();
+    private static ArrayList<String> names = new ArrayList<>();
+    public static ArrayList<String> users = new ArrayList<>();
 
     /**
-     * Check whether the highest score is 0 or not,
-     * if it is zero, then get the current as the highest score.
-     * @return highest score.
+     * Read all datasets from the file and store into the arraylists.
      */
-    public String GetHighScore() {
-        FileReader readFile;
-        BufferedReader reader = null;
+    public static void readFile() {
+        if (scores != null){
+            scores = new ArrayList<>();
+            users = new ArrayList<>();
+            names = new ArrayList<>();
+        }
+        BufferedReader bufReader = null;
         try {
-            readFile = new FileReader("highscore.txt");
-            reader = new BufferedReader(readFile);
-            return reader.readLine();
-        } catch (Exception e) {
-            return "0";
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            bufReader = new BufferedReader(new FileReader("highscore.txt"));
+            String line = bufReader.readLine();
+            while (line != null) {
+                users.add(line);
+                names.add(line.split(" ")[1]);
+                scores.add(Integer.parseInt(line.split(" ")[0]));
+                line = bufReader.readLine();
             }
+            bufReader.close();
+        } catch (IOException e) {
+            users.add("0 null");
+            scores.add(0);
         }
     }
-
     /**
      * Get the highest score.
      * @return highest score.
      */
-    public String getHighscore() {
-        if (Objects.equals(highscore, "")) {
-            highscore = this.GetHighScore();
-        }
+    public int getHighscore() {
+        highscore = scores.get(0);
         return highscore;
     }
-
     /**
-     * Compare the current with the highest score which is stored in the file,
-     * if the current score is higher than the highest score,
-     * then change the highest score to the current score.
-     *
-     * @param score current score.
+     * Get the highest score username.
+     * @return highest score username.
      */
-    public void checkscore(int score) {
-        if (highscore.equals("")) {
-            return;
-        }
-        if (score > Integer.parseInt(highscore)) {
-            highscore = String.valueOf(score);
-            getHighscoreName();
-            checkName(getUserName());
-        }
-        File scoreFile = new File("highscore.txt");
-        writing(scoreFile, highscore);
+    public String getHighscoreUser(){
+        readFile();
+        highscoreUser = names.get(0);
+        return highscoreUser;
     }
 
     /**
-     * This method is used to write the parameter that have to store into the files.
-     * @param scoreFile the file used to store the score.
-     * @param highscore the file used to store the score.
+     * Check whether current user is already exists or not,
+     * if the user is already exists, then compare the current score with previous score, if current score is higher than the previous one,
+     * then change the score;
+     * if the user is not exists before, then create a new users in users arraylists, and store the score and username.
+     * @param users users arraylist.
+     * @param scores scores arraylist.
+     * @param names names arraylist.
+     * @param score current score
+     * @param currentName current username.
      */
-    static void writing(File scoreFile, String highscore) {
-        if (!scoreFile.exists()) {
-            try {
-                scoreFile.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+    private void compareTo(ArrayList<String> users, ArrayList<Integer> scores, ArrayList<String> names,int score, String currentName){
+        if (names.contains(currentName)){
+            int index = names.indexOf(currentName);
+            if (scores.get(index) <= score){
+                users.set(index,score+" "+currentName);
+                scores.set(index,score);
             }
+        }else{
+            users.add(score + " " + currentName);
+            scores.add(score);
         }
-        FileWriter writeFile;
-        BufferedWriter writer = null;
-        try {
-            writeFile = new FileWriter(scoreFile);
-            writer = new BufferedWriter(writeFile);
-            writer.write(highscore);
-        } catch (Exception e) {
-            } finally {
-                try {
-                    if (writer != null) writer.close();
-                } catch (Exception e) {
-            }
-        }
+    }
+
+    /**
+     * Compare the scores, users and overwrite into the files.
+     * @param score the current score.
+     * @param currentUser the current username.
+     */
+    public void checkscore(int score, String currentUser) {
+        compareTo(users,scores,names,score,currentUser);
+        File nameFile = new File("highscore.txt");
+        writing(nameFile, users);
+        overwriting(scores, users);
     }
 }
