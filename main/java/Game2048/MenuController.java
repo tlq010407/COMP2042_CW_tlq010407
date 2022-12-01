@@ -1,5 +1,6 @@
 package Game2048;
 
+import Game2048.Component.Buttons;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -139,17 +140,12 @@ public class MenuController extends RankScene {
         showrule.setScene(scene1);
         showrule.showAndWait();
     }
-
     /**
      * Show the highest score and record keeper.
      */
     public void ShowRecord(ActionEvent event){
-        Group rankRoot = new Group();
-        Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, color);
-        rankScene(rankRoot);
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.setScene(rankScene);
-        primaryStage.show();
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Buttons.goRank(primaryStage);
     }
         /**
          * When quit button is clicked,

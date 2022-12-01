@@ -2,10 +2,10 @@ package Game2048.Component;
 
 import Game2048.GameScene;
 import Game2048.Highest.Account;
+import Game2048.RankScene;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Optional;
@@ -34,8 +34,18 @@ public class Buttons{
                 game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
                 root.getChildren().clear();
     }
-    //Addition:
-    //
+
+    /**
+     * Switch to Rank Scene.
+     * @param primaryStage the stage to hold the stage.
+     */
+    public static void goRank(Stage primaryStage) {
+        Group rankRoot = new Group();
+        Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, color);
+        RankScene.rankScene(rankRoot);
+        primaryStage.setScene(rankScene);
+        primaryStage.show();
+    }
 
     /**
      *  enter name:
@@ -77,4 +87,5 @@ public class Buttons{
             exit(0);
         }
     }
+
 }

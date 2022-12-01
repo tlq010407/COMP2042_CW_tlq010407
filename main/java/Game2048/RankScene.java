@@ -13,21 +13,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class RankScene extends EndGame{
     public static void rankScene(Group rankRoot){
         Group root = new Group();
-        Text text = new Text("Rank");
+        Text text = new Text("Rank Og Top 10:");
         text.relocate(250, 200);
-        text.setFont(Font.font(80));
+        text.setFont(Font.font(60));
         rankRoot.getChildren().add(text);
         Button exit = new Button("Exit");
-        exit.relocate(250,650);
+        exit.relocate(250,750);
         exit.setOnMouseClicked(event -> Buttons.quit(root));
         rankRoot.getChildren().add(exit);
-        Button backToMenu = new Button("back to menu");
-        backToMenu.relocate(450,650);
+        Button backToMenu = new Button("Back to Menu");
+        backToMenu.relocate(450,750);
         backToMenu.setOnMouseClicked(new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
@@ -45,7 +46,7 @@ public class RankScene extends EndGame{
             }
         });
         rankRoot.getChildren().add(backToMenu);
-        readFile();
+        readFile(scoreFile);
         if (users.size() < 10) {
             for (int i = 0; i < users.size(); i++) {
                 Text rank = new Text(users.get(i));

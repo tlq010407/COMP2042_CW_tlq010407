@@ -12,11 +12,13 @@ public class Record extends fileEditer{
     private static ArrayList<Integer> scores = new ArrayList<>();
     private static ArrayList<String> names = new ArrayList<>();
     public static ArrayList<String> users = new ArrayList<>();
+    public static final File scoreFile = new File("highscore.txt");
 
     /**
      * Read all datasets from the file and store into the arraylists.
      */
-    public static void readFile() {
+    public static void readFile(File scoreFile) {
+        scoreFile = new File("highscore.txt");
         if (scores != null){
             scores = new ArrayList<>();
             users = new ArrayList<>();
@@ -24,7 +26,8 @@ public class Record extends fileEditer{
         }
         BufferedReader bufReader = null;
         try {
-            bufReader = new BufferedReader(new FileReader("highscore.txt"));
+            FileReader reader = new FileReader(scoreFile);
+            bufReader = new BufferedReader(reader);
             String line = bufReader.readLine();
             while (line != null) {
                 users.add(line);
@@ -51,7 +54,7 @@ public class Record extends fileEditer{
      * @return highest score username.
      */
     public String getHighscoreUser(){
-        readFile();
+        readFile(scoreFile);
         highscoreUser = names.get(0);
         return highscoreUser;
     }

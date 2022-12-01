@@ -18,7 +18,7 @@ public class Main extends Application{
         launch(args);
     }
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception { //no need test
         //set the default primary stage as start scene.
         Parent root = FXMLLoader.load(getClass().getResource("Pane/Start.fxml"));
         Scene scene = new Scene(root);
