@@ -9,8 +9,6 @@ javadoc:the javedoc file is in the same file as the design.pdf, path: COMP2042 L
 
 Fix the scoring system error: add the score correctly. 
 
-Fix the cell number adding error.
-
 Fix the quit error: quit the game automatically when the "OK" button is clicked in an alert. 
 
 Fix the cell movement bug: it won't generate random numbers without movements between cells.
