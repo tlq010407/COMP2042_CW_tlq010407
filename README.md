@@ -1,7 +1,7 @@
 # COMP2042_CW_hfylt5
 Tang,Liqi 20259468
 
-In order to compile this 2048Game, I downloaded javafx packages('javafx-sdk-19') online, and imported into intellJ File/project structure/library.
+In order to compile this 2048Game, I downloaded javafx packages('javafx-sdk-19') online and JDK-17, and imported into intellJ File/project structure/library.
 
 Design.pdf: the class diagram.
 
