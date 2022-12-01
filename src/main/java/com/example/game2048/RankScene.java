@@ -18,7 +18,7 @@ import java.io.IOException;
 public class RankScene extends EndGame{
     public static void rankScene(Group rankRoot){
         Group root = new Group();
-        Text text = new Text("Rank Og Top 10:");
+        Text text = new Text("Rank Of Top 10:");
         text.relocate(250, 200);
         text.setFont(Font.font(60));
         rankRoot.getChildren().add(text);
@@ -48,7 +48,7 @@ public class RankScene extends EndGame{
         readFile(scoreFile);
         if (users.size() < 10) {
             for (int i = 0; i < users.size(); i++) {
-                Text rank = new Text(users.get(i));
+                Text rank = new Text((i+1)+"       "+users.get(i));
                 rank.setFont(Font.font(40));
                 rank.setFill(Color.BLACK);
                 rank.relocate(250, (250 + i * 40));
@@ -56,7 +56,7 @@ public class RankScene extends EndGame{
             }
         } else {
             for (int i = 0; i < 10; i++) {
-                Text rank = new Text(users.get(i));
+                Text rank = new Text((i+1)+"       "+users.get(i));
                 rank.setFont(Font.font(40));
                 rank.setFill(Color.BLACK);
                 rank.relocate(250, (250 + i * 40));
