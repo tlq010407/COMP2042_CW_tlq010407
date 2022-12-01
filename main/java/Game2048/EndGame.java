@@ -55,7 +55,7 @@ public class EndGame extends Record{
         text.relocate(250, 250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
-        readFile();
+        readFile(scoreFile);
         checkscore(score,getUserName()); //check whether the current score is higher than the highest score.
 
         //lay out the current user name, current score, highest score, and highest score user name on tyhe
@@ -103,7 +103,6 @@ public class EndGame extends Record{
         backmenu.setTextFill(Color.BLACK);
         root.getChildren().add(backmenu);
         backmenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
             public void handle(MouseEvent event) {
                 Parent menuRoot;
                 try {
@@ -154,12 +153,7 @@ public class EndGame extends Record{
         rankButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Group rankRoot = new Group();
-                Scene rankScene = new Scene(rankRoot, WIDTH, HEIGHT, color);
-                RankScene.rankScene(rankRoot);
-                root.getChildren().clear();
-                primaryStage.setScene(rankScene);
-                primaryStage.show();
+                Buttons.goRank(primaryStage);
             }
         });
 
@@ -173,7 +167,7 @@ public class EndGame extends Record{
         accountButton.setMaxWidth(Double.MAX_VALUE);
         quitButton.setMaxWidth(Double.MAX_VALUE);
         rankButton.setMaxWidth(Double.MAX_VALUE);
-        endgamebuttons.getChildren().addAll(restart,backmenu,accountButton,quitButton, rankButton);
+        endgamebuttons.getChildren().addAll(restart,backmenu,accountButton, rankButton, quitButton);
         root.getChildren().add(endgamebuttons);
 
     }
