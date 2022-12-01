@@ -19,13 +19,13 @@ Fix the press key bug: the cells only will be moved when the users press the up,
 
 Fix the reach goal bug: when user reach final goal ---2048, the game will be ended automatically and show congratulations words to the user.
 
-Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RankScene' and 'Survival' classes and 4 packages to do the refactoring. 
+Create 'GenerateNumRandom', 'Move', 'passDestination', 'StartController', 'MenuController', 'Record', 'RankScene', 'Buttons' and 'Survival' classes and 4 packages to do the refactoring. 
 Create a permanent high score list (using a file to store scores and player names). 
 
 Add 4 modes to the game: 'Classic' Mode, 'Hard' Mode,'Own' Mode and 'Survival' Mode.
 
-Create a Pane package to save Start.fxml and Menu.fxml: Start.fxml: 
-set and create the prototype scene and layout of the start scene; 
+Create two fxml files:
+Start.fxml: set and create the prototype scene and layout of the start scene; 
 Menu.fxml: set and create the prototype scene and layout of the menu scene;
 
 'StartController' class: 
@@ -36,12 +36,7 @@ Extend, switch the scenes and contain the function map to different buttons:
 switchToGame(), changecolor(), help(), chooseMode(), Showrecord() and quit() functions;
 
 'Main' class: 
-Set the default primaryStage in the main menu, and create a "START" button to enter the menu scene and get the user name, the menu scene contains "start game", "change background colour", "exit" and "rules" buttons: 
-"start game" button: choose the game mode, start the game, switch the menu scene to game scene; 
-"change background colour" button: change the background colour of the game scene, then click this button, a choice dialogue pop up window to let user choose and change the background colour; 
-"rules" button: show the game rules; 
-"record" button: show the highest score and recording keeper's name;
-"exit" button: quit the game;
+Set the default primaryStage in the main menu, and create a "START" button to enter the menu scene and get the user name.
 
 'GameScene' class: 
 Divided the 'GameScene' class into 'Cell' class, 'GenerateNumRandon' class, 'Move' class, and 'passDestination' class.
@@ -49,11 +44,17 @@ Divided the 'GameScene' class into 'Cell' class, 'GenerateNumRandon' class, 'Mov
 'passDestination' class: 
 Divided the original 'passDestination' method into four functions: ' passLeft', 'passRight', 'passDown' and 'passUp' methods.
 
-'Record' and 'RecordUser' classes are used to store the highest score and recording keeper's name.
+'Record'classes: Store the highest score and recording keeper's name.
 
 'Survival' class: create a countdown timer for 'Survival' Mode.
 
+'Buttons' class: store the button methods.
+
+'RankScene' class: show the rank scene.
+
 'EndGame' class: 
 Create a popup window to pop up the final score. Show the highest score in the end-game scene. 
-Create a 'Try Again!' button: when users click this button, they can begin a new game without entering the menu scene. 
-Create a 'Back to Menu' button: when users click this button, they can back to the menu scene.
+Create a 'Try Again!' button: begin a new game without entering the menu scene. 
+Create a 'Back to Menu' button: back to the menu scene.
+Create a 'New Player' button: To enter an new user's name.
+Create a 'Rank' button: To show the rank scene.
