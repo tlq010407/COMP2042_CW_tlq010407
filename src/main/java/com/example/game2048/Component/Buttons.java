@@ -3,11 +3,17 @@ package com.example.game2048.Component;
 import com.example.game2048.GameScene;
 import com.example.game2048.Highest.Account;
 import com.example.game2048.RankScene;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.Optional;
 
 import static com.example.game2048.Main.HEIGHT;
@@ -60,7 +66,7 @@ public class Buttons{
         namedialog.setHeaderText("enter your name");
         namedialog.setContentText("NAME:");
         Optional<String> result = namedialog.showAndWait();
-        Account account = new Account(result.get());
+        Account.setUserName(result.get());
         root.getChildren().clear();
 
         Group gameRoot = new Group();

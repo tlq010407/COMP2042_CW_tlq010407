@@ -45,7 +45,7 @@ public class StartController{
             alert.showAndWait();
         }else {
             String name = txt1.getText();
-            Account account = new Account(name);
+            Account.setUserName(name);
             switchToMenu(event);
         }
     }

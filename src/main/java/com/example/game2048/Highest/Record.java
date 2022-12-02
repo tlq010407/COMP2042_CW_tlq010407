@@ -15,6 +15,24 @@ public class Record extends fileEditer{
     public static final File scoreFile = new File("highscore.txt");
 
     /**
+     * Get the highest score.
+     * @return highest score.
+     */
+    public int getHighscore() {
+        highscore = scores.get(0);
+        return highscore;
+    }
+    /**
+     * Get the highest score username.
+     * @return highest score username.
+     */
+    public String getHighscoreUser(){
+        readFile(scoreFile);
+        highscoreUser = names.get(0);
+        return highscoreUser;
+    }
+
+    /**
      * Read all datasets from the file and store into the arraylists.
      */
     public static void readFile(File scoreFile) {
@@ -40,23 +58,6 @@ public class Record extends fileEditer{
             users.add("0 null");
             scores.add(0);
         }
-    }
-    /**
-     * Get the highest score.
-     * @return highest score.
-     */
-    public int getHighscore() {
-        highscore = scores.get(0);
-        return highscore;
-    }
-    /**
-     * Get the highest score username.
-     * @return highest score username.
-     */
-    public String getHighscoreUser(){
-        readFile(scoreFile);
-        highscoreUser = names.get(0);
-        return highscoreUser;
     }
 
     /**

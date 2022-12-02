@@ -3,9 +3,9 @@ package com.example.game2048.Highest;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 
-import static com.example.game2048.Highest.Record.readFile;
-import static com.example.game2048.Highest.Record.users;
+import static com.example.game2048.Highest.Record.*;
 import static org.junit.Assert.*;
 
 public class RecordTest {

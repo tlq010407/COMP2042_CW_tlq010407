@@ -36,7 +36,7 @@ public class EndGame extends Record{
     /**
      * Parameters setting for the end game scene.
      * @param endGameScene stores the all parameters of the end game scene.
-     * @param root
+     * @param root the group root.
      * @param primaryStage set the end game scene show in the screen.
      * @param score is the final score when game is ended.
      */
@@ -92,7 +92,7 @@ public class EndGame extends Record{
             public void handle(MouseEvent event) {
                 Parent menuRoot;
                 try {
-                    menuRoot = FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
+                    menuRoot = FXMLLoader.load(getClass().getResource("Menu.fxml"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

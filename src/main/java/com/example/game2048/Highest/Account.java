@@ -6,10 +6,10 @@ package com.example.game2048.Highest;
  */
 public class Account{
     private static String userName;
-    public Account(String userName) {
-        this.userName = userName;
-    }
     public static String getUserName() {
         return userName;
+    }
+    public static void setUserName(String userName) {
+        Account.userName = userName;
     }
 }

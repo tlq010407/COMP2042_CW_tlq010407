@@ -14,8 +14,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class RankScene extends EndGame{
+    /**
+     * To show the rank scene
+     * @param rankRoot the rank root.
+     */
     public static void rankScene(Group rankRoot){
         Group root = new Group();
         Text text = new Text("Rank Of Top 10:");
@@ -57,6 +62,11 @@ public class RankScene extends EndGame{
         }
     }
 
+    /**
+     * get the username and user score one by one
+     * @param rankRoot the group of rank root
+     * @param i the number of the rank list.
+     */
     private static void printRank(Group rankRoot, int i) {
         Text rank = new Text((i+1)+"       "+users.get(i));
         rank.setFont(Font.font(40));
