@@ -20,11 +20,11 @@ import java.io.*;
 import static com.example.game2048.Highest.Account.getUserName;
 
 /**
- * This class is used to decpribe when whole game is over.
+ * This class is used to describe when whole game is over.
  */
 public class EndGame extends Record{
     private static EndGame singleInstance = null;
-    private static int score;
+
     public EndGame(){
     }
     public static EndGame getInstance() {
@@ -41,7 +41,6 @@ public class EndGame extends Record{
      * @param score is the final score when game is ended.
      */
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, int score){
-        this.score = score;
         Text text = new Text("GAME OVER");
         text.relocate(250, 250);
         text.setFont(Font.font(80));
@@ -49,7 +48,7 @@ public class EndGame extends Record{
         readFile(scoreFile);
         checkscore(score,getUserName()); //check whether the current score is higher than the highest score.
 
-        //lay out the current user name, current score, highest score, and highest score user name on tyhe
+        //lay out the current username, current score, the highest score, and highest score username on scene.
         Text userName = new Text("Player: " + getUserName());
         Text scoreText = new Text("Score: "+ score);
         Text highscoreText = new Text("Highest Score: "+ getHighscore());
@@ -75,33 +74,29 @@ public class EndGame extends Record{
         endgamebuttons.setLayoutY(700);
         endgamebuttons.setLayoutX(200);
 
-        //Adddition:
+        //Addition:
         //Restart Button:
         //when user click this button, the scene will switch to the game scene.
         Button restart = new Button("Try Again!");
         restart.setTextFill(Color.BLACK);
         root.getChildren().add(restart);
-        restart.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            public void handle(MouseEvent event) {
-                Buttons.restarted(root, primaryStage, endGameScene);
-            }
-        });
+        restart.setOnMouseClicked(event -> Buttons.restarted(root, primaryStage, endGameScene));
 
         //Addition:
-        //Back Menu Botton:
+        //Back Menu Button:
         //when user click this button, the scene will switch to the menu scene.
         Button backmenu = new Button("Back to Menu");
         backmenu.setTextFill(Color.BLACK);
         root.getChildren().add(backmenu);
-        backmenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        backmenu.setOnMouseClicked(new EventHandler<>() {
             public void handle(MouseEvent event) {
                 Parent menuRoot;
                 try {
-                    menuRoot= FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
+                    menuRoot = FXMLLoader.load(getClass().getResource("Pane/Menu.fxml"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                Stage menuStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene menuScene = new Scene(menuRoot);
                 menuStage.setScene(menuScene);
                 root.getChildren().clear();
@@ -115,38 +110,21 @@ public class EndGame extends Record{
         Button accountButton = new Button("New Player");
         accountButton.setTextFill(Color.BLACK);
         root.getChildren().add(accountButton);
-        accountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Buttons.newPlayer(root, primaryStage, endGameScene);
-            }
-        });
+        accountButton.setOnMouseClicked(mouseEvent -> Buttons.newPlayer(root, primaryStage, endGameScene));
 
-        /**
-         * A Alert:
-         * Pop up a screen and ask whether user wanna quit game or not,
-         * if user click "OK",
-         * then the game will close the whole game screen automatically.
-         */
+         //Alert:
+         // Pop up a screen and ask whether user want to quit game or not,
+         //if user click "OK",
+         // then the game will close the whole game screen automatically.
         Button quitButton = new Button("QUIT");
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Buttons.quit(root);
-            }
-        });
+        quitButton.setOnMouseClicked(event -> Buttons.quit(root));
 
         Button rankButton = new Button("RANK");
         rankButton.setTextFill(Color.BLACK);
         root.getChildren().add(rankButton);
-        rankButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Buttons.goRank(primaryStage);
-            }
-        });
+        rankButton.setOnMouseClicked(mouseEvent -> Buttons.goRank(primaryStage));
 
         HBox.setHgrow(restart, Priority.ALWAYS);
         HBox.setHgrow(backmenu, Priority.ALWAYS);

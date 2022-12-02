@@ -8,6 +8,7 @@ package com.example.game2048.Moving;
  * if the cell is not empty then record the position of the cell.
  */
 public class passDestination extends GenerateNumRandom {
+    private int coordinate;
     /**
      * When user press left key, check whether the cells are empty or not, when cells moving left.
      * @param i is used to describe the row of the cell in.
@@ -15,7 +16,7 @@ public class passDestination extends GenerateNumRandom {
      * @return the position which cell is not empty.
      */
     public int passLeft(int i, int j){
-        int coordinate = j;
+        coordinate = j;
         for (int k = j - 1; k >= 0; k--) {
             if (cells[i][k].getNumber() != 0) {
                 coordinate = k + 1;
@@ -34,7 +35,7 @@ public class passDestination extends GenerateNumRandom {
      * @return the position which cell is not empty.
      */
     public int passRight(int i, int j){
-        int  coordinate = j;
+        coordinate = j;
         for (int k = j + 1; k <= cellNum - 1; k++) {
             if (cells[i][k].getNumber() != 0) {
                 coordinate = k - 1;
@@ -52,7 +53,7 @@ public class passDestination extends GenerateNumRandom {
      * @return the position which cell is not empty.
      */
     public int passDown(int i, int j){
-        int  coordinate = i;
+        coordinate = i;
         for (int k = i + 1; k <= cellNum - 1; k++) {
             if (cells[k][j].getNumber() != 0) {
                 coordinate = k - 1;
@@ -71,7 +72,7 @@ public class passDestination extends GenerateNumRandom {
      * @return the position which cell is not empty.
      */
     public int passUp(int i, int j){
-        int coordinate = i;
+        coordinate = i;
         for (int k = i - 1; k >= 0; k--) {
             if (cells[k][j].getNumber() != 0) {
                 coordinate = k + 1;

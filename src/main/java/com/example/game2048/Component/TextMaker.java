@@ -41,7 +41,7 @@ public class TextMaker {
      * @param input is randomly generated number.
      * @param xCell is used to coordinate the position of the empty cell.
      * @param yCell is used to coordinate the position of the empty cell.
-     * @param root
+     * @param root the group root.
      * @return the cell with filled number and color.
      */
     public static Text madeText(String input, double xCell, double yCell, Group root) {

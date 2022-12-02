@@ -48,20 +48,20 @@ public class RankScene extends EndGame{
         readFile(scoreFile);
         if (users.size() < 10) {
             for (int i = 0; i < users.size(); i++) {
-                Text rank = new Text((i+1)+"       "+users.get(i));
-                rank.setFont(Font.font(40));
-                rank.setFill(Color.BLACK);
-                rank.relocate(250, (250 + i * 40));
-                rankRoot.getChildren().add(rank);
+                printRank(rankRoot, i);
             }
         } else {
             for (int i = 0; i < 10; i++) {
-                Text rank = new Text((i+1)+"       "+users.get(i));
-                rank.setFont(Font.font(40));
-                rank.setFill(Color.BLACK);
-                rank.relocate(250, (250 + i * 40));
-                rankRoot.getChildren().add(rank);
+                printRank(rankRoot, i);
             }
         }
+    }
+
+    private static void printRank(Group rankRoot, int i) {
+        Text rank = new Text((i+1)+"       "+users.get(i));
+        rank.setFont(Font.font(40));
+        rank.setFill(Color.BLACK);
+        rank.relocate(250, (250 + i * 40));
+        rankRoot.getChildren().add(rank);
     }
 }
