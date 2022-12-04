@@ -7,30 +7,10 @@ import java.util.ArrayList;
  * This class is used to write, compare and sort the users with their scores.
  */
 public class Record extends fileEditer{
-    private static int highscore = 0;
-    private static String highscoreUser="";
     private static ArrayList<Integer> scores = new ArrayList<>();
     private static ArrayList<String> names = new ArrayList<>();
     public static ArrayList<String> users = new ArrayList<>();
     public static final File scoreFile = new File("highscore.txt");
-
-    /**
-     * Get the highest score.
-     * @return highest score.
-     */
-    public int getHighscore() {
-        highscore = scores.get(0);
-        return highscore;
-    }
-    /**
-     * Get the highest score username.
-     * @return highest score username.
-     */
-    public String getHighscoreUser(){
-        readFile(scoreFile);
-        highscoreUser = names.get(0);
-        return highscoreUser;
-    }
 
     /**
      * Read all datasets from the file and store into the arraylists.
@@ -42,15 +22,15 @@ public class Record extends fileEditer{
             users = new ArrayList<>();
             names = new ArrayList<>();
         }
-        BufferedReader bufReader = null;
+        BufferedReader bufReader;
         try {
             FileReader reader = new FileReader(scoreFile);
             bufReader = new BufferedReader(reader);
             String line = bufReader.readLine();
             while (line != null) {
                 users.add(line);
-                scores.add(Integer.parseInt(line.split(" ")[0]));
                 names.add(line.split(" ")[1]);
+                scores.add(Integer.parseInt(line.split(" ")[0]));
                 line = bufReader.readLine();
             }
             bufReader.close();
@@ -58,6 +38,21 @@ public class Record extends fileEditer{
             users.add("0 null");
             scores.add(0);
         }
+    }
+    /**
+     * Get the highest score.
+     * @return highest score.
+     */
+    public int getHighscore() {
+        return scores.get(0);
+    }
+    /**
+     * Get the highest score username.
+     * @return highest score username.
+     */
+    public String getHighscoreUser(){
+        readFile(scoreFile);
+        return names.get(0);
     }
 
     /**
@@ -96,4 +91,5 @@ public class Record extends fileEditer{
         overwriting(scores, users);
     }
 }
+
 
