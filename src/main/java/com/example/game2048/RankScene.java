@@ -15,6 +15,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * This class is used to edit parameters of the rank scene.
+ * @author liqitang
+ */
+
 public class RankScene extends EndGame{
     /**
      * To show the rank scene

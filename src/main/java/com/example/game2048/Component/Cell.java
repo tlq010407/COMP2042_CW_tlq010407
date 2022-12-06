@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 
 /**
  * This is a class that contains all the information about the cells.
+ * @author liqitang-modified
  */
 public class Cell {
     private final Rectangle rectangle;

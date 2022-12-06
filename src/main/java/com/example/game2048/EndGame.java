@@ -21,6 +21,7 @@ import static com.example.game2048.Highest.Account.getUserName;
 
 /**
  * This class is used to describe when whole game is over.
+ * @author liqitang-modified
  */
 public class EndGame extends Record{
     private static EndGame singleInstance = null;

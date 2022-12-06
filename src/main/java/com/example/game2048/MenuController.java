@@ -21,6 +21,7 @@ import static java.lang.System.exit;
 
 /**
  * Controller for menu.fxml.
+ * @author liqitang
  */
 public class MenuController extends RankScene {
     public static String Mode; //new parameter for mode control.

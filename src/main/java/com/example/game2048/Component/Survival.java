@@ -8,6 +8,7 @@ import javafx.util.Duration;
 
 /**
  * This class is used to store the countdown timer for survival class.
+ * @author liqitang
  */
 public class Survival{
     private final static int distanceBetweenCells = 20;

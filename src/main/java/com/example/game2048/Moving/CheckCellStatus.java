@@ -1,5 +1,10 @@
 package com.example.game2048.Moving;
 
+/**
+ * This class is used to check cells.
+ * @author liqitang
+ */
+
 public class CheckCellStatus extends Move {
     /**
      * Check whether is an empty cell or not.

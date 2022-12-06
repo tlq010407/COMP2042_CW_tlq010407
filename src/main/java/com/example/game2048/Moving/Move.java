@@ -1,9 +1,10 @@
 package com.example.game2048.Moving;
 
 import com.example.game2048.Component.Cell;
-/**
+    /**
      * This class contains the moving methods,
      * while checking whether is available to move vertically and horizontally.
+     * @author liqitang
      */
     public class Move extends passDestination {
         public int score = 0;

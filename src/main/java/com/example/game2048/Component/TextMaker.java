@@ -6,6 +6,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * This class is used to contain the all methods about the text changes in cell.
+ * @author liqitang-modified
+ */
+
 public class TextMaker {
     private static TextMaker singleInstance = null;
     TextMaker() {
