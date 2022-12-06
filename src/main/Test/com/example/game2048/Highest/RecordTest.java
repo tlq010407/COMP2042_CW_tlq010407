@@ -6,6 +6,10 @@ import static com.example.game2048.Highest.Record.readFile;
 import static com.example.game2048.Highest.Record.users;
 import static org.junit.Assert.*;
 
+/**
+ * This class is used to test the record class functions.
+ * @author liqi tang
+ */
 public class RecordTest {
     File scoreFile = new File("test.txt");
     @Test

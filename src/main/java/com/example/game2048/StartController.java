@@ -17,7 +17,7 @@ import javafx.fxml.FXML;
  * Controller for Start.fxml:
  * This class is used to add start, and menu screen,
  * and this class is combined with the pane package to achieve the switch the scene.
- * @author liqitang
+ * @author liqi tang
  */
 public class StartController{
     /**

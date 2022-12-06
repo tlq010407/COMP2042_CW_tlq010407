@@ -4,7 +4,7 @@ import com.example.game2048.Component.Cell;
     /**
      * This class contains the moving methods,
      * while checking whether is available to move vertically and horizontally.
-     * @author liqitang
+     * @author liqi tang
      */
     public class Move extends passDestination {
         public int score = 0;

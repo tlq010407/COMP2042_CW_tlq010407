@@ -5,7 +5,7 @@ import java.util.Collections;
 
 /**
  * This class is used to contain the writing file method and overwriting file method.
- * @author liqitang
+ * @author liqi tang
  */
 public class fileEditer{
     /**

@@ -6,6 +6,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * This class is used to test a part of functions in text maker class.
+ * @author liqi tang
+ */
 public class TextMakerTest {
     @Test
     public void changeTwoText() {

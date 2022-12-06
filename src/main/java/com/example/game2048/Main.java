@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 /**
- * @author liqitang-modified
+ * @author liqi tang-modified
  * @version 9.0
  */
 public class Main extends Application{

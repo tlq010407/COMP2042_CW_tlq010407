@@ -2,7 +2,7 @@ package com.example.game2048.Moving;
 
 /**
  * This class is used to check cells.
- * @author liqitang
+ * @author liqi tang
  */
 
 public class CheckCellStatus extends Move {

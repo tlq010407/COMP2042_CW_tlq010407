@@ -3,7 +3,7 @@ package com.example.game2048.Highest;
 
 /**
  * This class is used to contain the information of users' name.
- * @author liqitang-modified
+ * @author liqi tang-modified
  */
 public class Account{
     private static String userName;

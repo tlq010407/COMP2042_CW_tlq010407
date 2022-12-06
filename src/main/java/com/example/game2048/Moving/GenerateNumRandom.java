@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  * This class is used to generate random number into empty cell.
- * @author liqitang
+ * @author liqi tang
  */
 public class GenerateNumRandom extends MenuController {
     public Group root;

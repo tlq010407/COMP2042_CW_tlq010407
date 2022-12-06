@@ -6,7 +6,7 @@ package com.example.game2048.Moving;
  * all cells will be moved to the sides which user pressed,
  * and check whether the cell is empty or not,
  * if the cell is not empty then record the position of the cell.
- * @author liqitang
+ * @author liqi tang
  */
 public class passDestination extends GenerateNumRandom {
     private int coordinate;

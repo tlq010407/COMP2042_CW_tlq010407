@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 /**
  * This is a class that contains all game scenes.
- * @author liqitang-modified
+ * @author liqi tang-modified
  */
 public class GameScene extends CheckCellStatus {
     /**

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * This class is used to write, compare and sort the users with their scores.
- * @author liqitang
+ * @author liqi tang
  */
 public class Record extends fileEditer{
     private static ArrayList<Integer> scores = new ArrayList<>();

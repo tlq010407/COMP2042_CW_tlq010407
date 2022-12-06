@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * This class is used to edit parameters of the rank scene.
- * @author liqitang
+ * @author liqi tang
  */
 
 public class RankScene extends EndGame{

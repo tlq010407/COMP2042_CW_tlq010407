@@ -17,7 +17,7 @@ import static java.lang.System.exit;
 
 /**
  * This class is used to contain several ventHandler<MouseEvent> functions.
- * @author liqitang
+ * @author liqi tang
  */
 public class Buttons{
     /**
