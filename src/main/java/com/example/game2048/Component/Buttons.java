@@ -3,17 +3,11 @@ package com.example.game2048.Component;
 import com.example.game2048.GameScene;
 import com.example.game2048.Highest.Account;
 import com.example.game2048.RankScene;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Optional;
 
 import static com.example.game2048.Main.HEIGHT;
@@ -76,8 +70,8 @@ public class Buttons{
         game.game(gameScene, gameRoot, primaryStage, endGameScene, root, color);
     }
     /**
-     * A Alert:
-     * Pop up a screen and ask whether user wanna quit game or not,
+     * Alert:
+     * Pop up a screen and ask whether user want to quit game or not,
      * if user click "OK",
      * then the game will close the whole game screen automatically.
      */

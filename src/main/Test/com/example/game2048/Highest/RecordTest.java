@@ -1,11 +1,9 @@
 package com.example.game2048.Highest;
 
 import org.junit.Test;
-
 import java.io.File;
-import java.util.ArrayList;
-
-import static com.example.game2048.Highest.Record.*;
+import static com.example.game2048.Highest.Record.readFile;
+import static com.example.game2048.Highest.Record.users;
 import static org.junit.Assert.*;
 
 public class RecordTest {
@@ -15,7 +13,7 @@ public class RecordTest {
         Record record = new Record();
         readFile(scoreFile);
         int score = record.getHighscore();
-        assertEquals(23352,score);
+        assertEquals(99999,score);
     }
 
     @Test
@@ -23,7 +21,7 @@ public class RecordTest {
         Record record = new Record();
         readFile(scoreFile);
         String username = record.getHighscoreUser();
-        assertEquals("aaa",username);
+        assertEquals("tlq",username);
     }
 
     @Test
@@ -33,5 +31,13 @@ public class RecordTest {
         check.checkscore(20,"gg");
         String score = users.get(users.size()-1).split(" ")[0];
         assertEquals(20, Integer.parseInt(score));
+    }
+    @Test
+    public void testWriting(){
+        Record writing = new Record();
+        File test = new File("tests.txt");
+        assertEquals("Create a File",  writing.writing(test,users));
+        File test2 = new File("highscore.txt");
+        assertEquals( "File Already Exist.",writing.writing(test2,users));
     }
 }

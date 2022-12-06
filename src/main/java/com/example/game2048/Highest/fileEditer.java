@@ -12,10 +12,11 @@ public class fileEditer{
      * @param scoreFile the name of the file.
      * @param users the arraylist contains the scores and users' name.
      */
-    public static void writing(File scoreFile, ArrayList<String> users) {
+    public static String writing(File scoreFile, ArrayList<String> users) {
         if (!scoreFile.exists()) {
             try {
                 scoreFile.createNewFile();
+                return "Create a File";
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -35,6 +36,7 @@ public class fileEditer{
                 e.printStackTrace();
             }
         }
+        return "File Already Exist.";
     }
 
     /**
@@ -52,7 +54,6 @@ public class fileEditer{
             System.out.println("Failed to delete the file.");
         }
         for (int i=0;i< scores.size();i++){
-            //System.out.println(scores.get(i));
             System.out.println(users.get(i));
         }
         try {

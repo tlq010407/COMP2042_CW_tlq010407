@@ -10,7 +10,7 @@ public class Record extends fileEditer{
     private static ArrayList<Integer> scores = new ArrayList<>();
     private static ArrayList<String> names = new ArrayList<>();
     public static ArrayList<String> users = new ArrayList<>();
-    public static final File scoreFile = new File("highscore.txt");
+    public static final File scoreFile=new File("highscore.txt");
 
     /**
      * Read all datasets from the file and store into the arraylists.
