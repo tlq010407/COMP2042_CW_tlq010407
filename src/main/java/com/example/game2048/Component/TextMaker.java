@@ -37,14 +37,7 @@ public class TextMaker {
         first.setText(second.getText());
         second.setText(temp);
 
-        double tempNumber;
-        tempNumber = first.getX();
-        first.setX(second.getX());
-        second.setX(tempNumber);
-
-        tempNumber = first.getY();
-        first.setY(second.getY());
-        second.setY(tempNumber);
+        //delete the duplicate code here.
     }
 
     /**
