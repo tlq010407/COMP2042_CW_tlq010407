@@ -5,7 +5,7 @@ In order to compile this 2048Game, download javafx packages('javafx-sdk-19') onl
 
 Build project.
 
-Run the file Main.java in the following directory:COMP2042_CW_tlq010407/src/main/java/com/example/demo
+Run the file Main.java in the following directory:COMP2042_CW_tlq010407-master/src/main/java/com/example/demo
 
 Open file using existing resources and import from external model maven
 
