@@ -1,7 +1,10 @@
-# COMP2042_CW_hfylt5
+# COMP2042_CW_tlq010407
 Tang,Liqi 20259468
 
-In order to compile this 2048Game, I downloaded javafx packages('javafx-sdk-19') online and JDK-17, and imported into intellJ File/project structure/library.
+In order to compile this 2048Game, download javafx packages('javafx-sdk-19') online and JDK-17, and imported into intellJ File/project structure/library.
+Build project.
+Run the file Main.java in the following directory:COMP2042_CW_tlq010407/src/main/java/com/example/demo
+Open file using existing resources and import from external model maven
 
 Design.pdf: the class diagram.
 
